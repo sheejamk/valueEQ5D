@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562507375552.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "13|120|46|0|\n",
+    "hash" : "51881424",
+    "id" : "B0C4290B",
+    "lastKnownWriteTime" : 1562529069,
+    "last_content_update" : 1562529069405,
+    "path" : "~/Desktop/HEwork/valueEQ5D/R/eq5d.R",
+    "project_path" : "R/eq5d.R",
+    "properties" : {
+        "cursorPosition" : "319,6",
+        "scrollLine" : "298"
+    },
+    "relative_order" : 2,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

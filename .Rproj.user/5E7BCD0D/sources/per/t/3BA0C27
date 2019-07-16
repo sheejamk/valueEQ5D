@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563215207197.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1247140747",
+    "id" : "3BA0C27",
+    "lastKnownWriteTime" : 1563221244,
+    "last_content_update" : 1563221244826,
+    "path" : "~/Desktop/HEwork/eq5d_shiny/app.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "168,157",
+        "scrollLine" : "159"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

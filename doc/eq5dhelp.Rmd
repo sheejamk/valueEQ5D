@@ -1,0 +1,63 @@
+---
+title: "eq5dmap"
+output: 
+  rmarkdown::html_vignette:
+      self_contained: no
+vignette: >
+  %\VignetteIndexEntry{eq5dmap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(valueEQ5D)
+```
+## Vignette Info
+
+This is generated to help use "EQ5Dmapping" in R to value EQ-5D-5L responses to index values based on UK using Devlin method and map 5L responses to 3L indexes using Van Hout method. This can also be used to value 3L responses (using Dolan et al method). Usage examples are given below.
+
+Whenever the EQ-5D-5L responses are taken as input parameters, code checks if the input values are with in the bounds, i.e for 3L they have to be between 1 and 3 and for 5L between 1 and 5, throws error otherwise. The methods are only for UK valuation. 
+
+Note: Future versions will include for other countries and EQ-5D-5L mapping to 3L index values using the mehtod by Monica Hernadez et al (similar "eq5dmap" in STATA).
+
+## More Examples
+
+## Valuing 3L responses (UK) 
+
+For the individual responses for 3L such as 1,2,3,2,2 for each of 5 dimensions (mobility, self care, usual activities, pain/discomfort, anxiety/depression) in order  to give 0.258
+```{r, echo=TRUE, results='asis'}
+value3LUK_responses(1,2,3,2,2)
+```
+
+## Valuing 5L responses (UK) 
+
+These functions allow valuing 5L responses based on Devlin et al method. The different possibilities for valuing are given as examples below.
+
+#### This function is general one where you can input the individual responses in order as a 5 digit number and treat the other arugments as NA
+```{r, echo=TRUE, results='asis'}
+valueEQ5D5LUK_DevlinMethod(23434)
+valueEQ5D5LUK_DevlinMethod(2,3,4,3,4)
+valueEQ5D5LUK_DevlinMethod(c(2,3,4,3,4))
+```
+
+## Mapping 5L responses to 3L index values (Van Hout method)
+
+### To map EQ-5D-5L responses to EQ-5D-3L index values using Van Hout method. Individual responses are represented as a 5 digit number , a vector or can be listed individually. 
+```{r, echo=TRUE, results='asis'}
+eq5dmap5Lto3L_VanHoutMethod(11125)
+eq5dmap5Lto3L_VanHoutMethod(1,1,1,2,5)
+eq5dmap5Lto3L_VanHoutMethod(c(1,1,1,2,5))
+```
+
+
+
+
+
+

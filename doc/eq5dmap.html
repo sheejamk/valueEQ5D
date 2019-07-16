@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>eq5dmap</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link rel="stylesheet" href="\\hscifs6\usershomedir$\smk543\Documents\R\win-library\3.4\rmarkdown\rmarkdown\templates\html_vignette\resources\vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">eq5dmap</h1>
+
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(EQ5DmapR)</code></pre></div>
+<div id="vignette-info" class="section level2">
+<h2>Vignette Info</h2>
+<p>This is generated to help use “EQ5Dmapping” in R to value EQ-5D-5L responses to index values based on UK using Devlin method and map 5L responses to 3L indexes using Van Hout method. This can also be used to value 3L responses (using Dolan et al method). Usage examples are given below.</p>
+<p>Whenever the EQ-5D-5L responses are taken as input parameters, code checks if the input values are with in the bounds, i.e for 3L they have to be between 1 and 3 and for 5L between 1 and 5, throws error otherwise. The methods are only for UK valuation.</p>
+<p>Note: Future versions will include for other countries and EQ-5D-5L mapping to 3L index values using the mehtod by Monica Hernadez et al (similar “eq5dmap” in STATA).</p>
+</div>
+<div id="more-examples" class="section level2">
+<h2>More Examples</h2>
+</div>
+<div id="valuing-3l-responses-uk" class="section level2">
+<h2>Valuing 3L responses (UK)</h2>
+<p>For the individual responses for 3L such as 1,2,3,2,2 for each of 5 dimensions (mobility, self care, usual activities, pain/discomfort, anxiety/depression) in order to give 0.258</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">value3LUK_responses</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>)</code></pre></div>
+<p>[1] 0.258</p>
+</div>
+<div id="valuing-5l-responses-uk" class="section level2">
+<h2>Valuing 5L responses (UK)</h2>
+<p>These functions allow valuing 5L responses based on Devlin et al method. The different possibilities for valuing are given as examples below.</p>
+<div id="this-function-is-general-one-where-you-can-input-the-individual-responses-in-order-as-a-5-digit-number-and-treat-the-other-arugments-as-na" class="section level4">
+<h4>This function is general one where you can input the individual responses in order as a 5 digit number and treat the other arugments as NA</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">valueEQ5D5LUK_DevlinMethod</span>(<span class="dv">23434</span>)</code></pre></div>
+<p>[1] 0.331</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">valueEQ5D5LUK_DevlinMethod</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>)</code></pre></div>
+<p>[1] 0.331</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">valueEQ5D5LUK_DevlinMethod</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>))</code></pre></div>
+<p>[1] 0.331</p>
+</div>
+</div>
+<div id="mapping-5l-responses-to-3l-index-values-van-hout-method" class="section level2">
+<h2>Mapping 5L responses to 3L index values (Van Hout method)</h2>
+<div id="to-map-eq-5d-5l-responses-to-eq-5d-3l-index-values-using-van-hout-method.-individual-responses-are-represented-as-a-5-digit-number-a-vector-or-can-be-listed-individually." class="section level3">
+<h3>To map EQ-5D-5L responses to EQ-5D-3L index values using Van Hout method. Individual responses are represented as a 5 digit number , a vector or can be listed individually.</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eq5dmap5Lto3L_VanHoutMethod</span>(<span class="dv">11125</span>)</code></pre></div>
+<p>[1] 0.3154609</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eq5dmap5Lto3L_VanHoutMethod</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>)</code></pre></div>
+<p>[1] 0.3154609</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eq5dmap5Lto3L_VanHoutMethod</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>))</code></pre></div>
+<p>[1] 0.3154609</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

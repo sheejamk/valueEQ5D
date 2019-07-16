@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562690409949.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3884004787",
+    "id" : "3B902552",
+    "lastKnownWriteTime" : 1562769811,
+    "last_content_update" : 1562769811596,
+    "path" : "C:/Users/smk543/repos/valueEQ5D/R/eq5d.R",
+    "project_path" : "R/eq5d.R",
+    "properties" : {
+        "cursorPosition" : "278,0",
+        "scrollLine" : "250"
+    },
+    "relative_order" : 5,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
