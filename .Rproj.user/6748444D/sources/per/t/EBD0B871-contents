@@ -1,6 +1,0 @@
-#' Required to avoid the note/warning with RMD check "no visible binding for global variable"
-#' @import utils
-utils::globalVariables(c("Probability_matrix_crosswalk.df",
-                         "EQ5D5L_Crosswalk_ValueSets.df",
-                         "EQ5D3L_indexvalues.df","EQ5d5L_valuesets_13countries.df",
-                         "EQ5D5L_tariffs.df","EQ5D3L_tariffs_TTO.df","EQ5D3L_tariffs_VAS.df"))

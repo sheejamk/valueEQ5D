@@ -22,13 +22,11 @@ library(valueEQ5D)
 ```
 ## valueEQ5D
 
-This package allows to value EQ-5D-5L and EQ-5D-3L descriptive system to the index values. EQ-5D-5L scores are values for countries England, Ireland, Spain, Germany, China, Indonesia, Hong Kong, Thailand, Uranguay, Japan, Netherlands, and Canada.  EQ-5D-3L is only valued for England only.
-
-This package will also can be used to map EQ-5D individual responses obtained from randomised controlled trial or observational study. Currently this has been programmed for the UK.  
+This package can be used for valuing EQ-5D scores -both 5L and 3L for different countries.  EQ-5D-5L scores can be valued for the following countries: Canada,China,England ,Germany,HongKong,Indonesia,Ireland,Japan, Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay while EQ-5D-3L scores can be valued for the countries Belgium, Brazil, Canada, Chile, Denmark, Europe, Finland, France, Germany, Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,Zimbabwe, ans Trinidad_and_Tobago. The 5L descriptive scores can be mapped to 3L index values for UK using the NICE recommended Van Hout et al. method. 
 
 If the individual responses are in column formats (e.g. in csv) they can be used as arguments in the methods.
 
-In brief, for valuing EQ-5D-3L responses from individual responses to the descriptive system, use "valueEQ5D3L_indscores";for valuing EQ-5D-5L responses from descriptive system, use "valueEQ5D5L_indscores"; and for mapping EQ-5D-5L responses from descriptive system to EQ-5D-3L index values, use "eq5dmap5Lto3L_indscores". The arguemnts for all these three parameters will be country names and followed by the five individual responses.
+In brief, for valuing EQ-5D-3L responses from individual responses to the descriptive system, use "valueEQ5D3LIindscores";for valuing EQ-5D-5L responses from descriptive system, use "valueEQ5D5LIindscores"; and for mapping EQ-5D-5L responses from descriptive system to EQ-5D-3L index values, use "eq5dmap5Lto3LIndscores". The arguements for all these three parameters will be country names and followed by the five individual responses.
 
 If the requiremnt is to get the summary statistics of collected EQ-5D responses from many individuals with conditions on gender and age use these methods: valuing EQ-5D-3L responses use "valueEQ5D3L";for valuing EQ-5D-5L responses, use "valueEQ5D5L"; and for mapping EQ-5D-5L responses to EQ-5D-3L index values, use "eq5dmap5Lto3L". The arguemnts for all these three parameters will be country names and followed by the five column names of the EQ-5D responses and the data containing these EQ-5D responses.
 
@@ -43,82 +41,81 @@ For demonstration purposes, a simulated data set representing treatment and cont
 Each of the below calls will give same answer while valuing the EQ-5D-3L individual score 1,2,3,2,2 for mobility, self care, social activity, pain and discomfort, and anxiety respectively.
 ```{r }
 ## Valuing EQ-5D-3L individual score
-# valueEQ5D3L_indscores("UK",1,2,3,2,2)
-# valueEQ5D3L_indscores("UK",c(1,2,3,2,2))
-# valueEQ5D3L_indscores("UK",12322)
+ valueEQ5D3LIndscores("UK","TTO",1,2,3,2,2)
+ valueEQ5D3LIndscores("UK","VAS",c(1,2,3,2,2))
+ valueEQ5D3LIndscores("UK","TTO",12322)
 ```
 
-<!-- When the data is in column format as in example below, use the 'valueEQ5D3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below. -->
-<!-- ```{r } -->
-<!-- set.seed(17) -->
-<!--   sampledata <- data.frame(age=abs(rnorm(10, 60, 20)), -->
-<!--                            sex=factor(sample(c("M", "F"), 10, replace=T)), -->
-<!--                            arm=factor(sample(c("Control", "Intervention"), 10, replace=T)), -->
-<!--                            eq5d3L.q1=(sample(c(1,2,3), 10, replace=T)), -->
-<!--                            eq5d3L.q2=(sample(c(1,2,3), 10, replace=T)), -->
-<!--                            eq5d3L.q3=(sample(c(1,2,3), 10, replace=T)), -->
-<!--                            eq5d3L.q4=(sample(c(1,2,3), 10, replace=T)), -->
-<!--                            eq5d3L.q5=(sample(c(1,2,3), 10, replace=T))) -->
-<!-- valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK",NULL,NULL) -->
-<!-- valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","male",c(10,70)) -->
-<!-- valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","male",NULL) -->
-<!-- valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK",NULL,c(10,70)) -->
-<!-- ``` -->
+When the data is in column format as in example below, use the 'valueEQ5D3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below. This will provide the summary statistics, frequency table, histogram and modified data
+```{r }
+set.seed(17)
+  sampledata <- data.frame(age=abs(rnorm(10, 60, 20)),
+                           sex=factor(sample(c("M", "F"), 10, replace=T)),
+                           arm=factor(sample(c("Control", "Intervention"), 10, replace=T)),
+                           eq5d3L.q1=(sample(c(1,2,3), 10, replace=T)),
+                           eq5d3L.q2=(sample(c(1,2,3), 10, replace=T)),
+                           eq5d3L.q3=(sample(c(1,2,3), 10, replace=T)),
+                           eq5d3L.q4=(sample(c(1,2,3), 10, replace=T)),
+                           eq5d3L.q5=(sample(c(1,2,3), 10, replace=T)))
+valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","TTO",NULL,NULL)
+valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","TTO","male",c(10,70))
+valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","TTO","male",NULL)
+valueEQ5D3L(sampledata,"eq5d3L.q1","eq5d3L.q2","eq5d3L.q3","eq5d3L.q4","eq5d3L.q5","UK","TTO",NULL,c(10,70))
+```
 
-<!-- ## Examples- Valuing EQ-5D-5L -->
-<!-- Similarly,each of the below calls will give same answer while valuing the EQ-5D-5L individual score 1,2,3,4,5 for mobility, self care, social activity, pain and discomfort, and anxiety respectively. -->
-<!-- ```{r } -->
-<!-- ## Valuing EQ-5D-5L individual score -->
+## Examples- Valuing EQ-5D-5L
+Similarly,each of the below calls values EQ-5D-5L individual score 1,2,3,4,5 for mobility, self care, social activity, pain and discomfort, and anxiety respectively. For EQ-5D-5L, no method to be given explicitly.
+```{r }
+## Valuing EQ-5D-5L individual score
 
-<!-- valueEQ5D5Lindscores("UK",1,2,3,4,5) -->
-<!-- valueEQ5D5Lindscores("UK",c(1,2,3,4,5)) -->
-<!-- valueEQ5D5Lindscores("UK",12345) -->
-<!-- valueEQ5D5Lindscores("DE",12345) -->
-<!-- valueEQ5D5Lindscores("ES",12345) -->
-<!-- valueEQ5D5Lindscores("IN",12345) -->
-<!-- ``` -->
+valueEQ5D5LIndscores("England",1,2,3,4,5)
+valueEQ5D5LIndscores("England",c(1,2,3,4,5))
+valueEQ5D5LIndscores("England",12345)
+valueEQ5D5LIndscores("Germany",12345)
+valueEQ5D5LIndscores("Spain",12345)
+valueEQ5D5LIndscores("Indonesia",12345)
+```
 
-<!-- <!-- When the data is in column format as in example below, use the 'valueEQ5D5L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below. --> -->
-<!-- <!-- ````{r } --> -->
-<!-- <!-- set.seed(17) --> -->
-<!-- <!--   sampledata <- data.frame(age=abs(rnorm(10, 60, 20)), --> -->
-<!-- <!--                            sex=factor(sample(c("M", "F"), 10, replace=T)), --> -->
-<!-- <!--                            arm=factor(sample(c("Control", "Intervention"), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q1=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q2=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q3=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q4=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q5=(sample(c(1,2,3,4,5), 10, replace=T))) --> -->
-<!-- <!-- valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK",NULL,NULL) --> -->
-<!-- <!-- valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","male",c(10,70)) --> -->
-<!-- <!-- valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","IN","male",NULL) --> -->
-<!-- <!-- valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","IR",NULL,c(10,70)) --> -->
-<!-- <!-- ``` --> -->
+When the data is in column format as in example below, use the 'valueEQ5D5L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below. This will provide the summary statistics, frequency table, histogram and modified data
+````{r }
+set.seed(17)
+  sampledata <- data.frame(age=abs(rnorm(10, 60, 20)),
+                           sex=factor(sample(c("M", "F"), 10, replace=T)),
+                           arm=factor(sample(c("Control", "Intervention"), 10, replace=T)),
+                           eq5d5L.q1=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q2=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q3=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q4=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q5=(sample(c(1,2,3,4,5), 10, replace=T)))
+valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","England",NULL,NULL)
+valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","England","male",c(10,70))
+valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","Indonesia","male",NULL)
+valueEQ5D5L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","Ireland",NULL,c(10,70))
+```
 
 
-<!-- <!-- ## Examples- Mapping EQ-5D-5L scores to EQ-5D-3L index values for England --> -->
-<!-- <!-- Each of the below calls will give same EQ-5d-3L index values while valuing the EQ-5D-5L individual score 1,2,3,4,5 for mobility, self care, social activity, pain and discomfort, and anxiety respectively. --> -->
-<!-- <!-- ```{r } --> -->
-<!-- <!-- ## Valuing EQ-5D-5L individual score --> -->
+## Examples- Mapping EQ-5D-5L scores to EQ-5D-3L index values for England
+Each of the below calls will give same EQ-5d-3L index values while valuing the EQ-5D-5L individual score 1,2,3,4,5 for mobility, self care, social activity, pain and discomfort, and anxiety respectively.
+```{r }
+## Valuing EQ-5D-5L individual score
 
-<!-- <!-- eq5dmap5Lto3L_indscores("UK",1,2,3,4,5)  --> -->
-<!-- <!-- eq5dmap5Lto3L_indscores("UK",c(1,2,3,4,5)) --> -->
-<!-- <!-- eq5dmap5Lto3L_indscores("UK",12345) --> -->
-<!-- <!-- ``` --> -->
-<!-- <!-- When the data is in column format as in example below, use the 'eq5dmap5Lto3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below. --> -->
-<!-- <!-- ```{r } --> -->
-<!-- <!-- set.seed(17) --> -->
-<!-- <!-- sampledata <- data.frame(age=abs(rnorm(10, 60, 20)), --> -->
-<!-- <!--                            sex=factor(sample(c("M", "F"), 10, replace=T)), --> -->
-<!-- <!--                            arm=factor(sample(c("Control", "Intervention"), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q1=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q2=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q3=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q4=(sample(c(1,2,3,4,5), 10, replace=T)), --> -->
-<!-- <!--                            eq5d5L.q5=(sample(c(1,2,3,4,5), 10, replace=T))) --> -->
+eq5dmap5Lto3LIndscores("UK","CW",1,2,3,4,5)
+eq5dmap5Lto3LIndscores("UK","CW",c(1,2,3,4,5))
+eq5dmap5Lto3LIndscores("UK","CW",12345)
+```
+When the data is in column format as in example below, use the 'eq5dmap5Lto3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below.
+```{r }
+set.seed(17)
+sampledata <- data.frame(age=abs(rnorm(10, 60, 20)),
+                           sex=factor(sample(c("M", "F"), 10, replace=T)),
+                           arm=factor(sample(c("Control", "Intervention"), 10, replace=T)),
+                           eq5d5L.q1=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q2=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q3=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q4=(sample(c(1,2,3,4,5), 10, replace=T)),
+                           eq5d5L.q5=(sample(c(1,2,3,4,5), 10, replace=T)))
 
-<!-- <!--  eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK",NULL,NULL) --> -->
-<!-- <!--  eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","male",c(10,70)) --> -->
-<!-- <!--  eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","IN","male",NULL) --> -->
-<!-- <!--  eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","IR",NULL,c(10,70)) --> -->
-<!-- <!-- ``` --> -->
+ eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW",NULL,NULL)
+ eq5dmap5Lto3L(sampledata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW","male",c(10,70))
+
+```

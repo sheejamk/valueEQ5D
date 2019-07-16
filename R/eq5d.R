@@ -185,7 +185,7 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
     }
     return(values.state)
   }else{
-    print("No tariffs found for the country you specified. Please try later !!")
+    print("No tariffs found for the country you specified for EQ-5D-5L. Please try later !!")
     return(-1)
   }
   
@@ -226,7 +226,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pai
         if(this.score!=-1){
           scores=c(scores,this.score)
         }else{
-          print("EQ-5D-5L esponses not valid - 5L scores can not be valued")
+          print("EQ-5D-5L responses not valid - 5L scores can not be valued")
           return(-1)
         }
       }
@@ -405,14 +405,11 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
     }
     return(values.state)
   }else{
-    print("No tariffs found for the country you specified. Please try later !!")
+    print("No tariffs found for the country you specified for EQ-5D-3L. Please try later !!")
     return(-1)
   }
   
 }
-
-  
-
 
 ###########################################################################################################
 #' Function to value EQ-5D-3L columns to index values for any country and group by gender and age
@@ -655,17 +652,17 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
       first=is.null(groupby) || toupper(groupby)=="NA" || is.na(groupby)
       second=is.null(agelimit) || toupper(agelimit)=="NA" || is.na(agelimit)
       if(first & second){
-        title<-paste("Histogram of EQ-5D-5L index values", sep="")
+        title<-paste("Histogram of EQ-5D-3L index values", sep="")
       }else{
         if(first & !second){
-          title<-paste("Histogram of EQ-5D-5L index values",
+          title<-paste("Histogram of EQ-5D-3L index values",
                        " with ages between ", agelimit[1], " and ",agelimit[2], sep="")
         }else{
           if(!second& second){
-            title<-paste("Histogram of EQ-5D-5L index values for ",
+            title<-paste("Histogram of EQ-5D-3L index values for ",
                          groupby, sep="")
           }else{
-            title<-paste("Histogram of EQ-5D-5L index values for ",
+            title<-paste("Histogram of EQ-5D-3L index values for ",
                          groupby, " with ages between ", agelimit[1], " and ",agelimit[2], sep="")
           }
         }
