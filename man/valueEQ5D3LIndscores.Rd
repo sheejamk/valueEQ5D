@@ -2,13 +2,13 @@
 % Please edit documentation in R/eq5d.R
 \name{valueEQ5D3LIndscores}
 \alias{valueEQ5D3LIndscores}
-\title{Function to value EQ-5D-3L scores for countries "Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea","Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbawe"}
+\title{Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe}
 \usage{
 valueEQ5D3LIndscores(country, method, this.response, this.response2 = NA,
   this.response3 = NA, this.response4 = NA, this.response5 = NA)
 }
 \arguments{
-\item{country}{a country name from the list "Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea","Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbawe"}
+\item{country}{a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe}
 
 \item{method}{method name either TTO or VAS}
 
@@ -23,10 +23,10 @@ valueEQ5D3LIndscores(country, method, this.response, this.response2 = NA,
 \item{this.response5}{response for EQ-5D-3L anxiety/depression, or NA if the responses are given as this.response}
 }
 \value{
-index value based on UK tariffs if success, -1 if failure
+index value based if success, -1 if failure
 }
 \description{
-Function to value EQ-5D-3L scores for countries "Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea","Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbawe"
+Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
 }
 \examples{
 valueEQ5D3LIndscores("UK","TTO",23131)

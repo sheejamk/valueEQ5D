@@ -3,12 +3,12 @@
 \docType{data}
 \name{EQ5D3L_tariffs_TTO.df}
 \alias{EQ5D3L_tariffs_TTO.df}
-\title{EQ5D 5L value sets for all 13 countries}
-\format{A 5 by 7 dataframe}
+\title{EQ-5D-3L tariffs using TTO for different countries}
+\format{A 21 by 20 dataframe}
 \usage{
 EQ5D3L_tariffs_TTO.df
 }
 \description{
-EQ5D 5L value sets for all 13 countries
+EQ-5D-3L tariffs using TTO for different countries
 }
 \keyword{datasets}

@@ -3,12 +3,12 @@
 \docType{data}
 \name{EQ5D5L_crosswalk_indexvalues.df}
 \alias{EQ5D5L_crosswalk_indexvalues.df}
-\title{EQ5D 5L crosswalk value sets for all 13 countries}
-\format{A 5 by 7 dataframe}
+\title{EQ-5D-5L crosswalk value sets for 10 countries}
+\format{A 3125 by 11 dataframe}
 \usage{
 EQ5D5L_crosswalk_indexvalues.df
 }
 \description{
-EQ5D 5L crosswalk value sets for all 13 countries
+EQ-5D-5L crosswalk value sets for 10 countries
 }
 \keyword{datasets}

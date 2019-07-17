@@ -5,7 +5,7 @@
 \title{Function to value EQ-5D-5L scores for any country and group by gende and age}
 \usage{
 valueEQ5D5L(eq5dresponse.data, mobility, self.care, usual.activities,
-  pain.discomfort, anxiety, country = "UK", groupby = NULL,
+  pain.discomfort, anxiety, country = "England", groupby = NULL,
   agelimit = NULL)
 }
 \arguments{
@@ -21,7 +21,7 @@ valueEQ5D5L(eq5dresponse.data, mobility, self.care, usual.activities,
 
 \item{anxiety}{column name for response for EQ-5D-5L anxiety/depression}
 
-\item{country}{country of interest, by default is UK, if groupby has to specifiy the country should be specified}
+\item{country}{country of interest, by default is England}
 
 \item{groupby}{male or female -grouping by gender, default NULL}
 
@@ -31,7 +31,7 @@ valueEQ5D5L(eq5dresponse.data, mobility, self.care, usual.activities,
 index value  if success, -1 if failure
 }
 \description{
-Function to value EQ-5D-5L descriptive system to 5L index value.
+Function to value EQ-5D-5L descriptive system to index value.
 }
 \examples{
 valueEQ5D5L(data, "Mobility", "SelfCare","UsualActivity", "Pain", "Anxiety",UK,NULL,c(10,70))

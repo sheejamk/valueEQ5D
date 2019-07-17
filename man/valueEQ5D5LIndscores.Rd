@@ -2,13 +2,13 @@
 % Please edit documentation in R/eq5d.R
 \name{valueEQ5D5LIndscores}
 \alias{valueEQ5D5LIndscores}
-\title{Function to value EQ-5D-5L scores for countries "Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland", "Japan","Korea","Malasia","Netherlands","Spain","Taiwan","Thailand","Uruguay"}
+\title{Function to value EQ-5D-5L scores for countries: Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay}
 \usage{
 valueEQ5D5LIndscores(country, this.response, this.response2 = NA,
   this.response3 = NA, this.response4 = NA, this.response5 = NA)
 }
 \arguments{
-\item{country}{a country name from the list "Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland","Japan","Korea","Malasia","Netherlands","Spain","Taiwan","Thailand","Uruguay"}
+\item{country}{a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay}
 
 \item{this.response}{a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1}
 
@@ -21,13 +21,13 @@ valueEQ5D5LIndscores(country, this.response, this.response2 = NA,
 \item{this.response5}{response for EQ-5D-5L anxiety/depression, or NA if the responses are given as this.response}
 }
 \value{
-index value based on UK tariffs if success, -1 if failure
+index values  if success, -1 if failure
 }
 \description{
-Function to value EQ-5D-5L scores for countries "Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland", "Japan","Korea","Malasia","Netherlands","Spain","Taiwan","Thailand","Uruguay"
+Function to value EQ-5D-5L scores for countries: Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
 }
 \examples{
-valueEQ5D5LIndscores("UK",23434)
-valueEQ5D5LIndscores("ES",2,3,4,3,4)
-valueEQ5D5LIndscores("IN",c(1,2,3,4,3))
+valueEQ5D5LIndscores("England",23434)
+valueEQ5D5LIndscores("China",2,3,4,3,4)
+valueEQ5D5LIndscores("Ireland",c(1,2,3,4,3))
 }

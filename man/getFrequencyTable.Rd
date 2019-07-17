@@ -2,7 +2,7 @@
 % Please edit documentation in R/basic_checks.R
 \name{getFrequencyTable}
 \alias{getFrequencyTable}
-\title{Function to return mode}
+\title{Function to return frequency table}
 \usage{
 getFrequencyTable(v)
 }
@@ -13,7 +13,7 @@ getFrequencyTable(v)
 frequency table
 }
 \description{
-Function to return mode
+Function to return frequency table
 }
 \examples{
 getFrequencyTable(c(1,1,1,12,2))

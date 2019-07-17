@@ -19,7 +19,6 @@ testFileExistRead<-function(filename){
   }
 }
 ###########################################################################################################
-
 #' Function to check the given column exists
 #' @param column.name a column name
 #' @param data data frame
@@ -37,7 +36,7 @@ checkColumnExist<-function(column.name,data){
   }
 }
 ###########################################################################################################
-#' Function to return the column no for column name
+#' Function to return the column number for column name
 #' @param data a data frame
 #' @param column.name column names of the data frame
 #' @return coumn number, if success -1, if failure
@@ -55,7 +54,7 @@ getColumnNoColNames=function(data,column.name){
 }
 
 ###########################################################################################################
-#' Function to return mode
+#' Function to return frequency table
 #' @param v a vector
 #' @return frequency table
 #' @examples getFrequencyTable(c(1,1,1,12,2))
@@ -67,7 +66,6 @@ getFrequencyTable <- function(v) {
   return(res)
 }
 ###########################################################################################################
-
 #' Function to return mode
 #' @param v a vector
 #' @return mode

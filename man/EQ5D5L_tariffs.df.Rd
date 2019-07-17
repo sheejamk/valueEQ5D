@@ -3,12 +3,12 @@
 \docType{data}
 \name{EQ5D5L_tariffs.df}
 \alias{EQ5D5L_tariffs.df}
-\title{EQ5D 5L tariffs}
-\format{A 5 by 7 dataframe}
+\title{EQ-5D-5L tariffs for different countries}
+\format{A 34 by 16 dataframe}
 \usage{
 EQ5D5L_tariffs.df
 }
 \description{
-EQ5D 5L tariffs
+EQ-5D-5L tariffs for different countries
 }
 \keyword{datasets}

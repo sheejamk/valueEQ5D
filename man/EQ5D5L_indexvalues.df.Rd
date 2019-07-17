@@ -3,12 +3,12 @@
 \docType{data}
 \name{EQ5D5L_indexvalues.df}
 \alias{EQ5D5L_indexvalues.df}
-\title{EQ5D 5L value sets}
-\format{A 5 by 7 dataframe}
+\title{EQ-5D-5L index values}
+\format{A 3125 by 16 dataframe}
 \usage{
 EQ5D5L_indexvalues.df
 }
 \description{
-EQ5D 5L value sets
+EQ-5D-5L index values
 }
 \keyword{datasets}

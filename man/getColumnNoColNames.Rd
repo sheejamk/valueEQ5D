@@ -2,7 +2,7 @@
 % Please edit documentation in R/basic_checks.R
 \name{getColumnNoColNames}
 \alias{getColumnNoColNames}
-\title{Function to return the column no for column name}
+\title{Function to return the column number for column name}
 \usage{
 getColumnNoColNames(data, column.name)
 }
@@ -15,7 +15,7 @@ getColumnNoColNames(data, column.name)
 coumn number, if success -1, if failure
 }
 \description{
-Function to return the column no for column name
+Function to return the column number for column name
 }
 \examples{
 getColumnNoColNames(data,"sex")

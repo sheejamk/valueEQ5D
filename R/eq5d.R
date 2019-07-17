@@ -111,17 +111,17 @@ check.thescores.5L<-function(this.response, this.response2=NA, this.response3=NA
   }
 }
 ##########################################################################################################
-#' Function to value EQ-5D-5L scores for countries "Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland", "Japan","Korea","Malasia","Netherlands","Spain","Taiwan","Thailand","Uruguay"
-#' @param country a country name from the list "Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland","Japan","Korea","Malasia","Netherlands","Spain","Taiwan","Thailand","Uruguay"
+#' Function to value EQ-5D-5L scores for countries: Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
+#' @param country a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
 #' @param this.response  a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-5L self care, or NA if the responses are given as this.response
 #' @param this.response3  response for EQ-5D-5L usual activities,or NA if the responses are given as this.response
 #' @param this.response4  response for EQ-5D-5L pain/discomfort, or NA if the responses are given as this.response
 #' @param this.response5  response for EQ-5D-5L anxiety/depression, or NA if the responses are given as this.response
-#' @return index value based on UK tariffs if success, -1 if failure
-#' @examples valueEQ5D5LIndscores("UK",23434)
-#' @examples valueEQ5D5LIndscores("ES",2,3,4,3,4)
-#' @examples valueEQ5D5LIndscores("IN",c(1,2,3,4,3))
+#' @return index values  if success, -1 if failure
+#' @examples valueEQ5D5LIndscores("England",23434)
+#' @examples valueEQ5D5LIndscores("China",2,3,4,3,4)
+#' @examples valueEQ5D5LIndscores("Ireland",c(1,2,3,4,3))
 #' @export
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland",
@@ -198,15 +198,15 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
 #' @param usual.activities  column name for response for EQ-5D-5L usual activities
 #' @param pain.discomfort  column name for response for EQ-5D-5L pain/discomfort
 #' @param anxiety  column name for response for EQ-5D-5L anxiety/depression
-#' @param country  country of interest, by default is UK, if groupby has to specifiy the country should be specified
+#' @param country  country of interest, by default is England
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return index value  if success, -1 if failure
 #' @examples valueEQ5D5L(data, "Mobility", "SelfCare","UsualActivity", "Pain", "Anxiety",UK,NULL,c(10,70))
 #' @export
-#' @description Function to value EQ-5D-5L descriptive system to 5L index value.
+#' @description Function to value EQ-5D-5L descriptive system to index value.
 valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pain.discomfort,anxiety,
-                      country="UK",groupby=NULL,agelimit=NULL){
+                      country="England",groupby=NULL,agelimit=NULL){
   eq5d.colnames<-c(mobility, self.care,usual.activities,pain.discomfort,anxiety)
   ans.eq5d.colnames<-sapply(eq5d.colnames,checkColumnExist,eq5dresponse.data)
   if(all(ans.eq5d.colnames==0)){# if the eq5d column names match
@@ -263,15 +263,15 @@ valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pai
   }
 }
 ##########################################################################################################
-#' Function to value EQ-5D-3L scores for countries "Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea","Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbawe"
-#' @param country a country name from the list "Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea","Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbawe"
+#' Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
+#' @param country a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
 #' @param method method name either TTO or VAS
 #' @param this.response  a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-3L self care, or NA if the responses are given as this.response
 #' @param this.response3  response for EQ-5D-3L usual activities,or NA if the responses are given as this.response
 #' @param this.response4  response for EQ-5D-3L pain/discomfort, or NA if the responses are given as this.response
 #' @param this.response5  response for EQ-5D-3L anxiety/depression, or NA if the responses are given as this.response
-#' @return index value based on UK tariffs if success, -1 if failure
+#' @return index value based if success, -1 if failure
 #' @examples valueEQ5D3LIndscores("UK","TTO",23131)
 #' @examples valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))

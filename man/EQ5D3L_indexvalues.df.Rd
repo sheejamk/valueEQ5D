@@ -3,13 +3,12 @@
 \docType{data}
 \name{EQ5D3L_indexvalues.df}
 \alias{EQ5D3L_indexvalues.df}
-\title{EQ5D 3L index values (for each set of response of 3L) using TTO for UK}
-\format{A  243 by 2 dataframe
-From ref:Dolan et al. 1997 and https://www.economicsnetwork.ac.uk/health/EQ_5D_index_calculator.xls}
+\title{EQ-5D-3L index values (for each set of response of 3L) for different countries}
+\format{A  243 by 28 dataframe}
 \usage{
 EQ5D3L_indexvalues.df
 }
 \description{
-EQ5D 3L index values (for each set of response of 3L) using TTO for UK
+EQ-5D-3L index values (for each set of response of 3L) for different countries
 }
 \keyword{datasets}

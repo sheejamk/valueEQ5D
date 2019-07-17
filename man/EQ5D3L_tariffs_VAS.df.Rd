@@ -3,12 +3,12 @@
 \docType{data}
 \name{EQ5D3L_tariffs_VAS.df}
 \alias{EQ5D3L_tariffs_VAS.df}
-\title{EQ5D 5L value sets for all 13 countries}
-\format{A 5 by 7 dataframe}
+\title{EQ-5D-3L tariffs using VAS for different countries}
+\format{A 14 by 10 dataframe}
 \usage{
 EQ5D3L_tariffs_VAS.df
 }
 \description{
-EQ5D 5L value sets for all 13 countries
+EQ-5D-3L tariffs using VAS for different countries
 }
 \keyword{datasets}
