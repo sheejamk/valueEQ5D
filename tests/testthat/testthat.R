@@ -66,9 +66,6 @@ test_that("testing subsetGenderAgeToGroup", {
                            eq5d3L.q3=(sample(c(1,2,3), 10, replace=T)),
                            eq5d3L.q4=(sample(c(1,2,3), 10, replace=T)),
                            eq5d3L.q5=(sample(c(1,2,3), 10, replace=T)))
-
-
-
   expect_equal(getColNumExistingColNames("sex",sampledata),2)
   expect_equal(getColNumExistingColNames("age",sampledata),1)
   expect_equal(getColNumExistingColNames(c("sex","gender","male","female","f","m"),sampledata),2)

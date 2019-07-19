@@ -18,5 +18,5 @@ checkColumnExist(column.name, data)
 Function to check the given column exists
 }
 \examples{
-checkColumnExist("age",data)
+checkColumnExist("age",data.frame(age=rep(20, 4), sex=rep("male", 4),stringsAsFactors=FALSE))
 }

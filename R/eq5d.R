@@ -193,21 +193,22 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
 ###########################################################################################################
 #' Function to value EQ-5D-5L scores for any country and group by gende and age
 #' @param eq5dresponse.data the data containing eq5d responses
-#' @param mobility  column name for EQ-5D-5L mobility
-#' @param self.care column name for response for EQ-5D-5L self care
-#' @param usual.activities  column name for response for EQ-5D-5L usual activities
-#' @param pain.discomfort  column name for response for EQ-5D-5L pain/discomfort
-#' @param anxiety  column name for response for EQ-5D-5L anxiety/depression
+#' @param mo  column name for EQ-5D-5L mobility
+#' @param sc column name for response for EQ-5D-5L self care
+#' @param ua  column name for response for EQ-5D-5L usual activities
+#' @param pd  column name for response for EQ-5D-5L pain/discomfort
+#' @param ad  column name for response for EQ-5D-5L anxiety/depression
 #' @param country  country of interest, by default is England
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return index value  if success, -1 if failure
-#' @examples valueEQ5D5L(data, "Mobility", "SelfCare","UsualActivity", "Pain", "Anxiety",UK,NULL,c(10,70))
+#' @examples 
+#' data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,4),ad=c(3,4))
+#' valueEQ5D5L(data, "mo", "sc","ua", "pd", "ad","England",NULL,c(10,70))
 #' @export
 #' @description Function to value EQ-5D-5L descriptive system to index value.
-valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pain.discomfort,anxiety,
-                      country="England",groupby=NULL,agelimit=NULL){
-  eq5d.colnames<-c(mobility, self.care,usual.activities,pain.discomfort,anxiety)
+valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby=NULL,agelimit=NULL){
+  eq5d.colnames<-c(mo,sc,ua,pd,ad)
   ans.eq5d.colnames<-sapply(eq5d.colnames,checkColumnExist,eq5dresponse.data)
   if(all(ans.eq5d.colnames==0)){# if the eq5d column names match
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
@@ -217,11 +218,11 @@ valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pai
       return(-1)
     }else{
       for(j in 1:nrow(working.data)){
-        res1=working.data[j,mobility]
-        res2=working.data[j,self.care]
-        res3=working.data[j,usual.activities]
-        res4=working.data[j,pain.discomfort]
-        res5=working.data[j,anxiety]
+        res1=working.data[j,mo]
+        res2=working.data[j,sc]
+        res3=working.data[j,ua]
+        res4=working.data[j,pd]
+        res5=working.data[j,ad]
         this.score<-valueEQ5D5LIndscores(country,c(res1,res2,res3,res4,res5))
         if(this.score!=-1){
           scores=c(scores,this.score)
@@ -236,7 +237,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pai
       stats<-descriptiveStatDataColumn(scores,"EQ-5D-5L")
       freqtable<-getFrequencyTable(scores)
       first=is.null(groupby) || toupper(groupby)=="NA" || is.na(groupby)
-      second=is.null(agelimit) || toupper(agelimit)=="NA" || is.na(agelimit)
+      second=is.null(agelimit) || sum(toupper(agelimit)=="NA")!=0 || sum(is.na(agelimit))!=0
       if(first & second){
         title<-paste("Histogram of EQ-5D-5L index values", sep="")
       }else{
@@ -408,27 +409,26 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
     print("No tariffs found for the country you specified for EQ-5D-3L. Please try later !!")
     return(-1)
   }
-  
 }
-
 ###########################################################################################################
 #' Function to value EQ-5D-3L columns to index values for any country and group by gender and age
 #' @param eq5dresponse.data the data containing eq5d responses
-#' @param mobility  column name for EQ-5D-3L mobility
-#' @param self.care column name for response for EQ-5D-3L self care
-#' @param usual.activities  column name for response for EQ-5D-3L usual activities
-#' @param pain.discomfort  column name for response for EQ-5D-3L pain/discomfort
-#' @param anxiety  column name for response for EQ-5D-3L anxiety/depression
+#' @param mo  column name for EQ-5D-3L mobility
+#' @param sc column name for response for EQ-5D-3L self care
+#' @param ua  column name for response for EQ-5D-3L usual activities
+#' @param pd  column name for response for EQ-5D-3L pain/discomfort
+#' @param ad  column name for response for EQ-5D-3L anxiety/depression
 #' @param country  country of interest, by default is UK, if groupby has to specifiy the country should be specified
 #' @param method Either "TTO" or "VAS"
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return the descriptive statistics of index values, frequence table and the modified data where the last column will be the index values
-#' @examples valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
+#' data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,1),ad=c(3,1))
+#' valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
 #' @export
 #' @description Main function to value EQ-5D-5L descriptive system to 5L index values.
-valueEQ5D3L<-function(eq5dresponse.data,mobility,self.care,usual.activities,pain.discomfort,anxiety,country,method,groupby,agelimit){
-  eq5d.colnames<-c(mobility, self.care,usual.activities,pain.discomfort,anxiety)
+valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,agelimit){
+  eq5d.colnames<-c(mo,sc,ua,pd,ad)
   ans.eq5d.colnames<-sapply(eq5d.colnames,checkColumnExist,eq5dresponse.data)
   if(all(ans.eq5d.colnames==0)){# if the eq5d column names match
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
@@ -438,11 +438,11 @@ valueEQ5D3L<-function(eq5dresponse.data,mobility,self.care,usual.activities,pain
     }else{
       scores=c()
       for(j in 1:nrow(working.data)){
-        res1=working.data[j,mobility]
-        res2=working.data[j,self.care]
-        res3=working.data[j,usual.activities]
-        res4=working.data[j,pain.discomfort]
-        res5=working.data[j,anxiety]
+        res1=working.data[j,mo]
+        res2=working.data[j,sc]
+        res3=working.data[j,ua]
+        res4=working.data[j,pd]
+        res5=working.data[j,ad]
         
         this.score<-valueEQ5D3LIndscores(country,method,res1,res2,res3,res4,res5)
         if(this.score!=-1){
@@ -458,7 +458,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mobility,self.care,usual.activities,pain
       stats<-descriptiveStatDataColumn(scores,"EQ-5D-3L")
       freqtable<-getFrequencyTable(scores)
       first=is.null(groupby) || toupper(groupby)=="NA" || is.na(groupby)
-      second=is.null(agelimit) || toupper(agelimit)=="NA" || is.na(agelimit)
+      second=is.null(agelimit) || sum(toupper(agelimit)=="NA")!=0  || sum(is.na(agelimit))!=0
       if(first & second){
         title<-paste("Histogram of EQ-5D-3L index values", sep="")
       }else{
@@ -640,7 +640,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
         if(this.score!=-1){
           scores=c(scores,this.score)
         }else{
-          print("EQ-5D-5L esponses not valid - 5L scores can not be valued")
+          print("EQ-5D-5L responses not valid - 5L scores can not be valued")
           return(-1)
         }
       }
@@ -650,7 +650,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
       stats<-descriptiveStatDataColumn(scores,"EQ-5D-3L")
       freqtable<-getFrequencyTable(scores)
       first=is.null(groupby) || toupper(groupby)=="NA" || is.na(groupby)
-      second=is.null(agelimit) || toupper(agelimit)=="NA" || is.na(agelimit)
+      second=is.null(agelimit)|| sum(toupper(agelimit)=="NA")!=0 || sum(is.na(agelimit))!=0
       if(first & second){
         title<-paste("Histogram of EQ-5D-3L index values", sep="")
       }else{

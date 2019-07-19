@@ -4,21 +4,21 @@
 \alias{valueEQ5D3L}
 \title{Function to value EQ-5D-3L columns to index values for any country and group by gender and age}
 \usage{
-valueEQ5D3L(eq5dresponse.data, mobility, self.care, usual.activities,
-  pain.discomfort, anxiety, country, method, groupby, agelimit)
+valueEQ5D3L(eq5dresponse.data, mo, sc, ua, pd, ad, country, method,
+  groupby, agelimit)
 }
 \arguments{
 \item{eq5dresponse.data}{the data containing eq5d responses}
 
-\item{mobility}{column name for EQ-5D-3L mobility}
+\item{mo}{column name for EQ-5D-3L mobility}
 
-\item{self.care}{column name for response for EQ-5D-3L self care}
+\item{sc}{column name for response for EQ-5D-3L self care}
 
-\item{usual.activities}{column name for response for EQ-5D-3L usual activities}
+\item{ua}{column name for response for EQ-5D-3L usual activities}
 
-\item{pain.discomfort}{column name for response for EQ-5D-3L pain/discomfort}
+\item{pd}{column name for response for EQ-5D-3L pain/discomfort}
 
-\item{anxiety}{column name for response for EQ-5D-3L anxiety/depression}
+\item{ad}{column name for response for EQ-5D-3L anxiety/depression}
 
 \item{country}{country of interest, by default is UK, if groupby has to specifiy the country should be specified}
 
@@ -30,10 +30,9 @@ valueEQ5D3L(eq5dresponse.data, mobility, self.care, usual.activities,
 }
 \value{
 the descriptive statistics of index values, frequence table and the modified data where the last column will be the index values
+data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,1),ad=c(3,1))
+valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
 }
 \description{
 Main function to value EQ-5D-5L descriptive system to 5L index values.
-}
-\examples{
-valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
 }

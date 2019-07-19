@@ -23,7 +23,7 @@ testFileExistRead<-function(filename){
 #' @param column.name a column name
 #' @param data data frame
 #' @return 0 if sucess -1 if failure
-#' @examples checkColumnExist("age",data)
+#' @examples checkColumnExist("age",data.frame(age=rep(20, 4), sex=rep("male", 4),stringsAsFactors=FALSE))
 #' @export
 checkColumnExist<-function(column.name,data){
   one=toupper(colnames(data))
@@ -40,7 +40,7 @@ checkColumnExist<-function(column.name,data){
 #' @param data a data frame
 #' @param column.name column names of the data frame
 #' @return coumn number, if success -1, if failure
-#' @examples getColumnNoColNames(data,"sex")
+#' @examples getColumnNoColNames(data.frame(age=rep(20, 4), sex=rep("male", 4)),"sex")
 #' @export
 getColumnNoColNames=function(data,column.name){
   data.column.names = toupper(colnames(data))
@@ -158,7 +158,7 @@ convertNumberToIndividualDigits<-function(this.number){
 #' @param column.names column names in a data frame
 #' @param data a data frame
 #' @return the column number
-#' @examples getColNumExistingColNames(c("age"),data)
+#' @examples getColNumExistingColNames(c("age"),data.frame(age=rep(20, 4), gender=rep("male", 4)))
 #' @export
 getColNumExistingColNames<-function(column.names,data){
   ans.columns<-unlist(lapply(column.names,checkColumnExist,data))
@@ -178,7 +178,7 @@ getColNumExistingColNames<-function(column.names,data){
 #' @param gender groupby gender either male or female expected
 #' @param agelimit list of ages e.g. c(10,20)
 #' @return the column number
-#' @examples subsetGenderAgeToGroup(data,"sex",c(10,70))
+#' @examples subsetGenderAgeToGroup(data.frame(age=rep(20, 4), gender=rep("male", 4)),"male",c(10,70))
 #' @export
 subsetGenderAgeToGroup<-function(data,gender,agelimit){
   if(is.null(gender) || toupper(gender)=="NA" || is.na(gender)){# if no groupby option given
@@ -202,7 +202,7 @@ subsetGenderAgeToGroup<-function(data,gender,agelimit){
         return(-1)
     }
   }
-  if(is.null(agelimit) || toupper(agelimit)=="NA" || is.na(agelimit)){#no agelimit option given
+  if(is.null(agelimit) || sum(toupper(agelimit)=="NA")!=0 || sum(is.na(agelimit))!=0){#no agelimit option given
      working.data=working.data
   }else{# agelimit option given
      lowerlimit=agelimit[1]
