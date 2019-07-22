@@ -1,11 +1,11 @@
 Package: valueEQ5D
 Type: Package
 Title: Scoring the 'EQ-5D' Descriptive System
-Version: 0.4.0
+Version: 0.4.2
 Authors@R: c(person("Sheeja", "Manchira Krishnan", , "sheejamk@gmail.com", c("aut", "cre")))
 Maintainer: Sheeja Manchira Krishnan <sheejamk@gmail.com>
 Depends: R (>= 2.10)
-Description: EQ-5D is a standard instrument (from EuroQoL group) that measures the quality of life. Both adult versions of EQ-5D (EQ-5D-3L and EQ-5D-5L) contain a decriptive system and visual anlog scale. The descriptve system measures the patients health in 5 dimensions: the 5L vesions has 5 levels and 3L version has 3 levels. This package allows the calculation of both descriptive system scores to the index value scores that takes into account of the respective countries preference.It can also be used to map 5L scores to 3L index values for UK.
+Description: EQ-5D is a standard instrument (https://euroqol.org/eq-5d-instruments/) that measures the quality of life. Both adult versions of EQ-5D (EQ-5D-3L and EQ-5D-5L) contain a descriptive system and visual analog scale. The descriptive system measures the patient's health in 5 dimensions: the 5L versions has 5 levels and 3L version has 3 levels. This package allows the calculation of both descriptive system scores to the index value scores that takes into account of the respective countries preference.It can also be used to map 5L scores to 3L index values for UK.
 License: GNU General Public License
 Encoding: UTF-8
 LazyData: true

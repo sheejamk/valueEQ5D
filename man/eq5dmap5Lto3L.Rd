@@ -21,7 +21,7 @@ eq5dmap5Lto3L(eq5dresponse.data, mobility, self.care, usual.activities,
 
 \item{anxiety}{column name for response for EQ-5D-5L anxiety/depression}
 
-\item{country}{country of interest, by default is UK, if groupby has to specifiy the country should be specified}
+\item{country}{country of interest, by default is UK, if groupby has to specify the country should be specified}
 
 \item{method}{CW cross walk}
 

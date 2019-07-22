@@ -9,7 +9,7 @@ testDataNumNorange(vec, nrcode = NA)
 \arguments{
 \item{vec}{a column vector}
 
-\item{nrcode}{non response code corresponidng to the column}
+\item{nrcode}{non response code corresponding to the column}
 }
 \value{
 0, if success -1, if failure

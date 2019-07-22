@@ -2,7 +2,7 @@
 % Please edit documentation in R/eq5d.R
 \name{valueEQ5D5L}
 \alias{valueEQ5D5L}
-\title{Function to value EQ-5D-5L scores for any country and group by gende and age}
+\title{Function to value EQ-5D-5L scores for any country and group by gender and age}
 \usage{
 valueEQ5D5L(eq5dresponse.data, mo, sc, ua, pd, ad, country = "England",
   groupby = NULL, agelimit = NULL)

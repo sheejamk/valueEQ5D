@@ -11,7 +11,7 @@ descriptiveStatDataColumn(colum, column.name, nrcode = NA)
 
 \item{column.name}{the column name}
 
-\item{nrcode}{non response code corresponidng to the column}
+\item{nrcode}{non response code corresponding to the column}
 }
 \value{
 the descriptive statistics for success , -1 for failure

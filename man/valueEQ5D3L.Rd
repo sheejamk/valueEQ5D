@@ -20,7 +20,7 @@ valueEQ5D3L(eq5dresponse.data, mo, sc, ua, pd, ad, country, method,
 
 \item{ad}{column name for response for EQ-5D-3L anxiety/depression}
 
-\item{country}{country of interest, by default is UK, if groupby has to specifiy the country should be specified}
+\item{country}{country of interest, by default is UK, if groupby has to specify the country should be specified}
 
 \item{method}{Either "TTO" or "VAS"}
 
@@ -29,7 +29,7 @@ valueEQ5D3L(eq5dresponse.data, mo, sc, ua, pd, ad, country, method,
 \item{agelimit}{vector of ages to show upper and lower limits}
 }
 \value{
-the descriptive statistics of index values, frequence table and the modified data where the last column will be the index values
+the descriptive statistics of index values, frequency table and the modified data where the last column will be the index values
 data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,1),ad=c(3,1))
 valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
 }

@@ -12,7 +12,7 @@ getColumnNoColNames(data, column.name)
 \item{column.name}{column names of the data frame}
 }
 \value{
-coumn number, if success -1, if failure
+column number, if success -1, if failure
 }
 \description{
 Function to return the column number for column name

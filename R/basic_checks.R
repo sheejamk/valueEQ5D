@@ -22,7 +22,7 @@ testFileExistRead<-function(filename){
 #' Function to check the given column exists
 #' @param column.name a column name
 #' @param data data frame
-#' @return 0 if sucess -1 if failure
+#' @return 0 if success -1 if failure
 #' @examples checkColumnExist("age",data.frame(age=rep(20, 4), sex=rep("male", 4),stringsAsFactors=FALSE))
 #' @export
 checkColumnExist<-function(column.name,data){
@@ -39,7 +39,7 @@ checkColumnExist<-function(column.name,data){
 #' Function to return the column number for column name
 #' @param data a data frame
 #' @param column.name column names of the data frame
-#' @return coumn number, if success -1, if failure
+#' @return column number, if success -1, if failure
 #' @examples getColumnNoColNames(data.frame(age=rep(20, 4), sex=rep("male", 4)),"sex")
 #' @export
 getColumnNoColNames=function(data,column.name){
@@ -83,7 +83,7 @@ getModeForVec <- function(v) {
 ###########################################################################################################
 #' Function to check the format of a numeric column when the values are not bounded
 #' @param vec a column vector
-#' @param nrcode non response code corresponidng to the column
+#' @param nrcode non response code corresponding to the column
 #' @return 0, if success -1, if failure
 #' @examples testDataNumNorange(c(1,2,3,4,-99),-99)
 #' @export
@@ -105,7 +105,7 @@ testDataNumNorange=function(vec,nrcode=NA){
 #' Function to return descriptive statistics, sum, no of observations, mean, mode. median, range, standard deviation and standard error
 #' @param colum column
 #' @param column.name the column name
-#' @param nrcode non response code corresponidng to the column
+#' @param nrcode non response code corresponding to the column
 #' @return the descriptive statistics for success , -1 for failure
 #' @examples descriptiveStatDataColumn(c(1,2,3,4,NA),"scores",NA)
 #' @import stats

@@ -12,7 +12,7 @@ checkColumnExist(column.name, data)
 \item{data}{data frame}
 }
 \value{
-0 if sucess -1 if failure
+0 if success -1 if failure
 }
 \description{
 Function to check the given column exists

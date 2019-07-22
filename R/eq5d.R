@@ -6,12 +6,12 @@
 #' @param this.response3  response for EQ-5D-3L usual activities,or NA if the responses are given as this.response
 #' @param this.response4  response for EQ-5D-3L pain/discomfort, or NA if the responses are given as this.response
 #' @param this.response5  response for EQ-5D-3L anxiety/depression, or NA if the responses are given as this.response
-#' @examples check.thescores.3L(c(1,2,3,3,3))
-#' @examples check.thescores.3L(1,2,3,3,3)
-#' @examples check.thescores.3L(1,2,3,2,3)
-#' @examples check.thescores.3L(12323)
+#' @examples checkScores3L(c(1,2,3,3,3))
+#' @examples checkScores3L(1,2,3,3,3)
+#' @examples checkScores3L(1,2,3,2,3)
+#' @examples checkScores3L(12323)
 #' @export
-check.thescores.3L<-function(this.response, this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
+checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   responses=c(this.response,this.response2,this.response3,this.response4,this.response5)
   if(sum(is.na(this.response))>0){ # first value should be not be a NA, do not contain NA
     this.score<-NA
@@ -59,12 +59,12 @@ check.thescores.3L<-function(this.response, this.response2=NA, this.response3=NA
 #' @param this.response3  response for EQ-5D-5L  usual activities,or NA if the responses are given as this.response
 #' @param this.response4  response for EQ-5D-5L  pain/discomfort, or NA if the responses are given as this.response
 #' @param this.response5  response for EQ-5D-5L  anxiety/depression, or NA if the responses are given as this.response
-#' @examples check.thescores.5L(c(1,2,3,5,3))
-#' @examples check.thescores.5L(1,2,3,4,3)
-#' @examples check.thescores.5L(1,2,3,7,3)
-#' @examples check.thescores.5L(12323)
+#' @examples checkScores5L(c(1,2,3,5,3))
+#' @examples checkScores5L(1,2,3,4,3)
+#' @examples checkScores5L(1,2,3,7,3)
+#' @examples checkScores5L(12323)
 #' @export
-check.thescores.5L<-function(this.response, this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
+checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   responses=c(this.response,this.response2,this.response3,this.response4,this.response5)
   if(sum(is.na(this.response))>0){ # first value should be not be a NA, do not contain NA
     this.score<-NA
@@ -111,8 +111,8 @@ check.thescores.5L<-function(this.response, this.response2=NA, this.response3=NA
   }
 }
 ##########################################################################################################
-#' Function to value EQ-5D-5L scores for countries: Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
-#' @param country a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malasia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
+#' Function to value EQ-5D-5L scores for various countries
+#' @param country a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
 #' @param this.response  a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-5L self care, or NA if the responses are given as this.response
 #' @param this.response3  response for EQ-5D-5L usual activities,or NA if the responses are given as this.response
@@ -123,11 +123,26 @@ check.thescores.5L<-function(this.response, this.response2=NA, this.response3=NA
 #' @examples valueEQ5D5LIndscores("China",2,3,4,3,4)
 #' @examples valueEQ5D5LIndscores("Ireland",c(1,2,3,4,3))
 #' @export
+#' @references Canada: Table 2 column 5 page 103 in Xie, Feng, et al. "A time trade-off-derived value set of the EQ-5D-5L for Canada." Medical care 54.1 (2016): 98.
+#' @references China: Table 4 column 4 page 667 in Luo, Nan, et al. "Estimating an EQ-5D-5L value set for China." Value in Health 20.4 (2017): 662-669.
+#' @references England: Table 2 column 2 page 17 in Devlin, Nancy J., et al. "Valuing health‐related quality of life: An EQ‐5D‐5 L value set for England." Health economics 27.1 (2018): 7-22.
+#' @references Germany: Table column 9 page 670 in Ludwig, Kristina, J-Matthias Graf von der Schulenburg, and Wolfgang Greiner. "German value set for the EQ-5D-5L." PharmacoEconomics 36.6 (2018): 663-674.
+#' @references Hong Kong: Table 3 column 8 page 244 in Wong, Eliza LY, et al. "Assessing the use of a feedback module to model EQ-5D-5L health states values in Hong Kong." The Patient-Patient-Centered Outcomes Research 11.2 (2018): 235-247.
+#' @references Indonesia: Table 3 column 8 page 1162 in Purba, Fredrick Dermawan, et al. "The Indonesian EQ-5D-5L value set." PharmacoEconomics 35.11 (2017): 1153-1165.
+#' @references Ireland: Table 2 column 2 page 1348 in Hobbins, Anna, et al. "Utility values for health states in Ireland: a value set for the EQ-5D-5L." PharmacoEconomics 36.11 (2018): 1345-1353.
+#' @references Japan: Table 2 column 7 page 651 in Shiroiwa, Takeru, et al. "Comparison of value set based on DCE and/or TTO data: scoring for EQ-5D-5L health states in Japan." Value in Health 19.5 (2016): 648-654.
+#' @references Korea: Table 5 column 11 page 1851 in Kim, Seon-Ha, et al. "The EQ-5D-5L valuation study in Korea." Quality of Life Research 25.7 (2016): 1845-1852.
+#' @references Malaysia: Table 2 column 9 page 720 in Shafie, Asrul Akmal, et al. "EQ-5D-5L Valuation for the Malaysian Population." PharmacoEconomics 37.5 (2019): 715-725.
+#' @references Netherlands: Table 4 column 8 page 350 in Versteegh, Matthijs M., et al. "Dutch tariff for the five-level version of EQ-5D." Value in health 19.4 (2016): 343-352.
+#' @references ---Spain: Ramos-Goñi, Juan M., et al. "Valuation and modeling of EQ-5D-5L health states using a hybrid approach." Medical care 55.7 (2017): e51-e58.
+#' @references Taiwan: Table 2 column 4 pge 9 in Lin, Hsiang-Wen, et al. "Valuation of the EQ-5D-5L in Taiwan." PloS one 13.12 (2018): e0209344.
+#' @references Thailand: Table 3 column 6 page 4 in Pattanaphesaj, Juntana, et al. "The EQ-5D-5L valuation study in Thailand." Expert review of pharmacoeconomics & outcomes research 18.5 (2018): 551-558.
+#' @references uruguay: Table 2.3 column 5 page 29 in Augustovski, Federico, et al. "An EQ-5D-5L value set based on Uruguayan population preferences." Quality of Life Research 25.2 (2016): 323-333.
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland",
                 "Japan","Korea","Malaysia","Netherlands","Spain","Taiwan","Thailand","Uruguay")
   if(country%in%countrylist){
-    scores<-check.thescores.5L(this.response,this.response2, this.response3, this.response4, this.response5)
+    scores<-checkScores5L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
       return(NA)
     }else{
@@ -191,7 +206,7 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
   
 }
 ###########################################################################################################
-#' Function to value EQ-5D-5L scores for any country and group by gende and age
+#' Function to value EQ-5D-5L scores for any country and group by gender and age
 #' @param eq5dresponse.data the data containing eq5d responses
 #' @param mo  column name for EQ-5D-5L mobility
 #' @param sc column name for response for EQ-5D-5L self care
@@ -264,8 +279,8 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
   }
 }
 ##########################################################################################################
-#' Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
-#' @param country a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
+#' Function to value EQ-5D-3L scores for various countries 
+#' @param country a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbabwe
 #' @param method method name either TTO or VAS
 #' @param this.response  a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-3L self care, or NA if the responses are given as this.response
@@ -277,6 +292,31 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @examples valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 #' @export
+#' @references Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
+#' @references ---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
+#' @references Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies." PloS one 7.2 (2012): e31115.
+#' @references Chile: Table 2 column 4 page 1137 in Zarate, Victor, et al. "Social valuation of EQ-5D health states: the Chilean case." Value in health 14.8 (2011): 1135-1141.
+#' @references Denamrk: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
+#' @references ---Europer: Greiner, Wolfgang, et al. "A single European currency for EQ-5D health states." The European Journal of Health Economics, formerly: HEPAC 4.3 (2003): 222-231.
+#' @references Finland Table 6 column 4 page 68 in Ohinmaa, A., and H. Sintonen. "Inconsistencies and modelling of the Finnish EuroQol (EQ-5D) preference values In: Gainer, W, Graf von dem Schulenburg, J, Piercy, J (eds), EuroQol, Plenary Meeting, Hannover 1998, 1-2 October." Discussion Papers. Hannover: University of Hannover Centre of Health Economics and Health System Research (1999): 57-74.
+#' @references ---Germany: Claes, C., et al. "An interview-based comparison of the TTO and VAS values given to EuroQol states of health by the general German population." Proceedings of the 15th Plenary Meeting of the EuroQol Group. Hannover, Germany: Centre for Health Economics and Health Systems Research, University of Hannover. 1999.
+#' @references Italy: Table 4 coulmn 5, page 820 in Scalone, Luciana, et al. "Italian population-based values of EQ-5D health states." Value in Health 16.5 (2013): 814-822.
+#' @references Japan: Table 4 column 1, page 41 in Tsuchiya, Aki, et al. "Estimating an EQ‐5D population value set: the case of Japan." Health economics 11.4 (2002): 341-353.
+#' @references South Korea: Table 3 column 4, page 1191 in Lee, Yeon‐Kyeng, et al. "South Korean time trade‐off values for EQ‐5D health states: Modeling with observed values for 101 health states." Value in Health 12.8 (2009): 1187-1193.
+#' @references Netherlands: Table 5 column 3, page 1128 in Lamers, Leida M., et al. "The Dutch tariff: results and arguments for an effective design for national EQ‐5D valuation studies." Health economics 15.10 (2006): 1121-1132.
+#' @references New Zealand: Equation 2 page 541 in Devlin, Nancy J., et al. "Logical inconsistencies in survey respondents' health state valuations‐a methodological challenge for estimating social tariffs." Health economics 12.7 (2003): 529-544.
+#' @references Poland: Table 5 column 2 page 293 in Golicki, Dominik, et al. "Valuation of EQ‐5D Health States in Poland: First TTO‐Based Social Value Set in Central and Eastern Europe." Value in Health 13.2 (2010): 289-297.
+#' @references Portugal: Table 4 column 6 page 418 Ferreira, Lara N., et al. "The valuation of the EQ-5D in Portugal." Quality of Life Research 23.2 (2014): 413-423.
+#' @references Solvenia: Table 6 column 2 page 30 (constant given in page 36) in Rupel, V. Prevolnik, and Matejka Rebolj. "The Slovenian VAS tariff based on valuations of EQ-5D health states from the general population." Discussion papers/17th Plenary Meeting of the Euroqol Group. Universidad Pública de Navarra, 2001.
+#' @references Spain: Table 3 column 4 page 13 (TTO) in Badia, Xavier, et al. "A comparison of United Kingdom and Spanish general population time trade-off values for EQ-5D health states." Medical Decision Making 21.1 (2001): 7-16.
+#' @references ---Spain: Badia, X., et al. "The Spanish VAS tariff based on valuation of EQ-5D health states from the general population." EuroQol Plenary Meeting Rotterdam. 1997.
+#' @references Taiwan: Table 2 column 4 page 702 in Lee, Hsin-Yi, et al. "Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan." Journal of the Formosan Medical Association 112.11 (2013): 699-706.
+#' @references Thailand: Table 1 column 2 page 1144 (parameters like MO3 are calculated) in Tongsiri, Sirinart, and John Cairns. "Estimating population-based values for EQ-5D health states in Thailand." Value in Health 14.8 (2011): 1142-1145.
+#' @references UK: Table 1 column 2 page 1103 (TTO) in Dolan, Paul. "Modeling valuations for EuroQol health states." Medical care (1997): 1095-1108.
+#' @references UK: Table 4A column 2 page 43 in MVH Group. "The measurement and valuation of health: Final report on the modelling of valuation tariffs." Centre for Health Economics, University of York (1995).
+#' @references USA: Table 5 coulmn 2 page 214 in Shaw, James W., Jeffrey A. Johnson, and Stephen Joel Coons. "US valuation of the EQ-5D health states: development and testing of the D1 valuation model." Medical care (2005): 203-220.
+#' @references Zimbabwe: Table 5 column 3 page 7 inJelsma, Jennifer, et al. "How do Zimbabweans value health states?." Population health metrics 1.1 (2003): 11.
+#' @references Trinidad and Tobago: Table 4 page 65 in Bailey, Henry, Elly Stolk, and Paul Kind. "Toward explicit prioritization for the Caribbean: an EQ-5D value set for Trinidad and Tobago." Value in health regional issues 11 (2016): 60-67.
 valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea",
                 "Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
@@ -285,7 +325,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
   TTO_countrylist=c("Brazil","Canada","Chile","Denmark" ,"Europe","France","Germany","Italy","Japan","Korea",
                 "Netherlands","Poland", "Portugal","Spain","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
   if(country%in%countrylist){
-    scores<-check.thescores.3L(this.response,this.response2, this.response3, this.response4, this.response5)
+    scores<-checkScores3L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
       return(NA)
     }else{
@@ -418,11 +458,11 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
 #' @param ua  column name for response for EQ-5D-3L usual activities
 #' @param pd  column name for response for EQ-5D-3L pain/discomfort
 #' @param ad  column name for response for EQ-5D-3L anxiety/depression
-#' @param country  country of interest, by default is UK, if groupby has to specifiy the country should be specified
+#' @param country  country of interest, by default is UK, if groupby has to specify the country should be specified
 #' @param method Either "TTO" or "VAS"
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
-#' @return the descriptive statistics of index values, frequence table and the modified data where the last column will be the index values
+#' @return the descriptive statistics of index values, frequency table and the modified data where the last column will be the index values
 #' data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,1),ad=c(3,1))
 #' valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
 #' @export
@@ -611,7 +651,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
 #' @param usual.activities  column name for response for EQ-5D-5L usual activities
 #' @param pain.discomfort  column name for response for EQ-5D-5L pain/discomfort
 #' @param anxiety  column name for response for EQ-5D-5L anxiety/depression
-#' @param country  country of interest, by default is UK, if groupby has to specifiy the country should be specified
+#' @param country  country of interest, by default is UK, if groupby has to specify the country should be specified
 #' @param method CW cross walk
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits

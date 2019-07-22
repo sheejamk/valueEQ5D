@@ -2,13 +2,13 @@
 % Please edit documentation in R/eq5d.R
 \name{valueEQ5D3LIndscores}
 \alias{valueEQ5D3LIndscores}
-\title{Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe}
+\title{Function to value EQ-5D-3L scores for various countries}
 \usage{
 valueEQ5D3LIndscores(country, method, this.response, this.response2 = NA,
   this.response3 = NA, this.response4 = NA, this.response5 = NA)
 }
 \arguments{
-\item{country}{a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe}
+\item{country}{a country name from the list Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbabwe}
 
 \item{method}{method name either TTO or VAS}
 
@@ -26,10 +26,61 @@ valueEQ5D3LIndscores(country, method, this.response, this.response2 = NA,
 index value based if success, -1 if failure
 }
 \description{
-Function to value EQ-5D-3L scores for countries Belgium,Brazil,Canada,Chile,Denmark,Europe,Finland,France,Germany,Italy,Japan,Korea,Netherlands,NewZealand,Poland,Portugal,Slovenia,Spain,Taiwan,Thailand,UK,USA,and Zimbawe
+Function to value EQ-5D-3L scores for various countries
 }
 \examples{
 valueEQ5D3LIndscores("UK","TTO",23131)
 valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
+}
+\references{
+Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
+
+---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
+
+Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies." PloS one 7.2 (2012): e31115.
+
+Chile: Table 2 column 4 page 1137 in Zarate, Victor, et al. "Social valuation of EQ-5D health states: the Chilean case." Value in health 14.8 (2011): 1135-1141.
+
+Denamrk: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
+
+---Europer: Greiner, Wolfgang, et al. "A single European currency for EQ-5D health states." The European Journal of Health Economics, formerly: HEPAC 4.3 (2003): 222-231.
+
+Finland Table 6 column 4 page 68 in Ohinmaa, A., and H. Sintonen. "Inconsistencies and modelling of the Finnish EuroQol (EQ-5D) preference values In: Gainer, W, Graf von dem Schulenburg, J, Piercy, J (eds), EuroQol, Plenary Meeting, Hannover 1998, 1-2 October." Discussion Papers. Hannover: University of Hannover Centre of Health Economics and Health System Research (1999): 57-74.
+
+---Germany: Claes, C., et al. "An interview-based comparison of the TTO and VAS values given to EuroQol states of health by the general German population." Proceedings of the 15th Plenary Meeting of the EuroQol Group. Hannover, Germany: Centre for Health Economics and Health Systems Research, University of Hannover. 1999.
+
+Italy: Table 4 coulmn 5, page 820 in Scalone, Luciana, et al. "Italian population-based values of EQ-5D health states." Value in Health 16.5 (2013): 814-822.
+
+Japan: Table 4 column 1, page 41 in Tsuchiya, Aki, et al. "Estimating an EQ‐5D population value set: the case of Japan." Health economics 11.4 (2002): 341-353.
+
+South Korea: Table 3 column 4, page 1191 in Lee, Yeon‐Kyeng, et al. "South Korean time trade‐off values for EQ‐5D health states: Modeling with observed values for 101 health states." Value in Health 12.8 (2009): 1187-1193.
+
+Netherlands: Table 5 column 3, page 1128 in Lamers, Leida M., et al. "The Dutch tariff: results and arguments for an effective design for national EQ‐5D valuation studies." Health economics 15.10 (2006): 1121-1132.
+
+New Zealand: Equation 2 page 541 in Devlin, Nancy J., et al. "Logical inconsistencies in survey respondents' health state valuations‐a methodological challenge for estimating social tariffs." Health economics 12.7 (2003): 529-544.
+
+Poland: Table 5 column 2 page 293 in Golicki, Dominik, et al. "Valuation of EQ‐5D Health States in Poland: First TTO‐Based Social Value Set in Central and Eastern Europe." Value in Health 13.2 (2010): 289-297.
+
+Portugal: Table 4 column 6 page 418 Ferreira, Lara N., et al. "The valuation of the EQ-5D in Portugal." Quality of Life Research 23.2 (2014): 413-423.
+
+Solvenia: Table 6 column 2 page 30 (constant given in page 36) in Rupel, V. Prevolnik, and Matejka Rebolj. "The Slovenian VAS tariff based on valuations of EQ-5D health states from the general population." Discussion papers/17th Plenary Meeting of the Euroqol Group. Universidad Pública de Navarra, 2001.
+
+Spain: Table 3 column 4 page 13 (TTO) in Badia, Xavier, et al. "A comparison of United Kingdom and Spanish general population time trade-off values for EQ-5D health states." Medical Decision Making 21.1 (2001): 7-16.
+
+---Spain: Badia, X., et al. "The Spanish VAS tariff based on valuation of EQ-5D health states from the general population." EuroQol Plenary Meeting Rotterdam. 1997.
+
+Taiwan: Table 2 column 4 page 702 in Lee, Hsin-Yi, et al. "Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan." Journal of the Formosan Medical Association 112.11 (2013): 699-706.
+
+Thailand: Table 1 column 2 page 1144 (parameters like MO3 are calculated) in Tongsiri, Sirinart, and John Cairns. "Estimating population-based values for EQ-5D health states in Thailand." Value in Health 14.8 (2011): 1142-1145.
+
+UK: Table 1 column 2 page 1103 (TTO) in Dolan, Paul. "Modeling valuations for EuroQol health states." Medical care (1997): 1095-1108.
+
+UK: Table 4A column 2 page 43 in MVH Group. "The measurement and valuation of health: Final report on the modelling of valuation tariffs." Centre for Health Economics, University of York (1995).
+
+USA: Table 5 coulmn 2 page 214 in Shaw, James W., Jeffrey A. Johnson, and Stephen Joel Coons. "US valuation of the EQ-5D health states: development and testing of the D1 valuation model." Medical care (2005): 203-220.
+
+Zimbabwe: Table 5 column 3 page 7 inJelsma, Jennifer, et al. "How do Zimbabweans value health states?." Population health metrics 1.1 (2003): 11.
+
+Trinidad and Tobago: Table 4 page 65 in Bailey, Henry, Elly Stolk, and Paul Kind. "Toward explicit prioritization for the Caribbean: an EQ-5D value set for Trinidad and Tobago." Value in health regional issues 11 (2016): 60-67.
 }
