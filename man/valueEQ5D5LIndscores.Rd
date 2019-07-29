@@ -8,7 +8,7 @@ valueEQ5D5LIndscores(country, this.response, this.response2 = NA,
   this.response3 = NA, this.response4 = NA, this.response5 = NA)
 }
 \arguments{
-\item{country}{a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay}
+\item{country}{a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malaysia,Netherlands,Poland,Spain,Taiwan,Thailand,and Uruguay}
 
 \item{this.response}{a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1}
 
@@ -29,36 +29,40 @@ Function to value EQ-5D-5L scores for various countries
 \examples{
 valueEQ5D5LIndscores("England",23434)
 valueEQ5D5LIndscores("China",2,3,4,3,4)
-valueEQ5D5LIndscores("Ireland",c(1,2,3,4,3))
+valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 }
 \references{
-Canada: Table 2 column 5 page 103 in Xie, Feng, et al. "A time trade-off-derived value set of the EQ-5D-5L for Canada." Medical care 54.1 (2016): 98.
+*Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi: 10.1097/MLR.0000000000000447>
 
-China: Table 4 column 4 page 667 in Luo, Nan, et al. "Estimating an EQ-5D-5L value set for China." Value in Health 20.4 (2017): 662-669.
+**China: Table 4 column 4 page 667 in Luo et al (2017) <doi: 10.1016/j.jval.2016.11.016>
 
-England: Table 2 column 2 page 17 in Devlin, Nancy J., et al. "Valuing health‐related quality of life: An EQ‐5D‐5 L value set for England." Health economics 27.1 (2018): 7-22.
+**England: Table 2 column 2 page 17 in Devlin et al (2018) <doi: 10.1002/hec.3564>
 
-Germany: Table column 9 page 670 in Ludwig, Kristina, J-Matthias Graf von der Schulenburg, and Wolfgang Greiner. "German value set for the EQ-5D-5L." PharmacoEconomics 36.6 (2018): 663-674.
+**Germany: Table column 9 page 670 in Ludwig et al (2018) <doi: 10.1007/s40273-018-0615-8>
 
-Hong Kong: Table 3 column 8 page 244 in Wong, Eliza LY, et al. "Assessing the use of a feedback module to model EQ-5D-5L health states values in Hong Kong." The Patient-Patient-Centered Outcomes Research 11.2 (2018): 235-247.
+*Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi: 10.1007/s40271-017-0278-0>
 
-Indonesia: Table 3 column 8 page 1162 in Purba, Fredrick Dermawan, et al. "The Indonesian EQ-5D-5L value set." PharmacoEconomics 35.11 (2017): 1153-1165.
+*Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi: 10.1007/s40273-017-0538-9>
 
-Ireland: Table 2 column 2 page 1348 in Hobbins, Anna, et al. "Utility values for health states in Ireland: a value set for the EQ-5D-5L." PharmacoEconomics 36.11 (2018): 1345-1353.
+*Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi: 10.1007/s40273-018-0690-x>
 
-Japan: Table 2 column 7 page 651 in Shiroiwa, Takeru, et al. "Comparison of value set based on DCE and/or TTO data: scoring for EQ-5D-5L health states in Japan." Value in Health 19.5 (2016): 648-654.
+*Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi: 10.1016/j.jval.2016.03.1834>
 
-Korea: Table 5 column 11 page 1851 in Kim, Seon-Ha, et al. "The EQ-5D-5L valuation study in Korea." Quality of Life Research 25.7 (2016): 1845-1852.
+*Korea: Table 5 column 6 page 1851 in Kim,  et al (2016) <doi: 10.1007/s11136-015-1205-2>
 
-Malaysia: Table 2 column 9 page 720 in Shafie, Asrul Akmal, et al. "EQ-5D-5L Valuation for the Malaysian Population." PharmacoEconomics 37.5 (2019): 715-725.
+**Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi: 10.1007/s40273-018-0758-7>
 
-Netherlands: Table 4 column 8 page 350 in Versteegh, Matthijs M., et al. "Dutch tariff for the five-level version of EQ-5D." Value in health 19.4 (2016): 343-352.
+*Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi: 10.1016/j.jval.2016.01.003>
 
----Spain: Ramos-Goñi, Juan M., et al. "Valuation and modeling of EQ-5D-5L health states using a hybrid approach." Medical care 55.7 (2017): e51-e58.
+**Poland: Table 2 column 7 in Golicki et al <doi: 10.1007/s40273-019-00811-7>
 
-Taiwan: Table 2 column 4 pge 9 in Lin, Hsiang-Wen, et al. "Valuation of the EQ-5D-5L in Taiwan." PloS one 13.12 (2018): e0209344.
+*Portugal: Table 3 column 4 in Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
 
-Thailand: Table 3 column 6 page 4 in Pattanaphesaj, Juntana, et al. "The EQ-5D-5L valuation study in Thailand." Expert review of pharmacoeconomics & outcomes research 18.5 (2018): 551-558.
+*Spain: Table 1 column 9 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
 
-uruguay: Table 2.3 column 5 page 29 in Augustovski, Federico, et al. "An EQ-5D-5L value set based on Uruguayan population preferences." Quality of Life Research 25.2 (2016): 323-333.
+*Taiwan: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
+
+*Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi: 10.1080/14737167.2018>
+
+*Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi: 10.1007/s11136-015-1086-4>
 }

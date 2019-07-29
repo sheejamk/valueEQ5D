@@ -18,7 +18,7 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
     return(NA)
   }else{
     if(length(this.response)!=5 && length(this.response)!=1){
-      print("Invalid EQ-5D-5L responses-check the responses to each question")
+      message("Invalid EQ-5D-5L responses-check the responses to each question")
       return(-1)
     }else{
       if(length(this.response)==5){#first value a vector
@@ -33,16 +33,16 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
     }
   }
   if(!all(responses%in% 1:3)){
-    print("Responses not valid for EQ-5D-3L scores")
+    message("Responses not valid for EQ-5D-3L scores")
     return(-1)
   }else{
     this.score<-as.numeric(this.score)
     if(this.score<11111 || this.score>33333){
       if(this.score<0 || this.score>33333){
-        print("Responses not valid for EQ-5D-5L scores")
+        message("Responses not valid for EQ-5D-5L scores")
         return(-1)
       }else{
-        print("Responses not valid for EQ-5D-5L scores or some missing")
+        message("Responses not valid for EQ-5D-5L scores or some missing")
         return(NA)
       }
     }else{
@@ -71,7 +71,7 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
     return(NA)
   }else{
     if(length(this.response)!=5 && length(this.response)!=1){
-      print("Invalid EQ-5D-5L responses-check the responses to each question")
+      message("Invalid EQ-5D-5L responses-check the responses to each question")
       return(-1)
     }else{
       if(length(this.response)==5){#first value a vector
@@ -87,10 +87,10 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
   }
   if(!all(responses%in% 1:5)){
     if(sum(is.na(responses)>0)){
-      print("Responses not valid for EQ-5D-5L scores")
+      message("Responses not valid for EQ-5D-5L scores")
       return(NA)
     }else{
-      print("Responses not valid for EQ-5D-5L scores")
+      message("Responses not valid for EQ-5D-5L scores")
       return(-1)
     }
    
@@ -98,10 +98,10 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
     this.score<-as.numeric(this.score)
     if(this.score<11111 || this.score>55555){
       if(this.score<0 || this.score>55555){
-        print("Responses not valid for EQ-5D-5L scores")
+        message("Responses not valid for EQ-5D-5L scores")
         return(-1)
       }else{
-        print("Responses not valid for EQ-5D-5L scores or some missing")
+        message("Responses not valid for EQ-5D-5L scores or some missing")
         return(NA)
       }
       
@@ -112,7 +112,7 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
 }
 ##########################################################################################################
 #' Function to value EQ-5D-5L scores for various countries
-#' @param country a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay
+#' @param country a country name from the list Canada,China,England,Germany,HongKong,Indonesia,Ireland,Japan,Korea,Malaysia,Netherlands,Poland,Spain,Taiwan,Thailand,and Uruguay
 #' @param this.response  a must input,response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-5L self care, or NA if the responses are given as this.response
 #' @param this.response3  response for EQ-5D-5L usual activities,or NA if the responses are given as this.response
@@ -121,33 +121,37 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
 #' @return index values  if success, -1 if failure
 #' @examples valueEQ5D5LIndscores("England",23434)
 #' @examples valueEQ5D5LIndscores("China",2,3,4,3,4)
-#' @examples valueEQ5D5LIndscores("Ireland",c(1,2,3,4,3))
+#' @examples valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 #' @export
-#' @references Canada: Table 2 column 5 page 103 in Xie, Feng, et al. "A time trade-off-derived value set of the EQ-5D-5L for Canada." Medical care 54.1 (2016): 98.
-#' @references China: Table 4 column 4 page 667 in Luo, Nan, et al. "Estimating an EQ-5D-5L value set for China." Value in Health 20.4 (2017): 662-669.
-#' @references England: Table 2 column 2 page 17 in Devlin, Nancy J., et al. "Valuing health‐related quality of life: An EQ‐5D‐5 L value set for England." Health economics 27.1 (2018): 7-22.
-#' @references Germany: Table column 9 page 670 in Ludwig, Kristina, J-Matthias Graf von der Schulenburg, and Wolfgang Greiner. "German value set for the EQ-5D-5L." PharmacoEconomics 36.6 (2018): 663-674.
-#' @references Hong Kong: Table 3 column 8 page 244 in Wong, Eliza LY, et al. "Assessing the use of a feedback module to model EQ-5D-5L health states values in Hong Kong." The Patient-Patient-Centered Outcomes Research 11.2 (2018): 235-247.
-#' @references Indonesia: Table 3 column 8 page 1162 in Purba, Fredrick Dermawan, et al. "The Indonesian EQ-5D-5L value set." PharmacoEconomics 35.11 (2017): 1153-1165.
-#' @references Ireland: Table 2 column 2 page 1348 in Hobbins, Anna, et al. "Utility values for health states in Ireland: a value set for the EQ-5D-5L." PharmacoEconomics 36.11 (2018): 1345-1353.
-#' @references Japan: Table 2 column 7 page 651 in Shiroiwa, Takeru, et al. "Comparison of value set based on DCE and/or TTO data: scoring for EQ-5D-5L health states in Japan." Value in Health 19.5 (2016): 648-654.
-#' @references Korea: Table 5 column 11 page 1851 in Kim, Seon-Ha, et al. "The EQ-5D-5L valuation study in Korea." Quality of Life Research 25.7 (2016): 1845-1852.
-#' @references Malaysia: Table 2 column 9 page 720 in Shafie, Asrul Akmal, et al. "EQ-5D-5L Valuation for the Malaysian Population." PharmacoEconomics 37.5 (2019): 715-725.
-#' @references Netherlands: Table 4 column 8 page 350 in Versteegh, Matthijs M., et al. "Dutch tariff for the five-level version of EQ-5D." Value in health 19.4 (2016): 343-352.
-#' @references ---Spain: Ramos-Goñi, Juan M., et al. "Valuation and modeling of EQ-5D-5L health states using a hybrid approach." Medical care 55.7 (2017): e51-e58.
-#' @references Taiwan: Table 2 column 4 pge 9 in Lin, Hsiang-Wen, et al. "Valuation of the EQ-5D-5L in Taiwan." PloS one 13.12 (2018): e0209344.
-#' @references Thailand: Table 3 column 6 page 4 in Pattanaphesaj, Juntana, et al. "The EQ-5D-5L valuation study in Thailand." Expert review of pharmacoeconomics & outcomes research 18.5 (2018): 551-558.
-#' @references uruguay: Table 2.3 column 5 page 29 in Augustovski, Federico, et al. "An EQ-5D-5L value set based on Uruguayan population preferences." Quality of Life Research 25.2 (2016): 323-333.
+### hint **whole values tested from paper * @references published values tested from paper
+#' @references *Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi: 10.1097/MLR.0000000000000447>
+#' @references **China: Table 4 column 4 page 667 in Luo et al (2017) <doi: 10.1016/j.jval.2016.11.016>
+#' @references **England: Table 2 column 2 page 17 in Devlin et al (2018) <doi: 10.1002/hec.3564>
+#' @references **Germany: Table column 9 page 670 in Ludwig et al (2018) <doi: 10.1007/s40273-018-0615-8>
+#' @references *Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi: 10.1007/s40271-017-0278-0>
+#' @references *Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi: 10.1007/s40273-017-0538-9>
+#' @references *Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi: 10.1007/s40273-018-0690-x>
+#' @references *Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi: 10.1016/j.jval.2016.03.1834>
+#' @references *Korea: Table 5 column 6 page 1851 in Kim,  et al (2016) <doi: 10.1007/s11136-015-1205-2>
+#' @references **Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi: 10.1007/s40273-018-0758-7>
+#' @references *Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi: 10.1016/j.jval.2016.01.003>
+#' @references **Poland: Table 2 column 7 in Golicki et al <doi: 10.1007/s40273-019-00811-7>
+#' @references  *Portugal: Table 3 column 4 in Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
+#' @references *Spain: Table 1 column 9 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
+#' @references *Taiwan: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
+#' @references *Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi: 10.1080/14737167.2018>
+#' @references *Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi: 10.1007/s11136-015-1086-4>
+
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland",
-                "Japan","Korea","Malaysia","Netherlands","Spain","Taiwan","Thailand","Uruguay")
+                "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand","Uruguay")
   if(country%in%countrylist){
     scores<-checkScores5L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
       return(NA)
     }else{
       if(sum(scores)==-1){
-        print("EQ-5D-5L scores are not valid")
+        message("EQ-5D-5L scores are not valid")
         return(-1)
       }else{
         eq5d.valueset=EQ5D5L_tariffs.df
@@ -200,7 +204,7 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
     }
     return(values.state)
   }else{
-    print("No tariffs found for the country you specified for EQ-5D-5L. Please try later !!")
+    message("No tariffs found for the country you specified for EQ-5D-5L. Please try later !!")
     return(-1)
   }
   
@@ -229,7 +233,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
     scores=c()
     if(nrow(working.data)<1){
-      print("No entries with the given criteria -Please check the contents or the criteria")
+      message("No entries with the given criteria -Please check the contents or the criteria")
       return(-1)
     }else{
       for(j in 1:nrow(working.data)){
@@ -242,7 +246,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
         if(this.score!=-1){
           scores=c(scores,this.score)
         }else{
-          print("EQ-5D-5L responses not valid - 5L scores can not be valued")
+          message("EQ-5D-5L responses not valid - 5L scores can not be valued")
           return(-1)
         }
       }
@@ -274,7 +278,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
       return(results)
     }
   }else{# if the eq 5d column names do not match
-    print("EQ-5D column names do not match")
+    message("EQ-5D column names do not match")
     return(-1)
   }
 }
@@ -292,6 +296,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @examples valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 #' @export
+#' @references Argentina (TTO and Vas), Brazil Canada Poland Portugal Taiwan Trinidad_and_Tobago (not in Szende book)
 #' @references Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
 #' @references ---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
 #' @references Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies." PloS one 7.2 (2012): e31115.
@@ -330,7 +335,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
       return(NA)
     }else{
       if(sum(scores)==-1){
-        print("EQ-5D-5L scores are not valid")
+        message("EQ-5D-5L scores are not valid")
         return(-1)
       }else{
         if(method=="TTO" && country%in%TTO_countrylist){
@@ -339,7 +344,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
           if(method=="VAS"&& country%in%VAS_countrylist){
             eq5d.valueset=EQ5D3L_tariffs_VAS.df
           }else{
-            print("No method found!!")
+            message("No method found!!")
             return(-1)
           }
         }
@@ -367,8 +372,8 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
           I3.value<-NA
           I3_sq.value<-NA
           rownumfh=which(row.names(eq5d.valueset)=="FullHealth")
-          rownum_min2or3=which(row.names(eq5d.valueset)=="minOne2Or3")
-          rownumn_min3=which(row.names(eq5d.valueset)=="minOne3")
+          rownum_min2or3=which(row.names(eq5d.valueset)=="Constant")
+          rownumn_min3=which(row.names(eq5d.valueset)=="N3")
           if(method=="TTO"){
             rownum_all.equals2or3=which(row.names(eq5d.valueset)=="X5")
             rownum_C3sq=which(row.names(eq5d.valueset)=="C3sq")
@@ -439,14 +444,14 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
             values.state<-sum(values,na.rm =TRUE)
           }
         }else{
-          print("No country tariffs")
+          message("No country tariffs")
           return(-1)
         }
       }
     }
     return(values.state)
   }else{
-    print("No tariffs found for the country you specified for EQ-5D-3L. Please try later !!")
+    message("No tariffs found for the country you specified for EQ-5D-3L. Please try later !!")
     return(-1)
   }
 }
@@ -473,7 +478,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
   if(all(ans.eq5d.colnames==0)){# if the eq5d column names match
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
     if(nrow(working.data)<1){
-      print("No entries with the given criteria -Please check the contents or the criteria")
+      message("No entries with the given criteria -Please check the contents or the criteria")
       return(-1)
     }else{
       scores=c()
@@ -488,7 +493,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
         if(this.score!=-1){
           scores=c(scores,this.score)
         }else{
-          print("responses not valid -3L scores can not be valued")
+          message("responses not valid -3L scores can not be valued")
           return(-1)
         }
       }
@@ -520,7 +525,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
       return(results)
     }
   }else{# if the eq 5d column names do not match
-    print("EQ-5D column names do not match")
+    message("EQ-5D column names do not match")
     return(-1)
   }
 }
@@ -547,7 +552,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
     return(values.state)
   }else{# check first value should be a vector containiing responses or a 5digit number
     if(length(this.response)!=5 && length(this.response)!=1){
-      print("Invalid EQ-5D-5L responses-check the responses to each question")
+      message("Invalid EQ-5D-5L responses-check the responses to each question")
       return(-1)
     }else{ #first value a vector or a 5 figit number
       if(length(this.response)==5){#first value a vector
@@ -563,7 +568,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
                 if(any(responses<=5)){
                   this.score.5L <- paste(responses,collapse = "")#all valid and generate the score
                 }else{#error values
-                  print("Invalid EQ-5D-5L responses-check the responses to each question")
+                  message("Invalid EQ-5D-5L responses-check the responses to each question")
                   return(-1)
                 }
               }else{
@@ -573,7 +578,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
                 return(values.state)
               }
             }else{
-              print("Invalid EQ-5D-5L responses-check the responses to each question")
+              message("Invalid EQ-5D-5L responses-check the responses to each question")
               return(-1)
             }
           }
@@ -582,7 +587,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
     }
   }
   if(this.score.5L<11111 || this.score.5L>55555){
-    print("Invalid EQ-5D-5L responses")
+    message("Invalid EQ-5D-5L responses")
     return(-1)
   }else{
     ## create a vector of all possible 3L index values (length == 3^5)
@@ -622,7 +627,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
       rows_m=nrow(m)
       cols_m=ncol(m)
       if(rows_m!=3125 || cols_m!=243){
-        print("Error in number of cols or rows of probability matrix")
+        message("Error in number of cols or rows of probability matrix")
         return(-1)
       }
       ## multiply each row of 't(m)' with 'index_3L'
@@ -637,7 +642,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
       this_score <- which(scores_5L_chr == paste(this.score.5L, collapse = ""))
       return(m_sums[this_score])
     }else{
-      print("The specified method is not implemented")
+      message("The specified method is not implemented")
       return(-1)
     }
   }
@@ -667,7 +672,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
     scores=c()
     if(nrow(working.data)<1){
-      print("No entries with the given criteria -Please check the contents or the criteria")
+      message("No entries with the given criteria -Please check the contents or the criteria")
       return(-1)
     }else{
       for(j in 1:nrow(working.data)){
@@ -680,7 +685,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
         if(this.score!=-1){
           scores=c(scores,this.score)
         }else{
-          print("EQ-5D-5L responses not valid - 5L scores can not be valued")
+          message("EQ-5D-5L responses not valid - 5L scores can not be valued")
           return(-1)
         }
       }
@@ -712,7 +717,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
       return(results)
     }
   }else{# if the eq 5d column names do not match
-    print("EQ-5D column names do not match")
+    message("EQ-5D column names do not match")
     return(-1)
   }
 }

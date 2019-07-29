@@ -34,6 +34,8 @@ valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 }
 \references{
+Argentina (TTO and Vas), Brazil Canada Poland Portugal Taiwan Trinidad_and_Tobago (not in Szende book)
+
 Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
 
 ---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
