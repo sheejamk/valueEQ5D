@@ -286,7 +286,7 @@ test_that("EQ5D5L scoring", {
   total_entries=seq(1,nrow(answers))
   end1=length(total_entries)
   total_countries=c("Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland",
-                    "Japan","Korea","Malaysia","Netherlands","Spain","Taiwan","Thailand","Uruguay")
+                    "Japan","Korea","Malaysia","Netherlands","Poland", "Portugal","Spain","Taiwan","Thailand","Uruguay")
   for(j in 1:length(total_countries)){
     this.country=total_countries[j]
     print(this.country)
