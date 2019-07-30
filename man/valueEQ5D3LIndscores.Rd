@@ -44,7 +44,7 @@ Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D he
 
 Chile: Table 2 column 4 page 1137 in Zarate, Victor, et al. "Social valuation of EQ-5D health states: the Chilean case." Value in health 14.8 (2011): 1135-1141.
 
-Denamrk: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
+Denmark: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
 
 ---Europer: Greiner, Wolfgang, et al. "A single European currency for EQ-5D health states." The European Journal of Health Economics, formerly: HEPAC 4.3 (2003): 222-231.
 

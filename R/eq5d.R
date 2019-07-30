@@ -297,11 +297,12 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 #' @export
 #' @references Argentina (TTO and Vas), Brazil Canada Poland Portugal Taiwan Trinidad_and_Tobago (not in Szende book)
+
 #' @references Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
 #' @references ---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
 #' @references Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies." PloS one 7.2 (2012): e31115.
 #' @references Chile: Table 2 column 4 page 1137 in Zarate, Victor, et al. "Social valuation of EQ-5D health states: the Chilean case." Value in health 14.8 (2011): 1135-1141.
-#' @references Denamrk: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
+#' @references Denmark: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
 #' @references ---Europer: Greiner, Wolfgang, et al. "A single European currency for EQ-5D health states." The European Journal of Health Economics, formerly: HEPAC 4.3 (2003): 222-231.
 #' @references Finland Table 6 column 4 page 68 in Ohinmaa, A., and H. Sintonen. "Inconsistencies and modelling of the Finnish EuroQol (EQ-5D) preference values In: Gainer, W, Graf von dem Schulenburg, J, Piercy, J (eds), EuroQol, Plenary Meeting, Hannover 1998, 1-2 October." Discussion Papers. Hannover: University of Hannover Centre of Health Economics and Health System Research (1999): 57-74.
 #' @references ---Germany: Claes, C., et al. "An interview-based comparison of the TTO and VAS values given to EuroQol states of health by the general German population." Proceedings of the 15th Plenary Meeting of the EuroQol Group. Hannover, Germany: Centre for Health Economics and Health Systems Research, University of Hannover. 1999.
@@ -323,11 +324,11 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @references Zimbabwe: Table 5 column 3 page 7 inJelsma, Jennifer, et al. "How do Zimbabweans value health states?." Population health metrics 1.1 (2003): 11.
 #' @references Trinidad and Tobago: Table 4 page 65 in Bailey, Henry, Elly Stolk, and Paul Kind. "Toward explicit prioritization for the Caribbean: an EQ-5D value set for Trinidad and Tobago." Value in health regional issues 11 (2016): 60-67.
 valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
-  countrylist=c("Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea",
+  countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea",
                 "Netherlands","NewZealand","Poland", "Portugal","Slovenia","Spain","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
   	
-  VAS_countrylist=c("Belgium","Denmark" ,"Europe","Finland","Germany","NewZealand","Slovenia","Spain","UK")
-  TTO_countrylist=c("Brazil","Canada","Chile","Denmark" ,"Europe","France","Germany","Italy","Japan","Korea",
+  VAS_countrylist=c("Argentina","Belgium","Denmark" ,"Europe","Finland","Germany","NewZealand","Slovenia","Spain","UK")
+  TTO_countrylist=c("Argentina","Australia","Brazil","Canada","Chile","Denmark" ,"Europe","France","Germany","Italy","Japan","Korea",
                 "Netherlands","Poland", "Portugal","Spain","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
   if(country%in%countrylist){
     scores<-checkScores3L(this.response,this.response2, this.response3, this.response4, this.response5)
@@ -371,9 +372,31 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
           I2_sq.value<-NA
           I3.value<-NA
           I3_sq.value<-NA
+          Only1sand2s.value<-NA
+          Only1sand3s.value<-NA
+          Atleast2andatleast3.value<-NA
+          Nos2withatleast3.value<-NA
+          Nos2Sq.value<-NA
+          Nos3Sq.value<-NA
+          MO3SC3.value<-NA
+          MO3UA3.value<-NA
+          MO3PD3.value<-NA
+          MO3AD3.value<-NA
+          SC3UA3.value<-NA
+          SC3PD3.value<-NA
+          SC3AD3.value<-NA
+          UA3PD3.value<-NA
+          UA3AD3.value<-NA
+          PD3AD3.value<-NA
           rownumfh=which(row.names(eq5d.valueset)=="FullHealth")
           rownum_min2or3=which(row.names(eq5d.valueset)=="Constant")
           rownumn_min3=which(row.names(eq5d.valueset)=="N3")
+          rownum_Only1sand2s=which(row.names(eq5d.valueset)=="Only1sand2s")
+          rownum_Only1sand3s=which(row.names(eq5d.valueset)=="Only1sand3s")
+          rownum_Atleast2andatleast3=which(row.names(eq5d.valueset)=="Atleast2andatleast3")
+          rownum_Nos2withatleast3=which(row.names(eq5d.valueset)=="Nos2withatleast3")
+          rownum_Nos2Sq=which(row.names(eq5d.valueset)=="Nos2Sq")
+          rownum_Nos3Sq=which(row.names(eq5d.valueset)=="Nos3Sq")
           if(method=="TTO"){
             rownum_all.equals2or3=which(row.names(eq5d.valueset)=="X5")
             rownum_C3sq=which(row.names(eq5d.valueset)=="C3sq")
@@ -382,6 +405,16 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
             rownumn_I2_sq=which(row.names(eq5d.valueset)=="I2_sq")
             rownumn_I3=which(row.names(eq5d.valueset)=="I3")
             rownumn_I3_sq=which(row.names(eq5d.valueset)=="I3_sq")
+            rownum_MO3SC3=which(row.names(eq5d.valueset)=="MO3SC3")
+            rownum_MO3UA3=which(row.names(eq5d.valueset)=="MO3UA3")
+            rownum_MO3PD3=which(row.names(eq5d.valueset)=="MO3PD3")
+            rownum_MO3AD3=which(row.names(eq5d.valueset)=="MO3AD3")
+            rownum_SC3UA3=which(row.names(eq5d.valueset)=="SC3UA3")
+            rownum_SC3PD3=which(row.names(eq5d.valueset)=="SC3PD3")
+            rownum_SC3AD3=which(row.names(eq5d.valueset)=="SC3AD3")
+            rownum_UA3PD3=which(row.names(eq5d.valueset)=="UA3PD3")
+            rownum_UA3AD3=which(row.names(eq5d.valueset)=="UA3AD3")
+            rownum_PD3AD3=which(row.names(eq5d.valueset)=="PD3AD3")
           }else{
             rownum_all.equals2or3=NA
             rownum_C3sq=NA
@@ -390,6 +423,16 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
             rownumn_I2_sq=NA
             rownumn_I3=NA
             rownumn_I3_sq=NA
+            rownum_MO3SC3=NA
+            rownum_MO3UA3=NA
+            rownum_MO3PD3=NA
+            rownum_MO3AD3=NA
+            rownum_SC3UA3=NA
+            rownum_SC3PD3=NA
+            rownum_SC3AD3=NA
+            rownum_UA3PD3=NA
+            rownum_UA3AD3=NA
+            rownum_PD3AD3=NA
           }
           if(length(min2or3)>0){
             for(i in 1:length(min2or3)){
@@ -434,13 +477,85 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
              if( !is.na(eq5d.valueset[rownumn_I3_sq,country]))
             I3_sq.value<-(length(which3)-1)^2*eq5d.valueset[rownumn_I3_sq,country]
           }
+          if(all(scores<=2) & !all(scores==1) & sum(is.na(rownum_Only1sand2s)==0)){
+            if( !is.na(eq5d.valueset[rownum_Only1sand2s,country]))
+              Only1sand2s.value<-eq5d.valueset[rownum_Only1sand2s,country]
+          }
+          ##!all(scores==3) & need ??
+          
+          if(!any(scores==2) & !all(scores==1)  &  sum(is.na(rownum_Only1sand3s)==0)){
+            if( !is.na(eq5d.valueset[rownum_Only1sand3s,country]))
+             Only1sand3s.value<-eq5d.valueset[rownum_Only1sand3s,country]
+          }
+          if(any(scores==2) & any(scores==3) & sum(is.na(rownum_Atleast2andatleast3)==0)){
+            if( !is.na(eq5d.valueset[rownum_Atleast2andatleast3,country]))
+             Atleast2andatleast3.value<-eq5d.valueset[rownum_Atleast2andatleast3,country]
+          }
+          if(any(scores==2) & any(scores==3)& sum(is.na(rownum_Nos2withatleast3)==0)){
+            if( !is.na(eq5d.valueset[rownum_Nos2withatleast3,country]))
+              Nos2withatleast3.value<-length(which(scores==2))*eq5d.valueset[rownum_Nos2withatleast3,country]
+          }
+          if(any(scores==2) & sum(is.na(rownum_Nos2Sq)==0)){
+            if( !is.na(eq5d.valueset[rownum_Nos2Sq,country]))
+              Nos2Sq.value<-(length(which(scores==2)))^2*eq5d.valueset[rownum_Nos2Sq,country]
+          }
+          if(any(scores==3) & sum(is.na(rownum_Nos3Sq)==0)){
+            if( !is.na(eq5d.valueset[rownum_Nos3Sq,country]))
+              Nos3Sq.value<-(length(which(scores==3)))^2*eq5d.valueset[rownum_Nos3Sq,country]
+          }
+          
+         if( scores[["MO"]]==3 & scores[["SC"]]==3 & sum(is.na(rownum_MO3SC3)==0)){
+            if( !is.na(eq5d.valueset[rownum_MO3SC3,country]))
+              MO3SC3.value<-eq5d.valueset[rownum_MO3SC3,country]
+          }
+          if( scores[["MO"]]==3 & scores[["UA"]]==3 & sum(is.na(rownum_MO3UA3)==0)){
+            if( !is.na(eq5d.valueset[rownum_MO3UA3,country]))
+              MO3UA3.value<-eq5d.valueset[rownum_MO3UA3,country]
+          }
+          if( scores[["MO"]]==3 & scores[["PD"]]==3 & sum(is.na(rownum_MO3PD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_MO3PD3,country]))
+              MO3PD3.value<-eq5d.valueset[rownum_MO3PD3,country]
+          }
+          if( scores[["MO"]]==3 & scores[["AD"]]==3 & sum(is.na(rownum_MO3AD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_MO3AD3,country]))
+              MO3AD3.value<-eq5d.valueset[rownum_MO3AD3,country]
+          }
+          if( scores[["SC"]]==3 & scores[["UA"]]==3 & sum(is.na(rownum_SC3UA3)==0)){
+            if( !is.na(eq5d.valueset[rownum_SC3UA3,country]))
+              SC3UA3.value<-eq5d.valueset[rownum_SC3UA3,country]
+          }
+          if( scores[["SC"]]==3 & scores[["PD"]]==3 & sum(is.na(rownum_SC3PD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_SC3PD3,country]))
+              SC3PD3.value<-eq5d.valueset[rownum_SC3PD3,country]
+          }
+          if( scores[["SC"]]==3 & scores[["AD"]]==3 & sum(is.na(rownum_SC3AD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_SC3AD3,country]))
+              SC3AD3.value<-eq5d.valueset[rownum_SC3AD3,country]
+          }
+          if( scores[["UA"]]==3 & scores[["PD"]]==3 & sum(is.na(rownum_UA3PD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_UA3PD3,country]))
+              UA3PD3.value<-eq5d.valueset[rownum_UA3PD3,country]
+          }
+          if( scores[["UA"]]==3 & scores[["AD"]]==3 & sum(is.na(rownum_UA3AD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_UA3AD3,country]))
+              UA3AD3.value<-eq5d.valueset[rownum_UA3AD3,country]
+          }
+          if( scores[["PD"]]==3 & scores[["AD"]]==3 & sum(is.na(rownum_PD3AD3)==0)){
+            if( !is.na(eq5d.valueset[rownum_PD3AD3,country]))
+              PD3AD3.value<-eq5d.valueset[rownum_PD3AD3,country]
+          }
           if(country=="Germany" && method=="VAS"){
             prod.response=prod(dim.response,na.rm =TRUE)
-            values<-c(eq5d.valueset[rownumfh,country],prod.response,min2or3.value,min3.value,all.equals2or3.value,c3sq.value,d1.value,I2.value,I2_sq.value,I3.value,I3_sq.value)
+            values<-c(eq5d.valueset[rownumfh,country],prod.response,min2or3.value,min3.value,all.equals2or3.value,c3sq.value,d1.value,I2.value,
+                      I2_sq.value,I3.value,I3_sq.value,Only1sand2s.value,Only1sand3s.value,Atleast2andatleast3.value,Nos2withatleast3.value,
+                      Nos2Sq.value,Nos3Sq.value)
             values.state<-prod(values,na.rm =TRUE)
           }else{
             sum.response=sum(dim.response,na.rm =TRUE)
-            values<-c(eq5d.valueset[rownumfh,country],sum.response,min2or3.value,min3.value,all.equals2or3.value,c3sq.value,d1.value,I2.value,I2_sq.value,I3.value,I3_sq.value)
+            values<-c(eq5d.valueset[rownumfh,country],sum.response,min2or3.value,min3.value,all.equals2or3.value,c3sq.value,d1.value,I2.value,
+                      I2_sq.value,I3.value,I3_sq.value,Only1sand2s.value,Only1sand3s.value,Atleast2andatleast3.value,Nos2withatleast3.value,
+                      Nos2Sq.value,Nos3Sq.value, MO3SC3.value,MO3UA3.value,MO3PD3.value,MO3AD3.value,SC3UA3.value,SC3PD3.value,SC3AD3.value,
+                      UA3PD3.value,UA3AD3.value,PD3AD3.value)
             values.state<-sum(values,na.rm =TRUE)
           }
         }else{

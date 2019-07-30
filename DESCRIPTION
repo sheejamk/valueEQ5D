@@ -18,8 +18,7 @@ Description: EQ-5D is a standard instrument (https://euroqol.org/eq-5d-instrumen
     are obtained from references mentioned in the https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/valuation-standard-value-sets/.
     The value sets for Poland is obtained from Golicki et al <doi: 10.1007/s40273-019-00811-7>; value sets for Portugal is obtained from 
     Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>; and the value set for Taiwan is obtained from Lin et al (2018) <https://doi.org/10.1371/journal.pone.0209344>
-    This package allows the calculation of both descriptive system scores
-    to the index value scores. The package can also be used to map 5L scores to 3L index values for UK.  
+    This package allows the calculation of both descriptive system scores to the index value scores. The package can also be used to map 5L scores to 3L index values for UK.  
 License: GNU General Public License
 Encoding: UTF-8
 LazyData: true
