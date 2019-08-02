@@ -1,7 +1,7 @@
 Package: valueEQ5D
 Type: Package
 Title: Scoring the 'EQ-5D' Descriptive System
-Version: 0.4.2
+Version: 0.4.3
 Authors@R: c(person("Sheeja", "Manchira Krishnan", , "sheejamk@gmail.com", c("aut", "cre")))
 Maintainer: Sheeja Manchira Krishnan <sheejamk@gmail.com>
 Depends: R (>= 2.10)
@@ -10,15 +10,65 @@ Description: EQ-5D is a standard instrument (https://euroqol.org/eq-5d-instrumen
     contain a descriptive system and visual analog scale. The descriptive system measures the patient's health in 5 dimensions: 
     the 5L versions has 5 levels and 3L version has 3 levels. The descriptive system scores are usually converted to index values 
     using country specific values sets (that incorporates the country preferences). 
-    The value sets for EQ-5D-3L based on Time Trade-Off (TTO) for 13 countires (Argentina, Denmark, France, Germany, Italy, Japan, Korea, Netherlands, Spain, Thailand, United Kingdom, USA) 
-    or Visual Analog Scale (VAS) for 10 countries (Argentina, Belgium, Denmark, Europe, Finland, Germany, New Zealand, Slovenia, Spain,
-    United Kingdom) are obtained from  Szende et al (2014) <doi:10.1007/978-94-007-7596-1>.  For other countries the tariffs are obtianed 
-    from the references mentioned in the  website https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/. 
-    The value sets for EQ-5D-5L for 14 countries (Canada, China,England, Germany, Hong Kong,Indonesia, Ireland,Japan, Korea, Malaysia, Netherlands, Spain, Thailand, and Uruguay) 
-    are obtained from references mentioned in the https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/valuation-standard-value-sets/.
-    The value sets for Poland is obtained from Golicki et al <doi: 10.1007/s40273-019-00811-7>; value sets for Portugal is obtained from 
-    Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>; and the value set for Taiwan is obtained from Lin et al (2018) <https://doi.org/10.1371/journal.pone.0209344>
-    This package allows the calculation of both descriptive system scores to the index value scores. The package can also be used to map 5L scores to 3L index values for UK.  
+    This package allows the calculation of both descriptive system scores to the index value scores. 
+    The value sets for EQ-5D-3L based from the references mentioned in the  website https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/
+    The value sets for a total of 31 countries are estimated and are used for the valuation.
+    Argentina: Augustovski et al (2009) <doi:10.1111/j.1524-4733.2008.00468.x>; 
+    Australia: Viney et al (2011) <doi:10.1016/j.jval.2011.04.009>
+    Belgium: Cleemput et al (2010) <doi:10.1007/s10198-009-0167-0>
+    Brazil: Santos et al (2016) <doi:10.1177/0272989X15613521>
+    Canada: Bansback et al (2012) <https://doi.org/10.1371/journal.pone.0031115>
+    Chile: Zarate et al (2011) <doi:10.1016/j.jval.2011.09.002.
+    China: Liu et al (2014) <doi:10.1016/j.jval.2014.05.007>
+    Denmark TTO: Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
+    Denmark VAS: Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    Europe: Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    Finland: Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    France: Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
+    Germany (TTO): Greiner et al (2005) <doi:10.1007/s10198-004-0264-z.
+    Germany (VAS): Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    Italy: Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
+    Japan: Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
+    Malaysia: Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
+    Netherlands: Lamers et al <doi:10.1002/hec.1124>
+    New Zealand: Devlin et al <doi:10.1002/hec.741>
+    Poland: Golicki et al <https://doi.org/10.1111/j.1524-4733.2009.00596.x>
+    Portugal: Ferreira et al <doi:10.1007/s11136-013-0448-z>
+    Singapore: Nan Luoß et al <doi:10.1007/s40273-014-0142-1>
+    Slovenia: Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    Spain (TTO): Badia et al (2001) <doi:10.1177/0272989X0102100102>
+    Spain (VAS): Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    Sri Lanka: Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
+    South Korea: Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
+    Sweden: Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
+    Taiwan: Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015>
+    Thailand: Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
+    Trinidad and Tobago: Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
+    UK (TTO): Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
+    UK (VAS): Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+    USA: Shaw et al (2005) <doi:10.1097/00005650-200503000-00003>
+    Zimbabwe: Jelsma et al (2003) <https://doi.org/10.1186/1478-7954-1-11>
+    The value sets for EQ-5D-5L are obtained from references mentioned in the https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/valuation-standard-value-sets/ and other sources.
+    The value sets for a total of 17 countries are estimated and are used for the valuation.
+    Canada: Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
+    China:Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>
+    England: Devlin et al (2018) <doi:10.1002/hec.3564>
+    Germany: Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
+    Hong Kong: Wong et al (2018) <doi:10.1007/s40271-017-0278-0>
+    Indonesia: Purba et al (2017) <doi:10.1007/s40273-017-0538-9>
+    Ireland: Hobbins et al (2016) <doi:10.1007/s40273-018-0690-x>
+    Japan: Shiroiwa, et al (2016) <doi:10.1016/j.jval.2016.03.1834>
+    Korea: Kim et al (2016) <doi:10.1007/s11136-015-1205-2>
+    Malaysia: Shafie  et al (2019) <doi:10.1007/s40273-018-0758-7>
+    Netherlands: Versteegh et al (2016) <doi:10.1016/j.jval.2016.01.003>
+    Poland: Golicki et al <doi:10.1007/s40273-019-00811-7>
+    Portugal:Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
+    Spain: Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
+    Taiwan:  Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
+    Thailand: Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
+    Uruguay: Augustovski et al (2016) <doi:10.1007/s11136-015-1086-4>
+    The package can also be used to map 5L scores to 3L index values for UK. 
+    The value set and method for mapping are obtinaed from Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>. 
 License: GNU General Public License
 Encoding: UTF-8
 LazyData: true

@@ -219,3 +219,28 @@ subsetGenderAgeToGroup<-function(data,gender,agelimit){
   }
   return(working.data)
 }
+###########################################################################################################
+#' Function to add an underscore for texts with spaces in between
+#' @param this.string a string
+#' @return  string where the spaces replaced by "_"
+#' @examples replaceSpaceUnderscore("Sri Lanka")
+#' @export
+replaceSpaceUnderscore<-function(this.string){
+  sep.string<-unlist(strsplit(this.string, " "))
+  if(length(sep.string)<1){
+    return(-1)
+  }else{
+    new.string=sep.string[1]
+    if(length(sep.string)>1){
+      for(i in 2:length(sep.string)){
+        new.string<-cbind(new.string,sep.string[i])
+      }
+      new.string<-paste(new.string,collapse="_")
+    }else{
+      new.string<-sep.string
+    }
+    
+    return(new.string)
+  }
+}
+

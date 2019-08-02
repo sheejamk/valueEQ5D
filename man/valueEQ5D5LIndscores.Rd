@@ -32,29 +32,29 @@ valueEQ5D5LIndscores("China",2,3,4,3,4)
 valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 }
 \references{
-*Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi: 10.1097/MLR.0000000000000447>
+*Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
 
-**China: Table 4 column 4 page 667 in Luo et al (2017) <doi: 10.1016/j.jval.2016.11.016>
+**China: Table 4 column 4 page 667 in Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>
 
-**England: Table 2 column 2 page 17 in Devlin et al (2018) <doi: 10.1002/hec.3564>
+**England: Table 2 column 2 page 17 in Devlin et al (2018) <doi:10.1002/hec.3564>
 
-**Germany: Table column 9 page 670 in Ludwig et al (2018) <doi: 10.1007/s40273-018-0615-8>
+**Germany: Table column 9 page 670 in Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
 
-*Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi: 10.1007/s40271-017-0278-0>
+*Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi:10.1007/s40271-017-0278-0>
 
-*Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi: 10.1007/s40273-017-0538-9>
+*Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi:10.1007/s40273-017-0538-9>
 
-*Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi: 10.1007/s40273-018-0690-x>
+*Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi:10.1007/s40273-018-0690-x>
 
-*Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi: 10.1016/j.jval.2016.03.1834>
+*Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi:10.1016/j.jval.2016.03.1834>
 
-*Korea: Table 5 column 6 page 1851 in Kim,  et al (2016) <doi: 10.1007/s11136-015-1205-2>
+*Korea: Table 5 column 6 page 1851 in Kim et al (2016) <doi:10.1007/s11136-015-1205-2>
 
-**Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi: 10.1007/s40273-018-0758-7>
+**Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi:10.1007/s40273-018-0758-7>
 
-*Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi: 10.1016/j.jval.2016.01.003>
+*Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi:10.1016/j.jval.2016.01.003>
 
-**Poland: Table 2 column 7 in Golicki et al <doi: 10.1007/s40273-019-00811-7>
+**Poland: Table 2 column 7 in Golicki et al <doi:10.1007/s40273-019-00811-7>
 
 *Portugal: Table 3 column 4 in Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
 
@@ -62,7 +62,7 @@ valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 
 *Taiwan: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
 
-*Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi: 10.1080/14737167.2018>
+*Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
 
-*Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi: 10.1007/s11136-015-1086-4>
+*Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi:10.1007/s11136-015-1086-4>
 }

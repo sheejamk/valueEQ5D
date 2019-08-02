@@ -51,7 +51,6 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
     }
   }
 }
-
 ###########################################################################################################
 #' Function to check the EQ-5D-5L scores
 #' @param this.response  a must input,response for EQ-5D-3L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
@@ -93,7 +92,6 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
       message("Responses not valid for EQ-5D-5L scores")
       return(-1)
     }
-   
   }else{
     this.score<-as.numeric(this.score)
     if(this.score<11111 || this.score>55555){
@@ -104,7 +102,6 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
         message("Responses not valid for EQ-5D-5L scores or some missing")
         return(NA)
       }
-      
     }else{
       return(responses)
     }
@@ -124,28 +121,29 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
 #' @examples valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 #' @export
 ### hint **whole values tested from paper * @references published values tested from paper
-#' @references *Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi: 10.1097/MLR.0000000000000447>
-#' @references **China: Table 4 column 4 page 667 in Luo et al (2017) <doi: 10.1016/j.jval.2016.11.016>
-#' @references **England: Table 2 column 2 page 17 in Devlin et al (2018) <doi: 10.1002/hec.3564>
-#' @references **Germany: Table column 9 page 670 in Ludwig et al (2018) <doi: 10.1007/s40273-018-0615-8>
-#' @references *Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi: 10.1007/s40271-017-0278-0>
-#' @references *Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi: 10.1007/s40273-017-0538-9>
-#' @references *Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi: 10.1007/s40273-018-0690-x>
-#' @references *Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi: 10.1016/j.jval.2016.03.1834>
-#' @references *Korea: Table 5 column 6 page 1851 in Kim,  et al (2016) <doi: 10.1007/s11136-015-1205-2>
-#' @references **Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi: 10.1007/s40273-018-0758-7>
-#' @references *Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi: 10.1016/j.jval.2016.01.003>
-#' @references **Poland: Table 2 column 7 in Golicki et al <doi: 10.1007/s40273-019-00811-7>
+#' @references *Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
+#' @references **China: Table 4 column 4 page 667 in Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>
+#' @references **England: Table 2 column 2 page 17 in Devlin et al (2018) <doi:10.1002/hec.3564>
+#' @references **Germany: Table column 9 page 670 in Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
+#' @references *Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi:10.1007/s40271-017-0278-0>
+#' @references *Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi:10.1007/s40273-017-0538-9>
+#' @references *Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi:10.1007/s40273-018-0690-x>
+#' @references *Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi:10.1016/j.jval.2016.03.1834>
+#' @references *Korea: Table 5 column 6 page 1851 in Kim et al (2016) <doi:10.1007/s11136-015-1205-2>
+#' @references **Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi:10.1007/s40273-018-0758-7>
+#' @references *Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi:10.1016/j.jval.2016.01.003>
+#' @references **Poland: Table 2 column 7 in Golicki et al <doi:10.1007/s40273-019-00811-7>
 #' @references  *Portugal: Table 3 column 4 in Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
 #' @references *Spain: Table 1 column 9 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
 #' @references *Taiwan: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
-#' @references *Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi: 10.1080/14737167.2018>
-#' @references *Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi: 10.1007/s11136-015-1086-4>
+#' @references *Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
+#' @references *Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi:10.1007/s11136-015-1086-4>
 
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
-  countrylist=c("Canada","China","England" ,"Germany","HongKong","Indonesia","Ireland",
+  countrylist=c("Canada","China","England" ,"Germany","Hong Kong","Indonesia","Ireland",
                 "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand","Uruguay")
   if(country%in%countrylist){
+    country<-replaceSpaceUnderscore(country)
     scores<-checkScores5L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
       return(NA)
@@ -207,8 +205,8 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
     message("No tariffs found for the country you specified for EQ-5D-5L. Please try later !!")
     return(-1)
   }
-  
 }
+  
 ###########################################################################################################
 #' Function to value EQ-5D-5L scores for any country and group by gender and age
 #' @param eq5dresponse.data the data containing eq5d responses
@@ -296,42 +294,55 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @examples valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 #' @export
-#' @references Argentina (TTO and Vas), Brazil Canada Poland Portugal Taiwan Trinidad_and_Tobago (not in Szende book)
-
-#' @references Belgium: Equation 2 page 208 in Cleemput, Irina. "A social preference valuations set for EQ-5D health states in Flanders, Belgium." The European Journal of Health Economics 11.2 (2010): 205-213.
-#' @references ---Brazil:Santos, Marisa, et al. "Brazilian valuation of EQ-5D-3L health states: results from a saturation study." Medical Decision Making 36.2 (2016): 253-263.
-#' @references Canada: Table 4 page 8 in Bansback, Nick, et al. "Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies." PloS one 7.2 (2012): e31115.
-#' @references Chile: Table 2 column 4 page 1137 in Zarate, Victor, et al. "Social valuation of EQ-5D health states: the Chilean case." Value in health 14.8 (2011): 1135-1141.
-#' @references Denmark: Table 4 page 463 in Wittrup-Jensen, Kim U., et al. "Generation of a Danish TTO value set for EQ-5D health states." Scandinavian Journal of Public Health 37.5 (2009): 459-466.
-#' @references ---Europer: Greiner, Wolfgang, et al. "A single European currency for EQ-5D health states." The European Journal of Health Economics, formerly: HEPAC 4.3 (2003): 222-231.
-#' @references Finland Table 6 column 4 page 68 in Ohinmaa, A., and H. Sintonen. "Inconsistencies and modelling of the Finnish EuroQol (EQ-5D) preference values In: Gainer, W, Graf von dem Schulenburg, J, Piercy, J (eds), EuroQol, Plenary Meeting, Hannover 1998, 1-2 October." Discussion Papers. Hannover: University of Hannover Centre of Health Economics and Health System Research (1999): 57-74.
-#' @references ---Germany: Claes, C., et al. "An interview-based comparison of the TTO and VAS values given to EuroQol states of health by the general German population." Proceedings of the 15th Plenary Meeting of the EuroQol Group. Hannover, Germany: Centre for Health Economics and Health Systems Research, University of Hannover. 1999.
-#' @references Italy: Table 4 coulmn 5, page 820 in Scalone, Luciana, et al. "Italian population-based values of EQ-5D health states." Value in Health 16.5 (2013): 814-822.
-#' @references Japan: Table 4 column 1, page 41 in Tsuchiya, Aki, et al. "Estimating an EQ‐5D population value set: the case of Japan." Health economics 11.4 (2002): 341-353.
-#' @references South Korea: Table 3 column 4, page 1191 in Lee, Yeon‐Kyeng, et al. "South Korean time trade‐off values for EQ‐5D health states: Modeling with observed values for 101 health states." Value in Health 12.8 (2009): 1187-1193.
-#' @references Netherlands: Table 5 column 3, page 1128 in Lamers, Leida M., et al. "The Dutch tariff: results and arguments for an effective design for national EQ‐5D valuation studies." Health economics 15.10 (2006): 1121-1132.
-#' @references New Zealand: Equation 2 page 541 in Devlin, Nancy J., et al. "Logical inconsistencies in survey respondents' health state valuations‐a methodological challenge for estimating social tariffs." Health economics 12.7 (2003): 529-544.
-#' @references Poland: Table 5 column 2 page 293 in Golicki, Dominik, et al. "Valuation of EQ‐5D Health States in Poland: First TTO‐Based Social Value Set in Central and Eastern Europe." Value in Health 13.2 (2010): 289-297.
-#' @references Portugal: Table 4 column 6 page 418 Ferreira, Lara N., et al. "The valuation of the EQ-5D in Portugal." Quality of Life Research 23.2 (2014): 413-423.
-#' @references Solvenia: Table 6 column 2 page 30 (constant given in page 36) in Rupel, V. Prevolnik, and Matejka Rebolj. "The Slovenian VAS tariff based on valuations of EQ-5D health states from the general population." Discussion papers/17th Plenary Meeting of the Euroqol Group. Universidad Pública de Navarra, 2001.
-#' @references Spain: Table 3 column 4 page 13 (TTO) in Badia, Xavier, et al. "A comparison of United Kingdom and Spanish general population time trade-off values for EQ-5D health states." Medical Decision Making 21.1 (2001): 7-16.
-#' @references ---Spain: Badia, X., et al. "The Spanish VAS tariff based on valuation of EQ-5D health states from the general population." EuroQol Plenary Meeting Rotterdam. 1997.
-#' @references Taiwan: Table 2 column 4 page 702 in Lee, Hsin-Yi, et al. "Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan." Journal of the Formosan Medical Association 112.11 (2013): 699-706.
-#' @references Thailand: Table 1 column 2 page 1144 (parameters like MO3 are calculated) in Tongsiri, Sirinart, and John Cairns. "Estimating population-based values for EQ-5D health states in Thailand." Value in Health 14.8 (2011): 1142-1145.
-#' @references UK: Table 1 column 2 page 1103 (TTO) in Dolan, Paul. "Modeling valuations for EuroQol health states." Medical care (1997): 1095-1108.
-#' @references UK: Table 4A column 2 page 43 in MVH Group. "The measurement and valuation of health: Final report on the modelling of valuation tariffs." Centre for Health Economics, University of York (1995).
-#' @references USA: Table 5 coulmn 2 page 214 in Shaw, James W., Jeffrey A. Johnson, and Stephen Joel Coons. "US valuation of the EQ-5D health states: development and testing of the D1 valuation model." Medical care (2005): 203-220.
-#' @references Zimbabwe: Table 5 column 3 page 7 inJelsma, Jennifer, et al. "How do Zimbabweans value health states?." Population health metrics 1.1 (2003): 11.
-#' @references Trinidad and Tobago: Table 4 page 65 in Bailey, Henry, Elly Stolk, and Paul Kind. "Toward explicit prioritization for the Caribbean: an EQ-5D value set for Trinidad and Tobago." Value in health regional issues 11 (2016): 60-67.
+#' @references Argentina TTO and VAS: Table 3 column 2 and 5 for VAS and TTO page 560 in Augustovski et al (2009) <doi:10.1111/j.1524-4733.2008.00468.x> 
+#' VAS value for state 3333 was reported as -0.022,but did not get that and answer got is -0.034
+#' @references Australia: Table 4 column 6 page 933 in Viney et al (2011) <doi:10.1016/j.jval.2011.04.009>
+#' There were some implausible orderings and hard coded those only for Australian value sets
+#' @references Belgium: Equation 2 page 208 in Cleemput et al (2010) <doi:10.1007/s10198-009-0167-0>
+#' @references Brazil: Table 2 column 8 page 21 in Santos et al (2016) <doi:10.1177/0272989X15613521>
+#' @references Canada: Table 4 column 2 page 8 in Bansback et al (2012) <https://doi.org/10.1371/journal.pone.0031115>
+#' @references Chile: Table 2 column 5 page 1137 in Zarate et al (2011) <doi:10.1016/j.jval.2011.09.002.
+#' @references China: Table 4 column 4 page 603 in Liu et al (2014) <doi:10.1016/j.jval.2014.05.007>
+#' @references Denmark TTO: Table 4 column 2 page 463 in Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
+#' @references Denmark VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references Europe: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references Finland: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references France: Equation page 61 in Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
+#' @references Germany TTO: Table 4 column 2 page 129 in Greiner et al (2005) <doi:10.1007/s10198-004-0264-z.
+#' @references Germany VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references Italy: Table 4 column 5 page 820 in Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
+#' @references Japan: Table 4 column 1 page 41 in Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
+#' @references Malaysia: Table 4 column 6 page S88 in Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
+#' @references South Korea: Table 3 column 4 page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
+#' @references Netherlands: Table 5 column 3 page 1128 in Lamers et al <doi:10.1002/hec.1124>
+#' @references New Zealand: Equation 2 page 541 in Devlin et al <doi:10.1002/hec.741>
+#' @references Poland: Table 5 column 2 page 293 in Golicki et al <https://doi.org/10.1111/j.1524-4733.2009.00596.x>
+#' @references Portugal: Table 4 column 6 page 418 in Ferreira et al <doi:10.1007/s11136-013-0448-z>
+#' @references Singapore: Equation page  504 in Nan Luoß et al <doi:10.1007/s40273-014-0142-1>
+#' @references Slovenia: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references Spain TTO: Table 3 column 4 page 13 in Badia et al (2001) <doi:10.1177/0272989X0102100102>
+#' @references Spain VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references Sri Lanka: Table 2 column 8 page 1791 in  Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
+#' @references Sweden: Table 2 column 8 page 436 in Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
+#' @references Taiwan: Table 2 column 4 page 702 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015>
+#' @references Thailand: Table 1 column 2 page 1144 (parameters like MO3 are calculated) Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
+#' @references Trinidad and Tobago: Table 4 page 65 in Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
+#' @references UK TTO: Table 1 column 2 page 1103 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
+#' @references UK VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+#' @references USA: Table 5 column 2 page 214 in Shaw et al (2005) <doi:10.1097/00005650-200503000-00003>
+#' @references Zimbabwe: Table 5 column 3 page 7 in Jelsma et al (2003) <https://doi.org/10.1186/1478-7954-1-11>
+ 
 valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
-  countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","China","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan","Korea",
-                "Malaysia","Netherlands","NewZealand","Poland", "Portugal","Singapore","Slovenia","Spain","SriLanka","Sweden","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
+  countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","China","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan",
+                "Malaysia","Netherlands","New_Zealand","Poland", "Portugal","Singapore","Slovenia","Spain","Sri_Lanka","South_Korea","Sweden","Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
   	
-  VAS_countrylist=c("Argentina","Belgium","Denmark" ,"Europe","Finland","Germany", "Malaysia","NewZealand","Slovenia","Spain","UK")
-  TTO_countrylist=c("Argentina","Australia","Brazil","Canada","Chile","China","Denmark" ,"Europe","France","Germany","Italy","Japan","Korea",
-                "Netherlands","Poland", "Portugal","Singapore","Spain","SriLanka","Sweden","Taiwan","Thailand","UK","USA","Zimbabwe","Trinidad_and_Tobago")
+  VAS_countrylist=c("Argentina","Belgium","Denmark" ,"Europe","Finland","Germany", "Malaysia","New_Zealand","Slovenia","Spain","UK")
+  TTO_countrylist=c("Argentina","Australia","Brazil","Canada","Chile","China","Denmark" ,"France","Germany","Italy","Japan",
+                "Netherlands","Poland", "Portugal","Singapore","Spain","Sri_Lanka","South_Korea","Sweden","Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
  
   australia.impalusibleordering.scores<-c(33132, 12133,13133, 22133,23133,32133,33133,12233,13233,22233,23233,32233,33233,33232,33323,13332,13333,23332,23333,32333,33332,33333)
+  
+  country<-replaceSpaceUnderscore(country)
   if(country%in%countrylist){
     scores<-checkScores3L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
@@ -737,7 +748,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
                   SC = seq(3),
                   MO = seq(3))
     ## calculate the index value for each score
-    ## using function EQ5D_be based on Cleemput et al., 2010
+    ## using function EQ5D_be based on Cleemput et al, 2010
     for (i in seq(243)) {
       index_3L[i] <-
         valueEQ5D3LIndscores("UK","TTO",scores_3L[i, "MO"],
@@ -879,7 +890,6 @@ correctimplausibleordering<-function(scores){
   }else{
     return(-1)
   }
-  
 }
   
   
