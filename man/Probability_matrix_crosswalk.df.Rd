@@ -4,8 +4,12 @@
 \name{Probability_matrix_crosswalk.df}
 \alias{Probability_matrix_crosswalk.df}
 \title{Probability matrix for the cross walk}
-\format{A dataframe with 3124 rows and 243 columns
-From https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_model_and__methodology2.pdf}
+\format{A dataframe with 3124 rows and 243 columns}
+\source{
+https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_model_and__methodology2.pdf
+
+Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>.
+}
 \usage{
 Probability_matrix_crosswalk.df
 }

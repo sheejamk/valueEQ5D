@@ -128,14 +128,14 @@ valueEQ5D5L(EQ5D5Ldata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q
 ```
 
 
-## Examples- Mapping EQ-5D-5L scores to EQ-5D-3L index values for England
+## Examples- Mapping EQ-5D-5L scores to EQ-5D-3L index values for UK and other countries
 Each of the below calls will give same EQ-5d-3L index values while valuing the EQ-5D-5L individual score 1,2,3,4,5 for mobility, self care, social activity, pain and discomfort, and anxiety respectively.
 ```{r }
 ## Valuing EQ-5D-5L individual score
 
 eq5dmap5Lto3LIndscores("UK","CW",1,2,3,4,5)
 eq5dmap5Lto3LIndscores("UK","CW",c(1,2,3,4,5))
-eq5dmap5Lto3LIndscores("UK","CW",12345)
+eq5dmap5Lto3LIndscores("Denmark","CW",12345)
 ```
 When the data is in column format as in example below, use the 'eq5dmap5Lto3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below.
 ```{r }

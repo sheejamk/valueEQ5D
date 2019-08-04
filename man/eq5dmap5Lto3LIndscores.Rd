@@ -9,7 +9,7 @@ eq5dmap5Lto3LIndscores(country = "UK", method = "CW", this.response,
   this.response5 = NA)
 }
 \arguments{
-\item{country}{default is "UK", no other method currently currently implemented}
+\item{country}{default is "UK"}
 
 \item{method}{CW cross walk}
 

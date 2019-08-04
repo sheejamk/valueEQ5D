@@ -34,7 +34,7 @@ Description: EQ-5D is a standard instrument (https://euroqol.org/eq-5d-instrumen
     New Zealand: Devlin et al <doi:10.1002/hec.741>
     Poland: Golicki et al <https://doi.org/10.1111/j.1524-4733.2009.00596.x>
     Portugal: Ferreira et al <doi:10.1007/s11136-013-0448-z>
-    Singapore: Nan Luoß et al <doi:10.1007/s40273-014-0142-1>
+    Singapore: Nan Luo et al <doi:10.1007/s40273-014-0142-1>
     Slovenia: Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
     Spain (TTO): Badia et al (2001) <doi:10.1177/0272989X0102100102>
     Spain (VAS): Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
@@ -67,7 +67,7 @@ Description: EQ-5D is a standard instrument (https://euroqol.org/eq-5d-instrumen
     Taiwan:  Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
     Thailand: Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
     Uruguay: Augustovski et al (2016) <doi:10.1007/s11136-015-1086-4>
-    The package can also be used to map 5L scores to 3L index values for UK. 
+    The package can also be used to map 5L scores to 3L index values for 10 countries: Denmark,France,Germany,Japan,Netherlands,Spain,Thailand,UK,USA, and Zimbabwe. 
     The value set and method for mapping are obtinaed from Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>. 
 License: GNU General Public License
 Encoding: UTF-8

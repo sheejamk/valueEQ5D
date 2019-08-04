@@ -120,30 +120,11 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
 #' @examples valueEQ5D5LIndscores("China",2,3,4,3,4)
 #' @examples valueEQ5D5LIndscores("Poland",c(1,2,3,4,3))
 #' @export
-### hint **whole values tested from paper * @references published values tested from paper
-#' @references *Canada: Table 2 column 5 page 103 in Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
-#' @references **China: Table 4 column 4 page 667 in Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>
-#' @references **England: Table 2 column 2 page 17 in Devlin et al (2018) <doi:10.1002/hec.3564>
-#' @references **Germany: Table column 9 page 670 in Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
-#' @references *Hong Kong: Table 3 column 8 page 244 in Wong et al (2018) <doi:10.1007/s40271-017-0278-0>
-#' @references *Indonesia: Table 3 column 8 page 1162 in Purba et al (2017) <doi:10.1007/s40273-017-0538-9>
-#' @references *Ireland: Table 2 column 2 page 1348 in Hobbins et al (2016) <doi:10.1007/s40273-018-0690-x>
-#' @references *Japan: Table 2 column 7 page 651 in Shiroiwa, et al (2016) <doi:10.1016/j.jval.2016.03.1834>
-#' @references *Korea: Table 5 column 6 page 1851 in Kim et al (2016) <doi:10.1007/s11136-015-1205-2>
-#' @references **Malaysia: Table 2 column 9 page 720 in Shafie  et al (2019) <doi:10.1007/s40273-018-0758-7>
-#' @references *Netherlands: Table 4 column 8 page 350 in Versteegh et al (2016) <doi:10.1016/j.jval.2016.01.003>
-#' @references **Poland: Table 2 column 7 in Golicki et al <doi:10.1007/s40273-019-00811-7>
-#' @references  *Portugal: Table 3 column 4 in Ferreira1 et al (2014) <doi:10.1007/s11136-019-02226-5>
-#' @references *Spain: Table 1 column 9 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
-#' @references *Taiwan: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
-#' @references *Thailand: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
-#' @references *Uruguay: Table 2.3 column 5 page 29 in Augustovski et al (2016) <doi:10.1007/s11136-015-1086-4>
-
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
-  countrylist=c("Canada","China","England" ,"Germany","Hong Kong","Indonesia","Ireland",
+  countrylist=c("Canada","China","England" ,"Germany","Hong_Kong","Indonesia","Ireland",
                 "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand","Uruguay")
+  country<-replaceSpaceUnderscore(country)
   if(country%in%countrylist){
-    country<-replaceSpaceUnderscore(country)
     scores<-checkScores5L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
       return(NA)
@@ -294,44 +275,6 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
 #' @examples valueEQ5D3LIndscores("Spain","TTO",2,3,1,3,1)
 #' @examples valueEQ5D3LIndscores("Denmark","VAS",c(1,2,3,1,3))
 #' @export
-#' @references Argentina TTO and VAS: Table 3 column 2 and 5 for VAS and TTO page 560 in Augustovski et al (2009) <doi:10.1111/j.1524-4733.2008.00468.x> 
-#' VAS value for state 3333 was reported as -0.022,but did not get that and answer got is -0.034
-#' @references Australia: Table 4 column 6 page 933 in Viney et al (2011) <doi:10.1016/j.jval.2011.04.009>
-#' There were some implausible orderings and hard coded those only for Australian value sets
-#' @references Belgium: Equation 2 page 208 in Cleemput et al (2010) <doi:10.1007/s10198-009-0167-0>
-#' @references Brazil: Table 2 column 8 page 21 in Santos et al (2016) <doi:10.1177/0272989X15613521>
-#' @references Canada: Table 4 column 2 page 8 in Bansback et al (2012) <https://doi.org/10.1371/journal.pone.0031115>
-#' @references Chile: Table 2 column 5 page 1137 in Zarate et al (2011) <doi:10.1016/j.jval.2011.09.002.
-#' @references China: Table 4 column 4 page 603 in Liu et al (2014) <doi:10.1016/j.jval.2014.05.007>
-#' @references Denmark TTO: Table 4 column 2 page 463 in Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
-#' @references Denmark VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references Europe: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references Finland: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references France: Equation page 61 in Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
-#' @references Germany TTO: Table 4 column 2 page 129 in Greiner et al (2005) <doi:10.1007/s10198-004-0264-z.
-#' @references Germany VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references Italy: Table 4 column 5 page 820 in Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
-#' @references Japan: Table 4 column 1 page 41 in Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
-#' @references Malaysia: Table 4 column 6 page S88 in Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
-#' @references South Korea: Table 3 column 4 page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
-#' @references Netherlands: Table 5 column 3 page 1128 in Lamers et al <doi:10.1002/hec.1124>
-#' @references New Zealand: Equation 2 page 541 in Devlin et al <doi:10.1002/hec.741>
-#' @references Poland: Table 5 column 2 page 293 in Golicki et al <https://doi.org/10.1111/j.1524-4733.2009.00596.x>
-#' @references Portugal: Table 4 column 6 page 418 in Ferreira et al <doi:10.1007/s11136-013-0448-z>
-#' @references Singapore: Equation page  504 in Nan Luoß et al <doi:10.1007/s40273-014-0142-1>
-#' @references Slovenia: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references Spain TTO: Table 3 column 4 page 13 in Badia et al (2001) <doi:10.1177/0272989X0102100102>
-#' @references Spain VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references Sri Lanka: Table 2 column 8 page 1791 in  Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
-#' @references Sweden: Table 2 column 8 page 436 in Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
-#' @references Taiwan: Table 2 column 4 page 702 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015>
-#' @references Thailand: Table 1 column 2 page 1144 (parameters like MO3 are calculated) Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
-#' @references Trinidad and Tobago: Table 4 page 65 in Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
-#' @references UK TTO: Table 1 column 2 page 1103 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
-#' @references UK VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @references USA: Table 5 column 2 page 214 in Shaw et al (2005) <doi:10.1097/00005650-200503000-00003>
-#' @references Zimbabwe: Table 5 column 3 page 7 in Jelsma et al (2003) <https://doi.org/10.1186/1478-7954-1-11>
- 
 valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","China","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan",
                 "Malaysia","Netherlands","New_Zealand","Poland", "Portugal","Singapore","Slovenia","Spain","Sri_Lanka","South_Korea","Sweden","Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
@@ -636,7 +579,6 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
         res3=working.data[j,ua]
         res4=working.data[j,pd]
         res5=working.data[j,ad]
-        
         this.score<-valueEQ5D3LIndscores(country,method,res1,res2,res3,res4,res5)
         if(this.score!=-1){
           scores=c(scores,this.score)
@@ -679,7 +621,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
 }
 ###########################################################################################################
 #' Function to map EQ-5D-5L descriptive system to 3L index value
-#' @param country  default is "UK", no other method currently currently implemented
+#' @param country  default is "UK"
 #' @param method CW cross walk
 #' @param this.response  response for EQ-5D-5L mobility  or the 5 digit response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
 #' @param this.response2 response for EQ-5D-5L self care, or NA if the responses are given as this.response
@@ -693,107 +635,119 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
 #' @export
 #' @description Function to map EQ-5D-5L descriptive system to 3L index value (ref:Van Hout et al 2012 and code inspired from https://github.com/brechtdv/eq5d-mapping)
 eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.response2=NA,this.response3=NA,this.response4=NA,this.response5=NA) {
-  responses=c(this.response,this.response2,this.response3,this.response4,this.response5)
-  if(sum(is.na(this.response))>0){ # first value should be not be a NA, do not contain NA
-    this.score.5L<-NA
-    values.state=NA
-    return(values.state)
-  }else{# check first value should be a vector containiing responses or a 5digit number
-    if(length(this.response)!=5 && length(this.response)!=1){
-      message("Invalid EQ-5D-5L responses-check the responses to each question")
-      return(-1)
-    }else{ #first value a vector or a 5 figit number
-      if(length(this.response)==5){#first value a vector
-        this.score.5L <- paste(this.response,collapse = "")
-      }else{
-        if(length(this.response)==1){#first value 5 digit number or actual response for mobility
-          if(this.response>=11111 && this.response<=55555){ # valid 5 digit number
-            this.score.5L <- this.response
-          }else{ #first value might be valid-  a response to mobility
-            if(this.response<=5 && this.response>0 ){ #valid response to mobility
-              four.res=c(this.response2,this.response3,this.response4,this.response5)
-              if(sum(is.na(four.res))==0){
-                if(any(responses<=5)){
-                  this.score.5L <- paste(responses,collapse = "")#all valid and generate the score
-                }else{#error values
-                  message("Invalid EQ-5D-5L responses-check the responses to each question")
-                  return(-1)
+  countrylist=c("Denmark" ,"France","Germany","Japan", "Netherlands","Spain","Thailand","UK","USA","Zimbabwe")
+  country<-replaceSpaceUnderscore(country)
+  if(country%in%countrylist){
+    responses=c(this.response,this.response2,this.response3,this.response4,this.response5)
+    if(sum(is.na(this.response))>0){ # first value should be not be a NA, do not contain NA
+      this.score.5L<-NA
+      values.state=NA
+      return(values.state)
+    }else{# check first value should be a vector containiing responses or a 5digit number
+      if(length(this.response)!=5 && length(this.response)!=1){
+        message("Invalid EQ-5D-5L responses-check the responses to each question")
+        return(-1)
+      }else{ #first value a vector or a 5 figit number
+        if(length(this.response)==5){#first value a vector
+          this.score.5L <- paste(this.response,collapse = "")
+        }else{
+          if(length(this.response)==1){#first value 5 digit number or actual response for mobility
+            if(this.response>=11111 && this.response<=55555){ # valid 5 digit number
+              this.score.5L <- this.response
+            }else{ #first value might be valid-  a response to mobility
+              if(this.response<=5 && this.response>0 ){ #valid response to mobility
+                four.res=c(this.response2,this.response3,this.response4,this.response5)
+                if(sum(is.na(four.res))==0){
+                  if(any(responses<=5)){
+                    this.score.5L <- paste(responses,collapse = "")#all valid and generate the score
+                  }else{#error values
+                    message("Invalid EQ-5D-5L responses-check the responses to each question")
+                    return(-1)
+                  }
+                }else{
+                  #missing values
+                  this.score.5L<-NA
+                  values.state=NA
+                  return(values.state)
                 }
               }else{
-                #missing values
-                this.score.5L<-NA
-                values.state=NA
-                return(values.state)
+                message("Invalid EQ-5D-5L responses-check the responses to each question")
+                return(-1)
               }
-            }else{
-              message("Invalid EQ-5D-5L responses-check the responses to each question")
-              return(-1)
             }
           }
         }
       }
     }
-  }
-  if(this.score.5L<11111 || this.score.5L>55555){
-    message("Invalid EQ-5D-5L responses")
-    return(-1)
-  }else{
-    ## create a vector of all possible 3L index values (length == 3^5)
-    index_3L <- numeric(243)
-    ## create a dataframe of all possible 3L scores
-    scores_3L <-
-      expand.grid(AD = seq(3),
-                  PD = seq(3),
-                  UA = seq(3),
-                  SC = seq(3),
-                  MO = seq(3))
-    ## calculate the index value for each score
-    ## using function EQ5D_be based on Cleemput et al, 2010
-    for (i in seq(243)) {
-      index_3L[i] <-
-        valueEQ5D3LIndscores("UK","TTO",scores_3L[i, "MO"],
-                             scores_3L[i, "SC"],
-                             scores_3L[i, "UA"],
-                             scores_3L[i, "PD"],
-                             scores_3L[i, "AD"])
-    }
-    ## create a dataframe of all possible 5L scores
-    scores_5L <-
-      expand.grid(AD = seq(5),
-                  PD = seq(5),
-                  UA = seq(5),
-                  SC = seq(5),
-                  MO = seq(5))
-    ## 5L to 3L CROSSWALK
-    ## load 'probability matrix' from 'EQ-5D-5L_Crosswalk_Value_Sets'
-    ## this is saved as dataframe 'm'
-    ## file <- system.file('extdata', "Probability_matrix_crosswalk.csv",package = 'EQ5Dmapping')
-    ## prob.matrix=read.csv(file,header=FALSE)
-    if(toupper(method)=="CW"){
-      prob.matrix =Probability_matrix_crosswalk.df
-      m<-prob.matrix
-      rows_m=nrow(m)
-      cols_m=ncol(m)
-      if(rows_m!=3125 || cols_m!=243){
-        message("Error in number of cols or rows of probability matrix")
+    if(this.score.5L<11111 || this.score.5L>55555){
+      message("Invalid EQ-5D-5L responses")
+      return(-1)
+    }else{
+      ## create a vector of all possible 3L index values (length == 3^5)
+      index_3L <- numeric(243)
+      ## create a dataframe of all possible 3L scores
+      scores_3L <-
+        expand.grid(AD = seq(3),
+                    PD = seq(3),
+                    UA = seq(3),
+                    SC = seq(3),
+                    MO = seq(3))
+      ## calculate the index value for each score
+      ## using function EQ5D_be based on Cleemput et al, 2010
+      for (i in seq(243)) {
+        index_3L[i] <-
+          valueEQ5D3LIndscores(country,"TTO",scores_3L[i, "MO"],
+                               scores_3L[i, "SC"],
+                               scores_3L[i, "UA"],
+                               scores_3L[i, "PD"],
+                               scores_3L[i, "AD"])
+      }
+      ## create a dataframe of all possible 5L scores
+      scores_5L <-
+        expand.grid(AD = seq(5),
+                    PD = seq(5),
+                    UA = seq(5),
+                    SC = seq(5),
+                    MO = seq(5))
+      ## 5L to 3L CROSSWALK
+      ## load 'probability matrix' from 'EQ-5D-5L_Crosswalk_Value_Sets'
+      ## this is saved as dataframe 'm'
+      ## file <- system.file('extdata', "Probability_matrix_crosswalk.csv",package = 'EQ5Dmapping')
+      ## prob.matrix=read.csv(file,header=FALSE)
+      if(toupper(method)=="CW"){
+        prob.matrix =Probability_matrix_crosswalk.df
+        m<-prob.matrix
+        rows_m=nrow(m)
+        cols_m=ncol(m)
+        if(rows_m!=3125 || cols_m!=243){
+          message("Error in number of cols or rows of probability matrix")
+          return(-1)
+        }
+        ## multiply each row of 't(m)' with 'index_3L'
+        m_prod <- t(t(m) * index_3L)
+        ## obtain sum per row
+        ## crosswalked index value for each 5L score
+        m_sums <- rowSums(m_prod)
+        ## reorder columns and convert to matrix
+        scores_5L <- with(scores_5L, cbind(MO, SC, UA, PD, AD))
+        ## create 5L score labels
+        scores_5L_chr <- apply(scores_5L, 1, paste, collapse = "")
+        this_score <- which(scores_5L_chr == paste(this.score.5L, collapse = ""))
+        if(country=="Zimbabwe" & this.score.5L=="11111"){
+          return(0.9)
+        }else{
+          return(m_sums[this_score])
+        }
+      }else{
+        message("The specified method is not implemented")
         return(-1)
       }
-      ## multiply each row of 't(m)' with 'index_3L'
-      m_prod <- t(t(m) * index_3L)
-      ## obtain sum per row
-      ## crosswalked index value for each 5L score
-      m_sums <- rowSums(m_prod)
-      ## reorder columns and convert to matrix
-      scores_5L <- with(scores_5L, cbind(MO, SC, UA, PD, AD))
-      ## create 5L score labels
-      scores_5L_chr <- apply(scores_5L, 1, paste, collapse = "")
-      this_score <- which(scores_5L_chr == paste(this.score.5L, collapse = ""))
-      return(m_sums[this_score])
-    }else{
-      message("The specified method is not implemented")
-      return(-1)
     }
+  }else{
+    message("Crosswalk for the country specified is not implemented !!")
+    return(-1)
   }
+  
 }
 
 ###########################################################################################################
