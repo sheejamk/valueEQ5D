@@ -34,7 +34,7 @@
 
 \strong{Spain}: Table 1 column 9 page 5 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
 
-\strong{Taiwan}: Table 2 column 4 pge 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
+\strong{Taiwan}: Table 2 column 4 page 9 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
 
 \strong{Thailand}: Table 3 column 6 page 4 in Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
 

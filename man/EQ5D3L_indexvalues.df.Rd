@@ -18,7 +18,7 @@
 
 \strong{China}: Supplementary materials Appendix 2 in Liu et al (2014) <doi:10.1016/j.jval.2014.05.007>
 
-\strong{Denmark}: TTO-Appendix in Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
+\strong{Denmark}: TTO - Appendix in Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
 
 \strong{France}: Selected example  page 61 in Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
 
@@ -27,8 +27,6 @@
 \strong{Italy}: Supplementary materials Appendix 2 in Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
 
 \strong{Japan}: Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
-
-\strong{South Korea}: Selected example page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
 
 \strong{Netherlands}: Lamers et al <doi:10.1002/hec.1124>
 
@@ -42,6 +40,8 @@
 
 \strong{Sri Lanka}: Selected example page 1789 in  Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
 
+\strong{South Korea}: Selected example page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
+
 \strong{Sweden}: Supplementary Table 3 in Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
 
 \strong{Taiwan}: Table 3  page 703 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015> #'
@@ -50,33 +50,33 @@
 
 \strong{Trinidad and Tobago}: Table 5 page 66 in Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
 
-\strong{UK} TTO: Selected examples Table 3  page 1105 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
+\strong{UK} : TTO - Selected examples Table 3  page 1105 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
 
 \strong{USA}: Appendix 1 page 218 in Shaw et al (2005) <doi:10.1097/00005650-200503000-00003>
 
 \strong{Zimbabwe}: Jelsma et al (2003) <https://doi.org/10.1186/1478-7954-1-11>
 
-\strong{Argentina}VAS: Appendix A in Augustovski et al (2009) <doi:10.1111/j.1524-4733.2008.00468.x>
+\strong{Argentina}: VAS - Appendix A in Augustovski et al (2009) <doi:10.1111/j.1524-4733.2008.00468.x>
 
-\strong{Belgium}VAS: Selected exmple page 209 in Cleemput et al (2010) <doi:10.1007/s10198-009-0167-0>
+\strong{Belgium}: VAS - Selected exmple page 209 in Cleemput et al (2010) <doi:10.1007/s10198-009-0167-0>
 
-\strong{Denmark}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Denmark}: VAS -  Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{Europe}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Europe}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{Finland}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Finland}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{Germany}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Germany}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{Malaysia}VAS: Supplementary material Appendix 3 in Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
+\strong{Malaysia}: VAS - Supplementary material Appendix 3 in Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
 
-\strong{New Zealand}VAS: Selected examples Table 7 column 5 page 542 in Devlin et al <doi:10.1002/hec.741>
+\strong{New Zealand}: VAS - Selected examples Table 7 column 5 page 542 in Devlin et al <doi:10.1002/hec.741>
 
-\strong{Slovenia}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Slovenia}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{Spain}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{Spain}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 
-\strong{UK}VAS: Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
+\strong{UK}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 }
 \usage{
 EQ5D3L_indexvalues.df

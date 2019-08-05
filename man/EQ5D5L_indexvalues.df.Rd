@@ -35,7 +35,7 @@
 
 \strong{Spain}: Selected examples in Table 1 in Ramos-Goñiet et al (2018) <https://doi.org/10.1016/j.jval.2017.10.023>
 
-\strong{Taiwan}: Table 3 pge 10 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
+\strong{Taiwan}: Table 3 page 10 in Lin et al (2018)  <https://doi.org/10.1371/journal.pone.0209344>
 
 \strong{Thailand}: Pattanaphesaj et al (2018) <doi:10.1080/14737167.2018>
 
