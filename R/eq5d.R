@@ -27,7 +27,11 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
       }else{
         if(length(this.response)==1){#first value 5 digit number or actual response for mobility
           this.score <- paste(responses[!is.na(responses)],collapse="")
-          responses<-convertNumberToIndividualDigits(this.score)
+          if(convertNumberToIndividualDigits(this.score)!=-1){
+            responses<-convertNumberToIndividualDigits(this.score)
+          }else{
+            responses<-NA
+          }
         }
       }
     }
@@ -79,7 +83,11 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
       }else{
         if(length(this.response)==1){#first value 5 digit number or actual response for mobility
           this.score <- paste(responses[!is.na(responses)],collapse="")
-          responses<-convertNumberToIndividualDigits(this.score)
+          if(convertNumberToIndividualDigits(this.score)!=-1){
+            responses<-convertNumberToIndividualDigits(this.score)
+          }else{
+            responses<-NA
+          }
         }
       }
     }

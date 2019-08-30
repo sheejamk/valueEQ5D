@@ -9,13 +9,13 @@ testFileExistRead<-function(filename){
   if (file.exists(filename)){
     ## Checking if the file is accessable to read
     if (file.access(filename, 0)!=0){
-      stop(" Error reading file ")
+      #stop(" Error reading file ")
       return(-1)
     }
     return(0)
   }else{
     return(-2)
-    stop(" Invalid directory or file ")
+    #stop(" Invalid directory or file ")
   }
 }
 ###########################################################################################################
@@ -49,7 +49,7 @@ getColumnNoColNames=function(data,column.name){
     return(column.no)
   }else{
     return(-1)
-    stop(" Column name does not exist")
+    #stop(" Column name does not exist")
   }
 }
 
@@ -82,7 +82,7 @@ getModeForVec <- function(v) {
     uniqv[which.max(tabulate(match(v, uniqv)))]
   }else{
     return(-1)
-    stop("Non numeric data")
+    #stop("Non numeric data")
   }
 }
 ###########################################################################################################
@@ -103,7 +103,7 @@ testDataNumNorange=function(vec,nrcode=NA){
       return(0)
     }else{
       return(-1)
-      stop("Some values-other than NR code is not numeric")
+      #stop("Some values-other than NR code is not numeric")
     }
 }
 ###########################################################################################################
@@ -118,7 +118,7 @@ testDataNumNorange=function(vec,nrcode=NA){
 descriptiveStatDataColumn=function(colum,column.name,nrcode=NA){
     vec<-colum
     if (testDataNumNorange(vec,nrcode)!=0){
-      print("Non numeric columns, cant estimate the descriptive statistics")
+      #print("Non numeric columns, cant estimate the descriptive statistics")
       return(-1)
     }else{
       this.column=colum
@@ -151,7 +151,7 @@ convertNumberToIndividualDigits<-function(this.number){
   stringNumber<-toString(this.number)
   result=suppressWarnings(as.numeric(strsplit(stringNumber, "")[[1]]))
   if(any(is.na(result))){
-    print("The responses are not valid")
+    #print("The responses are not valid")
     return(-1)
   }else{
     return(result)
@@ -172,7 +172,7 @@ getColNumExistingColNames<-function(column.names,data){
     colnum=getColumnNoColNames(data,column.names[this.col])
     return(colnum)
   }else{
-    print(paste("No column exists with specified column names - ",column.names,sep=" "))
+    #print(paste("No column exists with specified column names - ",column.names,sep=" "))
     return(-1)
   }
 }
