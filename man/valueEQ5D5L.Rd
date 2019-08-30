@@ -27,7 +27,7 @@ valueEQ5D5L(eq5dresponse.data, mo, sc, ua, pd, ad, country = "England",
 \item{agelimit}{vector of ages to show upper and lower limits}
 }
 \value{
-index value  if success, -1 if failure
+index value  if success, negative values for failure
 }
 \description{
 Function to value EQ-5D-5L descriptive system to index value.

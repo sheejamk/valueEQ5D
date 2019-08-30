@@ -1,7 +1,7 @@
 ###########################################################################################################
 #' Function to throw error on invalid directory or file or if the file is not readable
 #' @param filename  name of a file or directory
-#' @return 0 if success, -1 if failure
+#' @return 0 if success, non zero negative values if failure
 #' @examples testFileExistRead("smk543/Desktop/MKrishnan/Project I-WOTCH/Datasets/testing.csv")
 #' @export
 testFileExistRead<-function(filename){
@@ -14,7 +14,7 @@ testFileExistRead<-function(filename){
     }
     return(0)
   }else{
-    return(-1)
+    return(-2)
     stop(" Invalid directory or file ")
   }
 }
@@ -60,15 +60,20 @@ getColumnNoColNames=function(data,column.name){
 #' @examples getFrequencyTable(c(1,1,1,12,2))
 #' @export
 getFrequencyTable <- function(v) {
-  res<-cbind( Freq=table(v), Cumul=cumsum(table(v)), relative=prop.table(table(v)))
-  scores<-rownames(res)
-  res<-cbind(scores,res)
-  return(res)
+  if(!is.null(v)){
+    res<-cbind( Freq=table(v), Cumul=cumsum(table(v)), relative=prop.table(table(v)))
+    scores<-rownames(res)
+    res<-cbind(scores,res)
+    return(res)
+  }else{
+    return(-1)
+  }
+  
 }
 ###########################################################################################################
 #' Function to return mode
 #' @param v a vector
-#' @return mode
+#' @return mode if success -1 for failure
 #' @examples getModeForVec(c(1,1,2,3))
 #' @export
 getModeForVec <- function(v) {
@@ -167,7 +172,7 @@ getColNumExistingColNames<-function(column.names,data){
     colnum=getColumnNoColNames(data,column.names[this.col])
     return(colnum)
   }else{
-    print("No column exists with specified colnames")
+    print(paste("No column exists with specified column names - ",column.names,sep=" "))
     return(-1)
   }
 }
@@ -198,8 +203,7 @@ subsetGenderAgeToGroup<-function(data,gender,agelimit){
         working.data=data[is.element(data.gender,charinccol),]
       }
     }else{
-        print("gender should by by male or female")
-        return(-1)
+        return(-2)
     }
   }
   if(is.null(agelimit) || sum(toupper(agelimit)=="NA")!=0 || sum(is.na(agelimit))!=0){#no agelimit option given
@@ -211,9 +215,7 @@ subsetGenderAgeToGroup<-function(data,gender,agelimit){
      colnum=getColNumExistingColNames(age.columns,working.data)
      if(colnum!=-1){
        working.data=working.data[working.data[colnum]>=lowerlimit & working.data[colnum]<=upperlimit,]
-
      }else{
-       print("No column existing with the given names")
        return(-1)
      }
   }
@@ -239,7 +241,6 @@ replaceSpaceUnderscore<-function(this.string){
     }else{
       new.string<-sep.string
     }
-    
     return(new.string)
   }
 }
