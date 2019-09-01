@@ -27,9 +27,10 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
       }else{
         if(length(this.response)==1){#first value 5 digit number or actual response for mobility
           this.score <- paste(responses[!is.na(responses)],collapse="")
-          if(convertNumberToIndividualDigits(this.score)!=-1){
+          if(sum(convertNumberToIndividualDigits(this.score))!=-1){
             responses<-convertNumberToIndividualDigits(this.score)
           }else{
+            #message("Can not convert to individual digits \n")
             responses<-NA
           }
         }
@@ -83,10 +84,11 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
       }else{
         if(length(this.response)==1){#first value 5 digit number or actual response for mobility
           this.score <- paste(responses[!is.na(responses)],collapse="")
-          if(convertNumberToIndividualDigits(this.score)!=-1){
+          if(sum(convertNumberToIndividualDigits(this.score))!=-1){
             responses<-convertNumberToIndividualDigits(this.score)
           }else{
-            responses<-NA
+            #message("Can not convert to individual digits \n")
+            return(-4)
           }
         }
       }
@@ -107,7 +109,7 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
         #message("Responses not valid for EQ-5D-5L scores \n")
         return(-3)
       }else{
-        message("Responses not valid for EQ-5D-5L scores or some missing \n")
+        #message("Responses not valid for EQ-5D-5L scores or some missing \n")
         return(NA)
       }
     }else{
@@ -131,7 +133,12 @@ checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, thi
 valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
   countrylist=c("Canada","China","England" ,"Germany","Hong_Kong","Indonesia","Ireland",
                 "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand","Uruguay")
-  country<-replaceSpaceUnderscore(country)
+  if(replaceSpaceUnderscore(country)==-1){
+    message("Country name empty")
+    return(-1)
+  }else{
+    country<-replaceSpaceUnderscore(country)
+  }
   if(country%in%countrylist){
     scores<-checkScores5L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
@@ -139,7 +146,7 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
     }else{
       if(sum(scores)<0){
         message("EQ-5D-5L scores are not valid \n")
-        return(-1)
+        return(-2)
       }else{
         eq5d.valueset=EQ5D5L_tariffs.df
         names(scores)<-c("MO","SC","UA","PD","AD")
@@ -192,7 +199,7 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
     return(values.state)
   }else{
     message("No tariffs found for the country you specified for EQ-5D-5L. Please try later \n")
-    return(-2)
+    return(-3)
   }
 }
   
@@ -200,13 +207,13 @@ valueEQ5D5LIndscores<-function(country,this.response,this.response2=NA, this.res
 #' Function to value EQ-5D-5L scores for any country and group by gender and age
 #' @param eq5dresponse.data the data containing eq5d responses
 #' @param mo  column name for EQ-5D-5L mobility
-#' @param sc column name for response for EQ-5D-5L self care
+#' @param sc  column name for response for EQ-5D-5L self care
 #' @param ua  column name for response for EQ-5D-5L usual activities
 #' @param pd  column name for response for EQ-5D-5L pain/discomfort
 #' @param ad  column name for response for EQ-5D-5L anxiety/depression
 #' @param country  country of interest, by default is England
 #' @param groupby  male or female -grouping by gender, default NULL
-#' @param agelimit  vector of ages to show upper and lower limits
+#' @param agelimit  vector of ages to show upper and lower limits, default NULL
 #' @return index value  if success, negative values for failure
 #' @examples 
 #' data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,4),ad=c(3,4))
@@ -220,7 +227,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
     working.data=subsetGenderAgeToGroup(eq5dresponse.data,groupby,agelimit)
     scores=c()
     if(nrow(working.data)<1 && working.data<0){
-      message("No entries with the given criteria -Please check the contents or the criteria \n")
+      message("No entries with the given criteria - Please check the contents or the criteria \n")
       return(-1)
     }else{
       for(j in 1:nrow(working.data)){
@@ -234,7 +241,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
           scores=c(scores,this.score)
         }else{
           message("EQ-5D-5L responses not valid - 5L scores can not be valued \n")
-          return(-1)
+          return(-2)
         }
       }
       names(scores)<-"EQ-5D-5Lscores"
@@ -266,7 +273,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
     }
   }else{# if the eq 5d column names do not match
     message("EQ-5D column names do not match \n")
-    return(-2)
+    return(-3)
   }
 }
 ##########################################################################################################
@@ -293,7 +300,12 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
  
   australia.impalusibleordering.scores<-c(33132, 12133,13133, 22133,23133,32133,33133,12233,13233,22233,23233,32233,33233,33232,33323,13332,13333,23332,23333,32333,33332,33333)
   
-  country<-replaceSpaceUnderscore(country)
+  if(replaceSpaceUnderscore(country)==-1){
+    message("Country name empty")
+    return(-1)
+  }else{
+    country<-replaceSpaceUnderscore(country)
+  }
   if(country%in%countrylist){
     scores<-checkScores3L(this.response,this.response2, this.response3, this.response4, this.response5)
     if(sum(is.na(scores))>0){
@@ -301,7 +313,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
     }else{
       if(sum(scores)<0){
         message("EQ-5D-3L scores are not valid \n")
-        return(-1)
+        return(-3)
       }else{
         if(method=="TTO" && country%in%TTO_countrylist){
           eq5d.valueset=EQ5D3L_tariffs_TTO.df
@@ -310,7 +322,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
             eq5d.valueset=EQ5D3L_tariffs_VAS.df
           }else{
             message("No tariff found \n")
-            return(-2)
+            return(-4)
           }
         }
         score.num<-as.numeric(paste(scores,collapse = ""))
@@ -542,16 +554,15 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
             }
           }else{
             message("No country tariffs \n")
-            return(-3)
+            return(-5)
           }
         }
-        
       }
     }
     return(values.state)
   }else{
     message("No country tariffs found for the country you specified for EQ-5D-3L. Please try later \n")
-    return(-4)
+    return(-2)
   }
 }
 ###########################################################################################################
@@ -644,7 +655,12 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
 #' @description Function to map EQ-5D-5L descriptive system to 3L index value (ref:Van Hout et al 2012 and code inspired from https://github.com/brechtdv/eq5d-mapping)
 eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.response2=NA,this.response3=NA,this.response4=NA,this.response5=NA) {
   countrylist=c("Denmark" ,"France","Germany","Japan", "Netherlands","Spain","Thailand","UK","USA","Zimbabwe")
-  country<-replaceSpaceUnderscore(country)
+  if(replaceSpaceUnderscore(country)==-1){
+    message("Country name empty")
+    return(-1)
+  }else{
+    country<-replaceSpaceUnderscore(country)
+  }
   if(country%in%countrylist){
     responses=c(this.response,this.response2,this.response3,this.response4,this.response5)
     if(sum(is.na(this.response))>0){ # first value should be not be a NA, do not contain NA
@@ -654,7 +670,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
     }else{# check first value should be a vector containiing responses or a 5digit number
       if(length(this.response)!=5 && length(this.response)!=1){
         message("Invalid EQ-5D-5L responses-check the responses to each question \n")
-        return(-1)
+        return(-3)
       }else{ #first value a vector or a 5 figit number
         if(length(this.response)==5){#first value a vector
           this.score.5L <- paste(this.response,collapse = "")
@@ -670,7 +686,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
                     this.score.5L <- paste(responses,collapse = "")#all valid and generate the score
                   }else{#error values
                     message("Invalid EQ-5D-5L responses-check the responses to each question \n")
-                    return(-2)
+                    return(-5)
                   }
                 }else{
                   #missing values
@@ -680,7 +696,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
                 }
               }else{
                 message("Invalid EQ-5D-5L responses-check the responses to each question \n")
-                return(-3)
+                return(-4)
               }
             }
           }
@@ -688,8 +704,8 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
       }
     }
     if(this.score.5L<11111 || this.score.5L>55555){
-      message("Invalid EQ-5D-5L responses \n")
-      return(-4)
+      message("Invalid EQ-5D-5L responses -less than 11111 or more than 55555 \n")
+      return(-6)
     }else{
       ## create a vector of all possible 3L index values (length == 3^5)
       index_3L <- numeric(243)
@@ -729,7 +745,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
         cols_m=ncol(m)
         if(rows_m!=3125 || cols_m!=243){
           message("Error in number of cols or rows of probability matrix \n")
-          return(-1)
+          return(-7)
         }
         ## multiply each row of 't(m)' with 'index_3L'
         m_prod <- t(t(m) * index_3L)
@@ -748,12 +764,12 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
         }
       }else{
         message("The specified method is not implemented \n")
-        return(-5)
+        return(-8)
       }
     }
   }else{
     message("Crosswalk for the country specified is not implemented \n")
-    return(-6)
+    return(-2)
   }
   
 }
@@ -783,7 +799,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
     scores=c()
     if(nrow(working.data)<1){
       message("No entries with the given criteria - Please check the contents or the criteria \n")
-      return(-1)
+      return(-2)
     }else{
       for(j in 1:nrow(working.data)){
         res1=working.data[j,mobility]
@@ -796,7 +812,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
           scores=c(scores,this.score)
         }else{
           message("EQ-5D-5L responses not valid - 5L scores can not be valued \n")
-          return(-2)
+          return(-3)
         }
       }
       #names(scores)<-"Mapped EQ-5D-3Lscores"
@@ -828,7 +844,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
     }
   }else{# if the eq 5d column names do not match
     message("EQ-5D column names do not match \n")
-    return(-3)
+    return(-1)
   }
 }
 ###########################################################################################################

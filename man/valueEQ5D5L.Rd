@@ -24,7 +24,7 @@ valueEQ5D5L(eq5dresponse.data, mo, sc, ua, pd, ad, country = "England",
 
 \item{groupby}{male or female -grouping by gender, default NULL}
 
-\item{agelimit}{vector of ages to show upper and lower limits}
+\item{agelimit}{vector of ages to show upper and lower limits, default NULL}
 }
 \value{
 index value  if success, negative values for failure
