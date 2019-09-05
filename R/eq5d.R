@@ -327,7 +327,7 @@ valueEQ5D3LIndscores<-function(country,method,this.response,this.response2=NA, t
         }
         score.num<-as.numeric(paste(scores,collapse = ""))
         if(country=="Australia" & sum(score.num%in% australia.impalusibleordering.scores)>0){
-          values.state<-correctImplausibleOrdering(scores)
+          values.state<-.correctImplausibleOrdering(scores)
         }else{
           names(scores)<-c("MO","SC","UA","PD","AD")
           rows=paste0(names(scores),scores)
@@ -851,10 +851,10 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
 #' Function to correct the implausible ordering in Australian valueset for EQ-5D-3L
 #' @param scores , EQ-5D-3L scores as a number
 #' @return the value that read from the stored dataframe
-#' correctImplausibleOrdering(11121)
+#' @examples .correctImplausibleOrdering(11121)
 #' @export
 #' @description Correcting the implausible ordering
-correctImplausibleOrdering<-function(scores){
+.correctImplausibleOrdering<-function(scores){
   score.num<-as.numeric(paste(scores,collapse = ""))
   australia.impalusibleordering.scores<-c(33132, 12133,13133, 22133,23133,32133,33133,12233,13233,22233,23233,32233,33233,
                                           33232,33323,13332,13333,23332,23333,32333,33332,33333)
