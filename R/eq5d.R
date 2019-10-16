@@ -65,7 +65,6 @@ checkScores3L<-function(this.response, this.response2=NA, this.response3=NA, thi
 #' @param this.response5  response for EQ-5D-5L  anxiety/depression, or NA if the responses are given as this.response
 #' @examples checkScores5L(c(1,2,3,5,3))
 #' @examples checkScores5L(1,2,3,4,3)
-#' @examples checkScores5L(1,2,3,7,3)
 #' @examples checkScores5L(12323)
 #' @export
 checkScores5L<-function(this.response, this.response2=NA, this.response3=NA, this.response4=NA, this.response5=NA){
@@ -244,7 +243,7 @@ valueEQ5D5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby
         res4=working.data[j,pd]
         res5=working.data[j,ad]
         this.score<-valueEQ5D5LIndscores(country,c(res1,res2,res3,res4,res5))
-        if(this.score>=0){
+        if(is.numeric(this.score)){
           scores=c(scores,this.score)
         }else{
           warning("EQ-5D-5L responses not valid - 5L scores can not be valued")
@@ -611,7 +610,7 @@ valueEQ5D3L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country,method,groupby,ag
         res4=working.data[j,pd]
         res5=working.data[j,ad]
         this.score<-valueEQ5D3LIndscores(country,method,res1,res2,res3,res4,res5)
-        if(this.score>=0){
+        if(is.numeric(this.score)){
           scores=c(scores,this.score)
         }else{
           stop("Responses not valid -3L scores can not be valued")
@@ -797,11 +796,17 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return index value  if success, negative values for failure
-#' @examples eq5dmap5Lto3L(data, "Mobility", "SelfCare","UsualActivity", "Pain", "Anxiety",UK,NULL,c(10,70))
+#' @examples eq5dmap5Lto3L(data, "mo", "sc","ua", "pd", "ad","UK","CW")
 #' @export
 #' @description Function to map EQ-5D-5L scores to EQ-5D-3L index values
 eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pain.discomfort,anxiety,
                         country="UK",method="CW",groupby=NULL,agelimit=NULL){
+  if(replaceSpaceUnderscore(country)==-1){
+    stop("Country name empty")
+    #return(-1)
+  }else{
+    country<-replaceSpaceUnderscore(country)
+  }
   eq5d.colnames<-c(mobility, self.care,usual.activities,pain.discomfort,anxiety)
   ans.eq5d.colnames<-sapply(eq5d.colnames,checkColumnExist,eq5dresponse.data)
   if(all(ans.eq5d.colnames==0)){# if the eq5d column names match
@@ -818,7 +823,7 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
         res4=working.data[j,pain.discomfort]
         res5=working.data[j,anxiety]
         this.score<-eq5dmap5Lto3LIndscores(country,method,c(res1,res2,res3,res4,res5))
-        if(this.score>=0){
+        if(is.numeric(this.score)){
           scores=c(scores,this.score)
         }else{
           stop("EQ-5D-5L responses not valid - 5L scores can not be valued")
@@ -879,22 +884,3 @@ eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,p
   }
 }
 ###########################################################################################################
-#' #' Function to value EQ-5D-3L columns to index values for any country and group by gender and age
-#' #' @param eq5dresponse.data the data containing eq5d responses
-#' #' @param mo  column name for EQ-5D-3L mobility
-#' #' @param sc column name for response for EQ-5D-3L self care
-#' #' @param ua  column name for response for EQ-5D-3L usual activities
-#' #' @param pd  column name for response for EQ-5D-3L pain/discomfort
-#' #' @param ad  column name for response for EQ-5D-3L anxiety/depression
-#' #' @param country  country of interest, by default is UK, if groupby has to specify the country should be specified
-#' #' @param method Either "TTO" or "VAS"
-#' #' @param groupby  male or female -grouping by gender, default NULL
-#' #' @param agelimit  vector of ages to show upper and lower limits
-#' #' @return the descriptive statistics of index values, frequency table and the modified data where the last column will be the index values
-#' #' data<-data.frame(age=c(10,20),sex=c("M","F"),mo=c(1,2),sc=c(1,2),ua=c(3,4),pd=c(3,1),ad=c(3,1))
-#' #' valueEQ5D3L(data, "mo", "sc","ua", "pd", "ad","UK","TTO",NULL,c(10,70))
-#' #' @export
-#' #' @description Main function to value EQ-5D-5L descriptive system to 5L index values.  
-#' valueeq5d<-function(scores, version, country, method){
-#'   
-#' }

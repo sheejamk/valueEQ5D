@@ -24,6 +24,5 @@ Function to check the EQ-5D-5L scores
 \examples{
 checkScores5L(c(1,2,3,5,3))
 checkScores5L(1,2,3,4,3)
-checkScores5L(1,2,3,7,3)
 checkScores5L(12323)
 }

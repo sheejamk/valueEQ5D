@@ -36,5 +36,5 @@ index value  if success, negative values for failure
 Function to map EQ-5D-5L scores to EQ-5D-3L index values
 }
 \examples{
-eq5dmap5Lto3L(data, "Mobility", "SelfCare","UsualActivity", "Pain", "Anxiety",UK,NULL,c(10,70))
+eq5dmap5Lto3L(data, "mo", "sc","ua", "pd", "ad","UK","CW")
 }
