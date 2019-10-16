@@ -2,7 +2,7 @@
 #' Function to throw error on invalid directory or file or if the file is not readable
 #' @param filename  name of a file or directory
 #' @return 0 if success, non zero negative values if failure
-#' @examples testFileExistRead("smk543/Desktop/MKrishnan/Project I-WOTCH/Datasets/testing.csv")
+#' @examples testFileExistRead(system.file("extdata", "blank.txt", package = "valueEQ5D"))
 #' @export
 testFileExistRead<-function(filename){
   ## Checking if the file exists

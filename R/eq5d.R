@@ -796,7 +796,7 @@ eq5dmap5Lto3LIndscores<-function(country="UK",method="CW",this.response,this.res
 #' @param groupby  male or female -grouping by gender, default NULL
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return index value  if success, negative values for failure
-#' @examples eq5dmap5Lto3L(data, "mo", "sc","ua", "pd", "ad","UK","CW")
+#' @examples eq5dmap5Lto3L(data.frame(mo=c(1),sc=c(4),ua=c(4),pd=c(3),ad=c(3)), "mo", "sc","ua", "pd", "ad")
 #' @export
 #' @description Function to map EQ-5D-5L scores to EQ-5D-3L index values
 eq5dmap5Lto3L<-function(eq5dresponse.data,mobility, self.care,usual.activities,pain.discomfort,anxiety,

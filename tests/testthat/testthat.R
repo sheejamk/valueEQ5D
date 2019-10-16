@@ -22,10 +22,8 @@ print("----------------------------------------------")
 # # #####################################################################################################################
 context("testing file existence")
 test_that("test for file existence and access", {
-  thisdir=getwd()
+  thisfile=system.file("extdata", "blank.txt", package = "valueEQ5D")
   expect_identical(testFileExistRead(thisdir),0)
-  nodir="/Users/SheejaMK/Desktop/Model/filecheck/test"
-  expect_error(testFileExistRead(nodir),"Invalid directory or file",fixed=TRUE)
 })
 # # # #####################################################################################################################
 context("testing mode function")
