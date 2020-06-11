@@ -123,7 +123,7 @@
 
 
 #' EQ-5D-5L index values
-#'  @note: For testing purpose -not required by users
+#' @note: For testing purpose -not required by users
 #' @format A 3125 by 22 dataframe
 #' @source \strong{Canada}: Selected example Table A3 in Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
 #' @source \strong{China}: Supplementary Material 1 in Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>

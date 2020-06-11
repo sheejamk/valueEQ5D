@@ -3,8 +3,7 @@
 \docType{data}
 \name{EQ5D5L_indexvalues.df}
 \alias{EQ5D5L_indexvalues.df}
-\title{EQ-5D-5L index values
- @note: For testing purpose -not required by users}
+\title{EQ-5D-5L index values}
 \format{A 3125 by 22 dataframe}
 \source{
 \strong{Canada}: Selected example Table A3 in Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
@@ -15,7 +14,7 @@
 
 \strong{Ethopia}: Table 3 column 8 page 12 and supporting information in Welie et al (2019) <doi:10.1016/j.vhri.2019.08.475>
 
-\strong{France}: Table 3 columnS 2-6 page 12 and supporting information in Andrade et al (2020) <doi::10.1007/s40273-019-00876-4>
+\strong{France}: Table 3 column 2-6 page 12 and supporting information in Andrade et al (2020) <doi::10.1007/s40273-019-00876-4>
 
 \strong{Germany}: Supplementary Material 1 in Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
 
@@ -54,6 +53,8 @@ EQ5D5L_indexvalues.df
 }
 \description{
 EQ-5D-5L index values
- @note: For testing purpose -not required by users
+}
+\note{
+: For testing purpose -not required by users
 }
 \keyword{datasets}

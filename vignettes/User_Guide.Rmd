@@ -88,7 +88,7 @@ EQ-5D-3L scores can be valued for the countries Argentina, Australia,Belgium, Br
     Sweden: Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
     Taiwan: Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015>
     Thailand: Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
-    Trinidad and Tobago: Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
+    Trinidad and Tobago: Bailey et al (2016)     <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
     UK (TTO): Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
     UK (VAS): Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
     USA: Shaw et al (2005) <doi:10.1097/00005650-200503000-00003>

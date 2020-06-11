@@ -14,7 +14,7 @@
 
 \strong{Ethopia}: Table 3 column 8 page 12 in Welie et al (2019) <doi:10.1016/j.vhri.2019.08.475>
 
-\strong{France}: Table 3 columnS 2-6 page 12 in Andrade et al (2019) <doi::10.1007/s40273-019-00876-4>
+\strong{France}: Table 3 column 2-6 page 12 in Andrade et al (2019) <doi::10.1007/s40273-019-00876-4>
 
 \strong{Germany}: Table column 9 page 670 in Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
 
