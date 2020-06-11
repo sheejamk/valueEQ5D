@@ -42,7 +42,7 @@
 
 \strong{Japan}: Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
 
-\strong{South Korea}: Selected example page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
+\strong{Korea}: Selected example page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
 
 \strong{Malaysia}: VAS - Supplementary material Appendix 3 in Yusof et al (2019) <doi:10.1016/j.jval.2011.11.024>
 

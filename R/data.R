@@ -9,7 +9,7 @@
 #' @source \strong{Denmark}: Table 4 column 2 page 463 in Wittrup-Jensen et al (2009) <doi:10.1177/1403494809105287>
 #' @source \strong{France}: Equation page 61 in Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
 #' @source \strong{Germany}: Table 4 column 2 page 129 in Greiner et al (2005) <doi:10.1007/s10198-004-0264-z>
-#' @source \strong{Iran}: Table 3 column 8 page 174 in  Goudarzi et al (2019) <doi:10.1016/j.vhri.2019.01.007> 
+#' @source \strong{Iran}: Table 3 column 8 page 174 in  Goudarzi et al (2019) <doi:10.1016/j.vhri.2019.01.007>
 #' @source \strong{Italy}: Table 4 column 5 page 820 in Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
 #' @source \strong{Japan}: Table 4 column 1 page 41 in Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
 #' @source \strong{South Korea}: Table 3 column 4 page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
@@ -21,7 +21,7 @@
 #' @source \strong{Spain}: Table 3 column 4 page 13 in Badia et al (2001) <doi:10.1177/0272989X0102100102>
 #' @source \strong{Sri Lanka}: Table 2 column 8 page 1791 in  Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
 #' @source \strong{Sweden}: Table 2 column 8 page 436 in Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
-#' @source \strong{Taiwan}: Table 2 column 4 page 702 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015> #' 
+#' @source \strong{Taiwan}: Table 2 column 4 page 702 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015> #'
 #' @source \strong{Thailand}: Table 1 column 2 page 1144 (parameters like MO3 are calculated) Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
 #' @source \strong{Trinidad and Tobago}: Table 4 page 65 in Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
 #' @source \strong{UK}: Table 1 column 2 page 1103 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
@@ -74,7 +74,7 @@
 #' Probability matrix for the cross walk
 #' @format A dataframe with 3124 rows and 243 columns
 #' @source https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_model_and__methodology2.pdf
-#' @source Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>. 
+#' @source Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>.
 "Probability_matrix_crosswalk.df"
 
 #' EQ-5D-3L index values (for each set of response of 3L) for different countries
@@ -97,7 +97,7 @@
 #' @source \strong{France}: Selected example  page 61 in Chevalier et al (2013) <doi:10.1007/s10198-011-0351-x>
 #' @source \strong{Germany}: TTO - Selected examples Table 6 page 130 in Greiner et al (2005) <doi:10.1007/s10198-004-0264-z>
 #' @source \strong{Germany}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
-#' @source \strong{Iran}: Selected example  page 173 in  Goudarzi et al (2019) <doi:10.1016/j.vhri.2019.01.007> 
+#' @source \strong{Iran}: Selected example  page 173 in  Goudarzi et al (2019) <doi:10.1016/j.vhri.2019.01.007>
 #' @source \strong{Italy}: Supplementary materials Appendix 2 in Scalone et al (2013) <http://dx.doi.org/10.1016/j.jval.2013.04.008>
 #' @source \strong{Japan}: Tsuchiya et al (2002) <https://doi.org/10.1002/hec.673>
 #' @source \strong{Korea}: Selected example page 1191 in Lee et al <doi:10.1111/j.1524-4733.2009.00579.x>
@@ -112,7 +112,7 @@
 #' @source \strong{Spain}: VAS - Table 2.3 page 14 in Szende et al (2014) <doi:10.1007/978-94-007-7596-1>
 #' @source \strong{Sri Lanka}: Selected example page 1789 in  Kularatna et al (2015) <doi:10.1007/s11136-014-0906-2>
 #' @source \strong{Sweden}: Supplementary Table 3 in Burström et al (2014) <doi:10.1007/s11136-013-0496-4>
-#' @source \strong{Taiwan}: Table 3  page 703 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015> #' 
+#' @source \strong{Taiwan}: Table 3  page 703 in Lee et al (2013) <http://dx.doi.org/10.1016/j.jfma.2012.12.015> #'
 #' @source \strong{Thailand}: Tongsiri et al (2011) <doi:10.1016/j.jval.2011.06.005>
 #' @source \strong{Trinidad and Tobago}: Table 5 page 66 in Bailey et al (2016) <http://dx.doi.org/10.1016/j.vhri.2016.07.010>
 #' @source \strong{UK} : TTO - Selected examples Table 3  page 1105 in Dolan et al (1997) <http://dx.doi.org/10.1097/00005650-199711000-00002>
@@ -152,9 +152,6 @@
 #' EQ-5D-5L crosswalk value sets for 10 countries
 #' @note: For testing purpose -not required by users
 #' @source https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/valuation-standard-value-sets/crosswalk-index-value-calculator/ (accessed on Aug 03,2019)
-#' @source Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>. 
+#' @source Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>.
 #' @format A 3125 by 11 dataframe
 "EQ5D5L_crosswalk_indexvalues.df"
-
-
-
