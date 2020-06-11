@@ -30,12 +30,12 @@ EQ-5D with 3 levels of severity for each of the 5 dimensions: EQ-5D-3L
 EQ-5D with 5 levels of severity for each of the 5 dimensions: EQ-5D-5L
 EQ-5D for use in children: EQ-5D-Y
 
-This package can be used for valuing the adult EQ-5D descriptive system scores - both 5L and 3L for different countries.  EQ-5D-5L scores can be valued for the following countries: Canada,China,England,Ethopia,France,Germany,Hong Kong,Indonesia,Ireland,Japan, Korea,Malaysia,Netherlands,Poland,Portugal,Spain,Taiwan,Thailand, Uruguay, USA and Vietnam.
+This package can be used for valuing the adult EQ-5D descriptive system scores - both 5L and 3L for different countries.  EQ-5D-5L scores can be valued for the following countries: Canada,China,England,Ethiopia,France,Germany,Hong Kong,Indonesia,Ireland,Japan, Korea,Malaysia,Netherlands,Poland,Portugal,Spain,Taiwan,Thailand, Uruguay, USA and Vietnam.
 
     Canada: Xie et al (2016) <doi:10.1097/MLR.0000000000000447>
     China:Luo et al (2017) <doi:10.1016/j.jval.2016.11.016>
     England: Devlin et al (2018) <doi:10.1002/hec.3564>
-    Ethopia: Welie et al (2019) <doi:10.1016/j.vhri.2019.08.475>
+    Ethiopia: Welie et al (2019) <doi:10.1016/j.vhri.2019.08.475>
     France:Andrade et al (2019) <doi::10.1007/s40273-019-00876-4>
     Germany: Ludwig et al (2018) <doi:10.1007/s40273-018-0615-8>
     Hong Kong: Wong et al (2018) <doi:10.1007/s40271-017-0278-0>

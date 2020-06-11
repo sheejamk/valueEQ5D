@@ -133,7 +133,7 @@ checkScores5L <- function(dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA, dimen5 =
 #' @export
 value5LInd <- function(country, dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA, dimen5 = NA) {
   countrylist <- c(
-    "Canada", "China", "England", "Ethopia", "France", "Germany", "Hong_Kong", "Indonesia", "Ireland",
+    "Canada", "China", "England", "Ethiopia", "France", "Germany", "Hong_Kong", "Indonesia", "Ireland",
     "Japan", "Korea", "Malaysia", "Netherlands", "Poland", "Portugal", "Spain", "Taiwan", "Thailand",
     "Uruguay", "USA", "Vietnam"
   )
