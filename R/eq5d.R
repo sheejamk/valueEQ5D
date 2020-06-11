@@ -18,7 +18,7 @@ checkScores3L<-function(dimen, dimen2=NA, dimen3=NA, dimen4=NA, dimen5=NA){
     return(NA)
   }else{
     if(length(dimen)!=5 && length(dimen)!=1){
-      stop("Invalid EQ-5D-5L responses-check the responses to each question")
+      stop("Invalid EQ-5D-3L responses-check the responses to each question")
       #return(-1)
     }else{
       if(length(dimen)==5){#first value a vector
@@ -44,10 +44,10 @@ checkScores3L<-function(dimen, dimen2=NA, dimen3=NA, dimen4=NA, dimen5=NA){
     this.score<-as.numeric(this.score)
     if(this.score<11111 || this.score>33333){
       if(this.score<0 || this.score>33333){
-        stop("Responses not valid for EQ-5D-5L scores")
+        stop("Responses not valid for EQ-5D-3L scores")
         #return(-3)
       }else{
-        #stop("Responses not valid for EQ-5D-5L scores or some missing")
+        #stop("Responses not valid for EQ-5D-3L scores or some missing")
         return(NA)
       }
     }else{
@@ -131,8 +131,9 @@ checkScores5L<-function(dimen, dimen2=NA, dimen3=NA, dimen4=NA, dimen5=NA){
 #' @examples value5LInd("Poland",c(1,2,3,4,3))
 #' @export
 value5LInd<-function(country,dimen,dimen2=NA, dimen3=NA, dimen4=NA, dimen5=NA){
-  countrylist=c("Canada","China","England" ,"Germany","Hong_Kong","Indonesia","Ireland",
-                "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand","Uruguay")
+  countrylist=c("Canada","China","England","Ethopia","France","Germany","Hong_Kong","Indonesia","Ireland",
+                "Japan","Korea","Malaysia","Netherlands","Poland","Portugal","Spain","Taiwan","Thailand",
+                "Uruguay","USA","Vietnam")
   if(replaceSpaceUnderscore(country)==-1){
     stop("Country name empty")
     #return("Country name empty")
@@ -297,12 +298,17 @@ value5L<-function(eq5dresponse.data,mo,sc,ua,pd,ad,country="England",groupby=NUL
 #' @examples value3LInd("Denmark","VAS",c(1,2,3,1,3))
 #' @export
 value3LInd<-function(country,method,dimen,dimen2=NA, dimen3=NA, dimen4=NA, dimen5=NA){
-  countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","China","Denmark" ,"Europe","Finland","France","Germany","Italy","Japan",
-                "Malaysia","Netherlands","New_Zealand","Poland", "Portugal","Singapore","Slovenia","Spain","Sri_Lanka","South_Korea","Sweden","Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
+  countrylist=c("Argentina","Australia","Belgium","Brazil","Canada","Chile","China","Denmark","Europe",
+                "Finland","France","Germany","Iran","Italy","Japan","Korea","Malaysia","Netherlands",
+                "New_Zealand","Poland", "Portugal","Singapore","Slovenia","Spain","Sri_Lanka","Sweden",
+                "Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
   	
-  VAS_countrylist=c("Argentina","Belgium","Denmark" ,"Europe","Finland","Germany", "Malaysia","New_Zealand","Slovenia","Spain","UK")
-  TTO_countrylist=c("Argentina","Australia","Brazil","Canada","Chile","China","Denmark" ,"France","Germany","Italy","Japan",
-                "Netherlands","Poland", "Portugal","Singapore","Spain","Sri_Lanka","South_Korea","Sweden","Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
+  VAS_countrylist=c("Argentina","Belgium","Denmark" ,"Europe","Finland","Germany", "Malaysia",
+                    "New_Zealand","Slovenia","Spain","UK")
+  TTO_countrylist=c("Argentina","Australia","Brazil","Canada","Chile","China","Denmark",
+                    "France","Germany","Iran","Italy","Japan","Korea","Netherlands","Poland", 
+                    "Portugal","Singapore","Spain","Sri_Lanka","Sweden",
+                    "Taiwan","Thailand","Trinidad_and_Tobago","UK","USA","Zimbabwe")
  
   australia.impalusibleordering.scores<-c(33132, 12133,13133, 22133,23133,32133,33133,12233,13233,22233,23233,32233,33233,33232,33323,13332,13333,23332,23333,32333,33332,33333)
   
