@@ -379,7 +379,7 @@ test_that("EQ5D5L scoring", {
   answers <- EQ5D5L_indexvalues.df
   total_entries <- seq(1, nrow(answers))
   total_countries <- c(
-    "Canada", "China", "England", "Ethopia", "France", "Germany", "Hong_Kong", "Indonesia", "Ireland",
+    "Canada", "China", "England", "Ethiopia", "France", "Germany", "Hong_Kong", "Indonesia", "Ireland",
     "Japan", "Korea", "Malaysia", "Netherlands", "Poland", "Portugal", "Spain", "Taiwan", "Thailand",
     "Uruguay", "USA", "Vietnam"
   )
@@ -395,7 +395,7 @@ test_that("EQ5D5L scoring", {
     }
   }
 })
-# # # ###############################################################################################################
+# # ###############################################################################################################
 context("EQ5D3L scoring")
 test_that("EQ5D3L scoring", {
   answers <- EQ5D3L_indexvalues.df

@@ -6,5 +6,5 @@
 ^_pkgdown\.yml$
 ^doc$
 ^Meta$
-^\_travis\.yml$
+^\.travis\.yml$
 ^cran-comments\.md$
