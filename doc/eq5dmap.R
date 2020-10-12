@@ -8,7 +8,7 @@ knitr::opts_chunk$set(
 library(EQ5DmapR)
 
 ## ---- echo=TRUE, results='asis'------------------------------------------
-value3LUK_responses(1,2,3,2,2)
+value_3LUK_responses(1,2,3,2,2)
 
 ## ---- echo=TRUE, results='asis'------------------------------------------
 valueEQ5D5LUK_DevlinMethod(23434)

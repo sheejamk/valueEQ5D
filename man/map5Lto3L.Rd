@@ -2,26 +2,38 @@
 % Please edit documentation in R/eq5d.R
 \name{map5Lto3L}
 \alias{map5Lto3L}
-\title{Function to map EQ-5D-5L scores to EQ-5D-3L index values as per the specific country and group by gender and age}
+\title{Function to map EQ-5D-5L scores to EQ-5D-3L index values as per the 
+specific country and group by gender and age}
 \usage{
-map5Lto3L(eq5dresponse.data, mobility, self.care, usual.activities,
-  pain.discomfort, anxiety, country = "UK", method = "CW",
-  groupby = NULL, agelimit = NULL)
+map5Lto3L(
+  eq5dresponse_data,
+  mobility,
+  self_care,
+  usual_activities,
+  pain_discomfort,
+  anxiety,
+  country = "UK",
+  method = "CW",
+  groupby = NULL,
+  agelimit = NULL
+)
 }
 \arguments{
-\item{eq5dresponse.data}{the data containing eq5d5L responses}
+\item{eq5dresponse_data}{the data containing eq5d5L responses}
 
 \item{mobility}{column name for EQ-5D-5L mobility}
 
-\item{self.care}{column name for response for EQ-5D-5L self care}
+\item{self_care}{column name for response for EQ-5D-5L self care}
 
-\item{usual.activities}{column name for response for EQ-5D-5L usual activities}
+\item{usual_activities}{column name for response for EQ-5D-5L usual
+activities}
 
-\item{pain.discomfort}{column name for response for EQ-5D-5L pain/discomfort}
+\item{pain_discomfort}{column name for response for EQ-5D-5L pain/discomfort}
 
 \item{anxiety}{column name for response for EQ-5D-5L anxiety/depression}
 
-\item{country}{country of interest, by default is UK, if groupby has to specify the country should be specified}
+\item{country}{country of interest, by default is UK, if groupby has to 
+specify the country should be specified}
 
 \item{method}{CW cross walk}
 
@@ -36,6 +48,8 @@ index value  if success, negative values for failure
 Function to map EQ-5D-5L scores to EQ-5D-3L index values
 }
 \examples{
-map5Lto3L(data.frame(mo = c(1), sc = c(4), ua = c(4), pd = c(3),
- ad = c(3)), "mo", "sc", "ua", "pd", "ad")
+map5Lto3L(data.frame(
+  mo = c(1), sc = c(4), ua = c(4), pd = c(3),
+  ad = c(3)
+), "mo", "sc", "ua", "pd", "ad")
 }

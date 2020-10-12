@@ -33,7 +33,7 @@ Note: Future versions will include for other countries and EQ-5D-5L mapping to 3
 
 For the individual responses for 3L such as 1,2,3,2,2 for each of 5 dimensions (mobility, self care, usual activities, pain/discomfort, anxiety/depression) in order  to give 0.258
 ```{r, echo=TRUE, results='asis'}
-value3LUK_responses(1,2,3,2,2)
+value_3LUK_responses(1,2,3,2,2)
 ```
 
 ## Valuing 5L responses (UK) 

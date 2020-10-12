@@ -3,7 +3,7 @@ library(valueEQ5D)
 
 ##Section 1 ____________________________________________________
 #load your data or create a data table as follows:
-scoreData = read.table(
+score_data <- read.table(
   text = " Score	Country	Method
   EQ-5D-3L	Argentina	VAS
   EQ-5D-3L	Belgium	VAS
@@ -90,141 +90,141 @@ if (interactive()) {
                     ".csv")
         ),
         checkboxInput("header", "Header", TRUE),
-        htmlOutput("score_selector"),#add selectinput boxs
-        htmlOutput("country_selector"),# from objects created in server
-        htmlOutput("method_selector"),# from objects created in server
+        htmlOutput("score_selector"), #add selectinput boxs
+        htmlOutput("country_selector"), # from objects created in server
+        htmlOutput("method_selector"), # from objects created in server
 
         textInput("col1", "Column name of EQ5D response to question 1 (Mobility) :", "MO"),
         textInput("col2", "Column name of EQ5D response to question 2 (Self care) :", "SC"),
         textInput("col3", "Column name of EQ5D response to question 3 (Usual activity):", "UA"),
         textInput("col4", "Column name of EQ5D response to question 4 (Pain) :", "PD"),
         textInput("col5", "Column name of EQ5D response to question 5 (Anxiety/Depression):", "AD"),
-        
         checkboxInput("gendercriteria", "Gender Crtieria Inclusion"),
         conditionalPanel(
           condition = "input.gendercriteria == true",
           radioButtons("gender", label = h3("Choose the gender"),
-                       choices = list("NA"="NA","Male" = "Male", "Female" = "Female"))
+                       choices = list("NA" = "NA", "Male" = "Male", "Female" = "Female"))
         ),
-        
         checkboxInput("agecriteria", "Age Crtieria Inclusion"),
         conditionalPanel(
           condition = "input.agecriteria == true",
           # Input: Specification of range within
           sliderInput("agerange", "Age range:",
                       min = 0, max = 120,
-                      value = c(0,120))
+                      value = c(0, 120))
         ),
         # Button
-        downloadButton("downloadData", "Download modified data")
-  
+        downloadButton("download_data", "Download modified data")
       ),
       mainPanel(
          tabsetPanel(type = "tabs",
-                    tabPanel("Data",tableOutput("contents")),
+                    tabPanel("Data", tableOutput("contents")),
                     tabPanel("Plot", plotOutput("plot")),
                     tabPanel("Summary", verbatimTextOutput("summary")),
                     tabPanel("Table", tableOutput("table")),
                     tabPanel("Frequency Table", tableOutput("freqtable")),
-                    tabPanel("Modified data with calculated scores", tableOutput("mod.data"))
+                    tabPanel("Modified data with calculated scores", tableOutput("mod_data"))
         )
       )
     )
   )
 
   server <- function(input, output) {
-    
-    output$score_selector = renderUI({ #creates State select box object called in ui
+    output$score_selector <- renderUI({#creates State select box object called in ui
       selectInput(inputId = "Score", #name of input
                   label = "Score:", #label displayed in ui
-                  choices = as.character(unique(scoreData$Score)),
+                  choices = as.character(unique(score_data$Score)),
                   # calls unique values from the State column in the previously created table
                   selected = "UK") #default choice (not required)
     })
-    output$country_selector = renderUI({#creates County select box object called in ui
-      data_available1 = scoreData[scoreData$Score == input$Score,"Country"]  
-
+    output$country_selector <- renderUI({#creates County select box object called in ui
+      data_available1 <- score_data[score_data$Score == input$Score, "Country"]  
       #creates a reactive list of available counties based on the State selection made
       selectInput(inputId = "Country", #name of input
                   label = "Country:", #label displayed in ui
-                  choices = unique(data_available1),#calls list of available countries
+                  choices = unique(data_available1), #calls list of available countries
                   selected = unique(data_available1)[1])
     })
-    output$method_selector = renderUI({#creates County select box object called in ui
-      data_available1 = scoreData[scoreData$Score == input$Score,]  
-      data_available = data_available1[data_available1$Country == input$Country,"Method"]  
+    output$method_selector <- renderUI({#creates County select box object called in ui
+      data_available1 <- score_data[score_data$Score == input$Score, ]  
+      data_available <- data_available1[data_available1$Country == input$Country, "Method"]  
       #creates a reactive list of available counties based on the State selection made
-      
       selectInput(inputId = "Method", #name of input
                   label = "Method:", #label displayed in ui
                   choices = unique(data_available), #calls list of available counties
                   selected = unique(data_available)[2])
     })
-    output$method_selector = renderUI({#creates County select box object called in ui
-      data_available1 = scoreData[scoreData$Score == input$Score,]  
-      data_available = data_available1[data_available1$Country == input$Country,"Method"]  
+    output$method_selector <- renderUI({#creates County select box object called in ui
+      data_available1 <- score_data[score_data$Score == input$Score, ]  
+      data_available <- data_available1[data_available1$Country == input$Country, "Method"]  
       #creates a reactive list of available counties based on the State selection made
-      
       selectInput(inputId = "Method", #name of input
                   label = "Method:", #label displayed in ui
                   choices = unique(data_available), #calls list of available counties
                   selected = unique(data_available)[2])
     })
-    datasetInput <- reactive({
-      inFile <- input$file1
-      if (is.null(inFile))
+    dataset_input <- reactive({
+      in_file <- input$file1
+      if (is.null(in_file))
         return(NULL)
-      eq5d.data<-read.csv(inFile$datapath, header = input$header)
+      eq5d_data <- read.csv(in_file$datapath, header = input$header)
     })
-
     output$contents <- renderTable({
-      dataset <- datasetInput()
+      dataset <- dataset_input()
     })
     output$summary <- renderText({
-      paste0('You have selected : Score as ', input$Score, ' Country as ', input$Country, ', age range as ',input$agerange [1], ' - ',input$agerange [2], ', and gender as ', input$gender)
+      paste0("You have selected : Score as ", input$Score, " Country as ",
+             input$Country, ", age range as ", input$agerange[1], " - ",
+             input$agerange[2], ", and gender as ", input$gender)
     })
     
-    doAnalysis<-reactive({
-      dataset <- datasetInput()
-      
-      if(input$Score=="EQ-5D-5L"){
-        if(input$Method=="CW"){
-          result<-eq5dmap5Lto3L(dataset,input$col1,input$col2,input$col3, input$col4,input$col5,input$Country,input$Method,input$gender,c(input$agerange[1],input$agerange[2]))
+    do_analysis <- reactive({
+      dataset <- dataset_input()
+      if (input$Score == "EQ-5D-5L") {
+        if (input$Method == "CW") {
+          result <- eq5dmap5Lto3L(dataset, input$col1, input$col2, input$col3, 
+                                  input$col4, input$col5, input$Country,
+                                  input$Method, input$gender, c(input$agerange[1], 
+                                                                input$agerange[2]))
         }else{
-          result<-valueEQ5D5L(dataset,input$col1,input$col2,input$col3, input$col4,input$col5,input$Country,input$gender,c(input$agerange[1],input$agerange[2]))
+          result <- valueEQ5D5L(dataset, input$col1, input$col2, input$col3, 
+                                input$col4, input$col5, input$Country, 
+                                input$gender, c(input$agerange[1], input$agerange[2]))
         }
       }else{
-        result<-valueEQ5D3L(dataset,input$col1,input$col2,input$col3, input$col4,input$col5,input$Country,input$Method,input$gender,c(input$agerange[1],input$agerange[2]))
+        result <- valueEQ5D3L(dataset, input$col1, input$col2, input$col3, input$col4,
+                              input$col5, input$Country, input$Method, input$gender, 
+                              c(input$agerange[1], input$agerange[2]))
         
       }
       return(result)
     })
     output$table <- renderTable({
-      ans<-doAnalysis()
+      ans <- do_analysis()
       ans$stats
     })
 
     output$freqtable <- renderTable({
-       ans<-doAnalysis()
+       ans <- do_analysis()
        ans$frequencyTable
     })
 
     output$plot <- renderPlot({
-      ans<-doAnalysis()
+      ans <- do_analysis()
       ans$histogram
     })
-    output$mod.data <- renderTable({
-      ans<-doAnalysis()
-      ans$modifiedData
+    output$mod_data <- renderTable({
+      ans <- do_analysis()
+      ans$modified_data
     })
     
-    output$downloadData <- downloadHandler(
+    output$download_data <- downloadHandler(
       filename = function() {
-        paste(input$Score, "_",input$Country,"_",input$Method,".csv", sep = "")
+        paste(input$Score, "_", input$Country, "_", input$Method ,".csv", sep = "")
       },
       content = function(file) {
-        ans<-doAnalysis()
-        write.csv(ans$modifiedData, file, row.names = FALSE)
+        ans <- do_analysis()
+        write.csv(ans$modified_data, file, row.names = FALSE)
       }
     )
     

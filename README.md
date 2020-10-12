@@ -7,7 +7,7 @@ This package can be used for valuing the adult EQ-5D descriptive system scores -
 
 User needs to provide the column names of the data where the responses to EQ-5D questions are recorded. The modified data with the index values can be downloaded after analysis. The age and gender specific analysis can also be obtained.
 
-Additionally there is a shiny web app which can be accessed at [shinyapps.io]https://heapps.shinyapps.io/shiny_app/) 
+Additionally there is a shiny web app which can be accessed at [shinyapps.io]  https://heapps.shinyapps.io/ScoreEQ5D/) 
 
 
 **Usage**<br/>
