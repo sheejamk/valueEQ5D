@@ -1,159 +1,3 @@
-
-# # #######################################################################
-context("testing column existence")
-test_that("testing column existence", {
-  x <- c(0, NA, "dd", 160)
-  y <- c(1, 2, 3, 4)
-  tempdata <- as.data.frame(cbind(y, x))
-  colnames(tempdata) <- c("name", "age")
-  expect_equal(check_column_exist("age", tempdata), 0)
-})
-context("testing column existence")
-test_that("testing column existence", {
-  x <- c(0, NA, "dd", 160)
-  y <- c(1, 2, 3, 4)
-  tempdata <- as.data.frame(cbind(y, x))
-  colnames(tempdata) <- c("name", "num")
-  expect_equal(check_column_exist("age", tempdata), -1)
-})
-# # ###########################################################################
-context("testing file existence")
-test_that("test for file existence and access", {
-  thisfile <- system.file("extdata", "blank.txt", package = "valueEQ5D")
-  expect_identical(test_file_exist_read(thisfile), 0)
-})
-# # # #########################################################################
-context("testing mode function")
-test_that("testing mode function", {
-  x <- c(0, 11, 78, 160)
-  expect_equal(get_mode_for_vec(x), 0)
-})
-context("testing mode function")
-test_that("testing mode function", {
-  x <- c(0, "f", 78, 160)
-  expect_error(get_mode_for_vec(x), "Non numeric data", fixed = TRUE)
-})
-context("testing mode function")
-test_that("testing mode function", {
-  x <- c(78, NA, 78, 78)
-  expect_equal(get_mode_for_vec(x), 78)
-})
-context("testing mode function")
-test_that("testing mode function", {
-  x <- c(78, "NA", 78, 78)
-  expect_error(get_mode_for_vec(x), "Non numeric data", fixed = TRUE)
-})
-# # ############################################################################
-context("testing getting column number for existing column names")
-test_that("testing getting column number for existing column names", {
-  set.seed(20)
-  sampledata <- data.frame(
-    age = abs(rnorm(10, 60, 20)),
-    sex = factor(sample(c("M", "F"), 10, replace = T)),
-    arm = factor(sample(c("Control", "Intervention"), 10, replace = T)),
-    eq5d3L.q1 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q2 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q3 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q4 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q5 = (sample(c(1, 2, 3), 10, replace = T))
-  )
-  expect_equal(get_colno_existing_colnames("sex", sampledata), 2)
-  expect_equal(get_colno_existing_colnames("age", sampledata), 1)
-  expect_equal(get_colno_existing_colnames(c("sex", "gender", "male", "female", 
-                                           "f", "m"), sampledata), 2)
-  expect_error(get_colno_existing_colnames(c("gender", "male", "female", "f", 
-                                           "m"), sampledata), 
-               "No column exists with specified column names", fixed = TRUE)
-  expect_error(get_colno_existing_colnames("", sampledata), 
-               "No column exists with specified column names", fixed = TRUE)
-})
-# # # ###########################################################################
-context("testing subset_gender_age_to_group")
-test_that("testing subset_gender_age_to_group", {
-  set.seed(17)
-  sampledata <- data.frame(
-    age = abs(rnorm(10, 60, 20)),
-    sex = factor(sample(c("M", "F"), 10, replace = T)),
-    arm = factor(sample(c("Control", "Intervention"), 10, replace = T)),
-    eq5d3L.q1 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q2 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q3 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q4 = (sample(c(1, 2, 3), 10, replace = T)),
-    eq5d3L.q5 = (sample(c(1, 2, 3), 10, replace = T))
-  )
-  one <- subset(sampledata, sex == "F")
-  two <- subset(one, one$age >= 10 & one$age <= 70)
-  expect_equal(subset_gender_age_to_group(sampledata, "female", c(10, 70)), two)
-  one <- subset(sampledata, sex == "M")
-  two <- subset(one, one$age >= 10 & one$age <= 70)
-  expect_equal(subset_gender_age_to_group(sampledata, "male", c(10, 70)), two)
-  one <- subset(sampledata, sex == "F")
-  two <- subset(one, one$age >= 0 & one$age <= 10)
-  expect_equal(subset_gender_age_to_group(sampledata, "female", c(0, 10)), two)
-  expect_error(subset_gender_age_to_group(sampledata, "bh", c(10, 70)), 
-               "Group by should be euther male or female", fixed = TRUE)
-  expect_error(subset_gender_age_to_group(sampledata, "bh", NULL), 
-               "Group by should be euther male or female", fixed = TRUE)
-  one <- subset(sampledata, sex == "M")
-  expect_identical(subset_gender_age_to_group(sampledata, "male", NULL), one)
-})
-# # # ##########################################################################
-context("testing descritpvie statistics")
-test_that("testing descritpvie statistics", {
-  x <- c(0, 11, 78, 160)
-  results <- matrix(c(249, 62.25, 73.72189, 44.5, 0, 36.86, 0, 160, 4), 
-                    nrow = 1, byrow = TRUE)
-  colnames(results) <- c("Sum", "Mean", "SD", "Median", "Mode", "SE", 
-                         "Minimum", "Maximum", "Count")
-  rownames(results) <- "age"
-  expect_equal(descriptive_stat_data_column(x, "age", NA), results,
-               tolerance = 0.001)
-})
-context("testing descriptive statistics")
-test_that("testing descriptive statistics", {
-  x <- c(0, 11, 78, 160)
-  results <- matrix(c(249, 83, 74.62573, 78, 11, 43.08519, 11, 160, 3),
-                    nrow = 1, byrow = TRUE)
-  colnames(results) <- c("Sum", "Mean", "SD", "Median", "Mode", "SE", 
-                         "Minimum", "Maximum", "Count")
-  rownames(results) <- "age"
-  expect_equal(descriptive_stat_data_column(x, "age", 0), results, 
-               tolerance = 0.001)
-})
-context("testing descriptive statistics")
-test_that("testing descriptive statistics", {
-  x <- c(0, NA, 78, 160)
-  results <- matrix(c(238, 79.33333, 80.00833, 78, 0, 46.19283, 0, 160, 3), 
-                    nrow = 1, byrow = TRUE)
-  colnames(results) <- c("Sum", "Mean", "SD", "Median", "Mode", "SE", 
-                         "Minimum", "Maximum", "Count")
-  rownames(results) <- "age"
-  expect_equal(descriptive_stat_data_column(x, "age", NA), results,
-               tolerance = 0.001)
-})
-
-context("testing descriptive statistics")
-test_that("testing descriptive statistics", {
-  x <- c(0, NA, "dd", 160)
-  expect_error(descriptive_stat_data_column(x, "age", NA), 
-               "Some values-other than NR code is not numeric", fixed = TRUE)
-})
-context("testing descriptive statistics")
-test_that("testing descriptive statistics", {
-  x <- c("", 11, 78, 160)
-  expect_error(descriptive_stat_data_column(x, "age", NA), 
-               "Some values-other than NR code is not numeric", fixed = TRUE)
-})
-# ## # #########################################################################
-context("testing numeric column")
-test_that("test for numeric values in a specific column but with no range given", {
-  x <- c(0, 11, 78, 120)
-  expect_identical(test_data_num_norange(x, 0), 0)
-  x <- c(-8, 99, 2, 5, -99)
-  expect_identical(test_data_num_norange(x, -99), 0)
-  x <- c("sheeja", 99, 2, 5, -99)
-  expect_error(test_data_num_norange(x, -99), "Some values-other than NR code is not numeric", fixed = TRUE)
-})
 # # # #####################################################################################################################
 context("Check 3L scores")
 test_that("Checking 3L scores ", {
@@ -166,10 +10,11 @@ test_that("Checking 3L scores ", {
   expect_error(check_scores_3L(2, 3, 4, 5, 2), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(check_scores_3L(23452), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(check_scores_3L(23, -1, 5, 2), "The responses are not valid", fixed = TRUE)
-  expect_error(check_scores_3L("", -1, 5, 2), "The responses are not valid",fixed = TRUE)
-  expect_error(check_scores_3L("", -1, 5, 2, NA), "The responses are not valid",fixed = TRUE)
+  expect_error(check_scores_3L("", -1, 5, 2), "The responses are not valid", fixed = TRUE)
+  expect_error(check_scores_3L("", -1, 5, 2, NA), "The responses are not valid", fixed = TRUE)
   the_result <- check_scores_3L(11221, NA, NA)
   expect_identical(the_result, c(1, 1, 2, 2, 1))
+  expect_error(check_scores_3L(34546), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
 })
 
 # # ############################################################################
@@ -195,6 +40,8 @@ test_that("Checking 5L scores ", {
 # # ############################################################################
 context("EQ5D5L scoring ")
 test_that("EQ5D5L scoring ", {
+  the_result <- value_5L_Ind("England", 5, 1, 1, 1, 2)
+  expect_equal(the_result, 0.648, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 1, 1, 1, 1, 2)
   expect_equal(the_result, 0.922, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 11112)
@@ -209,6 +56,7 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, 0.942, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 55555)
   expect_equal(the_result, -0.285, tolerance = 1e-3)
+  debug(value_5L_Ind)
   the_result <- value_5L_Ind("England", 111)
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", c(1, 1, 1, 1, 2))
@@ -231,7 +79,7 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, 0.922, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 11111)
   expect_equal(the_result, 1, tolerance = 1e-3)
-
+  
   the_result <- value_5L_Ind("England", NA, 1, 1, 1, 2)
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", NA, 1, 1, 2, 1)
@@ -242,7 +90,7 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_5L_Ind("Germany", 1, 1, 1, 1, 1)
   expect_equal(the_result, 1, tolerance = 1e-3)
-
+  
   expect_error(value_5L_Ind("England", c(1, 1, 1), NA, NA, NA, NA), "Invalid EQ-5D-5L responses-check the responses to each question", fixed = TRUE)
   expect_error(value_5L_Ind("England", c(8, 1, 1, 2, 1), NA, NA, NA, NA), "Responses not valid for EQ-5D-5L scores", fixed = TRUE)
   expect_error(value_5L_Ind("England", c(1, 1, 1)), "Invalid EQ-5D-5L responses-check the responses to each question",fixed = TRUE)
@@ -252,6 +100,7 @@ test_that("EQ5D5L scoring ", {
   expect_error(value_5L_Ind("US", 1, 1, 1, 1, 1), "No tariffs found for the country you specified for EQ-5D-5L. Please try later", fixed = TRUE)
   expect_error(value_5L_Ind("England", 345678), "Responses not valid for EQ-5D-5L scores", fixed = TRUE)
   expect_error(value_5L_Ind("NM", -11111), "No tariffs found for the country you specified for EQ-5D-5L. Please try later", fixed = TRUE)
+  expect_error(value_5L_Ind("England", "sh"), "The responses are not valid", fixed = TRUE)
 })
 # # # ###########################################################################
 context("testing EQ5D3L valuation using individual responses")
@@ -313,10 +162,10 @@ test_that("test for value_3L", {
   expect_error(value_3L_Ind("UK", "TTO", c(8, 1, 1, 2, 1)), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", c(5, 5, 5, 5, 5)), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", c(1, 1, 1)), "Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
-  expect_error(value_3L_Ind("UK", "TTO", c(3, 4, 5, 6, 7, 8)), "Invalid EQ-5D-3L responses-check the responses to each question",fixed = TRUE)
+  expect_error(value_3L_Ind("UK", "TTO", c(3, 4, 5, 6, 7, 8)), "Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", c(-1, 1, 1, 1, 1)), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", -1, 1, 1, 1, 1), "The responses are not valid", fixed = TRUE)
-  expect_error(value_3L_Ind("DE", "TTO", 1, 1, 1, 1, 1), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later",fixed = TRUE)
+  expect_error(value_3L_Ind("DE", "TTO", 1, 1, 1, 1, 1), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", 4, 5, 6, 5, 8), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "TTO", -1, 2, 3, 2, 2), "The responses are not valid", fixed = TRUE)
   expect_error(value_3L_Ind("JP", "TTO", c(1, 2, 3, 2, 3)), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
@@ -377,8 +226,8 @@ test_that("test for value_3L", {
   expect_error(value_3L_Ind("UK", "VAS", 345678), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("NM", "VAS", -11111), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", 55555), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
-  expect_error(value_3L_Ind("UK", "VAS", c(1, 1, 1), NA, NA, NA, NA),"Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
-  expect_error(value_3L_Ind("UK", "VAS", c(8, 1, 1, 2, 1), NA, NA, NA, NA),"Responses not valid for EQ-5D-3L scores", fixed = TRUE)
+  expect_error(value_3L_Ind("UK", "VAS", c(1, 1, 1), NA, NA, NA, NA), "Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
+  expect_error(value_3L_Ind("UK", "VAS", c(8, 1, 1, 2, 1), NA, NA, NA, NA), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", c(5, 5, 5, 5, 5)), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", c(1, 1, 1)), "Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", c(3, 4, 5, 6, 7, 8)), "Invalid EQ-5D-3L responses-check the responses to each question", fixed = TRUE)
@@ -402,6 +251,7 @@ test_that("EQ5D5L scoring", {
     "Taiwan", "Thailand",
     "Uruguay", "USA", "Vietnam"
   )
+  total_countries <- c("Canada")
   total <- length(total_countries)
   for (j in 1:total) {
     this_country <- total_countries[j]
@@ -431,6 +281,7 @@ test_that("EQ5D3L scoring", {
   )
   common_countries <- Reduce(intersect, list(VAS_countrylist, TTO_countrylist))
   all_countries <- sort(unique(c(VAS_countrylist, TTO_countrylist)))
+  all_countries <- c("Argentina")
   total <- length(all_countries)
   for (j in 1:total) {
     print(all_countries[j])
@@ -483,17 +334,30 @@ test_that("EQ5D5L crosswalk mapping", {
     "Denmark", "France", "Germany", "Japan", "Netherlands", "Spain", "Thailand",
     "UK", "USA", "Zimbabwe"
   )
+  total_countries <- c("UK")
   total <- length(total_countries)
   for (j in 1:total) {
     this_country <- total_countries[j]
     country_entry <- replace_space_underscore(total_countries[j])
     print(this_country)
     for (i in 1:nrow(answers)) {
-      the_result <- map5Lto3LInd(this_country, "CW", 
+      the_result <- map5Lto3LInd(this_country, "CW",
                                  answers$state[total_entries[i]])
       this_col <- answers[[country_entry]]
       expect_equal(the_result, this_col[total_entries[i]], tolerance = 9e-2)
     }
   }
 })
-# # # ##########################################################################
+# # # # ##########################################################################
+# # # ###########################################################################
+context("EQ5D5L valuation testing")
+test_that("EQ5D5L valuation testing", {
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, c(10, 70))
+    expect_equal(res$stats[2], 0.459)
+    expect_equal(res$stats[9], 2)
+    expect_error(value_5L(data, "mo", "sc", "ua", "pd", "ad", "India", NULL, c(10, 70)))
+})
+# # # # ##########################################################################

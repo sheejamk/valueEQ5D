@@ -220,7 +220,7 @@ if (interactive()) {
     
     output$download_data <- downloadHandler(
       filename = function() {
-        paste(input$Score, "_", input$Country, "_", input$Method ,".csv", sep = "")
+        paste(input$Score, "_", input$Country, "_", input$Method, ".csv", sep = "")
       },
       content = function(file) {
         ans <- do_analysis()

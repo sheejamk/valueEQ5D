@@ -10,7 +10,7 @@
 test_file_exist_read <- function(filename) {
   ## Checking if the file exists
   if (file.exists(filename)) {
-    ## Checking if the file is accessable to read
+    ## Checking if the file is accessible to read
     if (file.access(filename, 0) != 0) {
       stop(" Error reading file ")
     }
@@ -124,10 +124,8 @@ test_data_num_norange <- function(vec, nrcode = NA) {
 #' @export
 descriptive_stat_data_column <- function(colum, column_name, nrcode = NA) {
   vec <- colum
-  if (test_data_num_norange(vec, nrcode) != 0) {
-    stop("Non numeric columns, cant estimate the descriptive statistics")
-  } else {
-    this_column <- colum
+  if (test_data_num_norange(vec, nrcode) == 0) {
+   this_column <- colum
     if (is.na(nrcode)) {
       this_column <- this_column[!is.na(colum)]
     } else {
@@ -201,12 +199,11 @@ get_colno_existing_colnames <- function(column_names, data) {
 #' @export
 subset_gender_age_to_group <- function(data, gender, agelimit) {
   if (is.null(gender) || toupper(gender) == "NA" || is.na(gender)) { 
-    # if no groupby option given
-    working_data <- data
+    working_data <- data   # if no groupby option given
   } else {# groupby option is given
+    # groupby is male or female
     if (toupper(gender) == "MALE" || toupper(gender) == "FEMALE") { 
-      # groupby is male or female
-      gendercolumn <- c("sex", "gender", "male", "female", "f", "m")
+     gendercolumn <- c("sex", "gender", "male", "female", "f", "m")
       colnum <- get_colno_existing_colnames(gendercolumn, data)
       data_gender <- unlist(data[colnum])
       if (toupper(gender) == "MALE") {# groupby is male
@@ -230,12 +227,8 @@ subset_gender_age_to_group <- function(data, gender, agelimit) {
     upperlimit <- agelimit[2]
     age_columns <- c("age")
     colnum <- get_colno_existing_colnames(age_columns, working_data)
-    if (colnum != -1) {
-      working_data <- working_data[working_data[colnum] >= lowerlimit & 
+    working_data <- working_data[working_data[colnum] >= lowerlimit & 
                                      working_data[colnum] <= upperlimit, ]
-    } else {
-      stop("Error in returning column number for the correspoing age coulmn")
-    }
   }
   return(working_data)
 }

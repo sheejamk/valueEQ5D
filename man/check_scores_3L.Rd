@@ -11,16 +11,16 @@ check_scores_3L(dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA, dimen5 = NA)
 response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1}
 
 \item{dimen2}{response for EQ-5D-3L self care, or NA if the responses 
-are given as dimen}
+are given as dimensions}
 
 \item{dimen3}{response for EQ-5D-3L usual activities,or NA if the 
-responses are given as dimen}
+responses are given as dimensions}
 
 \item{dimen4}{response for EQ-5D-3L pain/discomfort, or NA if the 
-responses are given as dimen}
+responses are given as dimensions}
 
 \item{dimen5}{response for EQ-5D-3L anxiety/depression, or NA if 
-the responses are given as dimen}
+the responses are given as dimensions}
 }
 \description{
 Function to check the EQ-5D-3L scores
