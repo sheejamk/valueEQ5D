@@ -248,23 +248,23 @@ test_that("test for value_3L", {
 # # # ###########################################################################
 context("EQ5D5L crosswalk mapping for individual responses")
 test_that("EQ5D5L crosswalk mapping for individual responses", {
-  expect_equal(map5Lto3LInd("UK", "CW", NA, 1, 2, 3, 4), NA)
-  expect_equal(map5Lto3LInd("UK", "CW", 1, 2, 3, 4), NA)
-  expect_equal(map5Lto3LInd("UK", "CW", 12345), 0.0633, tol = 1e-3)
-  expect_equal(map5Lto3LInd("UK", "CW", 1, 1, 1, 2, 2), 0.767, tol = 1e-3)
-  expect_error(map5Lto3LInd("UK", "CW", 7, 1, 1, 2, 2))
-  expect_error(map5Lto3LInd("UK", "CW", 1, 1, 7, 2, 2))
-  expect_error(map5Lto3LInd("India", "CW", 1, 1, 2, 2, 2))
-  expect_error(map5Lto3LInd("UK", "map", 1, 1, 2, 2, 2))
-  expect_error(map5Lto3LInd("UK", "CW", c(10,1), 2, 2, 2))
-  expect_equal(map5Lto3LInd("UK", "CW",c(1,2,3,4,5)), 0.0633, tol = 1e-3)
-  expect_error(map5Lto3LInd("UK", "CW",c(1,2,3,4,7)))
-  expect_error(map5Lto3LInd("UK", "CW",c("sh",2,3,4,7)))
-  expect_error(map5Lto3LInd("UK", "CW",c("-2",2,3,4,7)))
+  expect_equal(map_5Lto3L_Ind("UK", "CW", NA, 1, 2, 3, 4), NA)
+  expect_equal(map_5Lto3L_Ind("UK", "CW", 1, 2, 3, 4), NA)
+  expect_equal(map_5Lto3L_Ind("UK", "CW", 12345), 0.0633, tol = 1e-3)
+  expect_equal(map_5Lto3L_Ind("UK", "CW", 1, 1, 1, 2, 2), 0.767, tol = 1e-3)
+  expect_error(map_5Lto3L_Ind("UK", "CW", 7, 1, 1, 2, 2))
+  expect_error(map_5Lto3L_Ind("UK", "CW", 1, 1, 7, 2, 2))
+  expect_error(map_5Lto3L_Ind("India", "CW", 1, 1, 2, 2, 2))
+  expect_error(map_5Lto3L_Ind("UK", "map", 1, 1, 2, 2, 2))
+  expect_error(map_5Lto3L_Ind("UK", "CW", c(10,1), 2, 2, 2))
+  expect_equal(map_5Lto3L_Ind("UK", "CW",c(1,2,3,4,5)), 0.0633, tol = 1e-3)
+  expect_error(map_5Lto3L_Ind("UK", "CW",c(1,2,3,4,7)))
+  expect_error(map_5Lto3L_Ind("UK", "CW",c("sh",2,3,4,7)))
+  expect_error(map_5Lto3L_Ind("UK", "CW",c("-2",2,3,4,7)))
   
-  expect_error(map5Lto3LInd("UK", "CW",1,0,0,0,0))
-  expect_error(map5Lto3LInd("UK", "CW",1,1,1,1,-1))
-  expect_error(map5Lto3LInd("UK", "CW",c(1,1,1,1,-1)))
+  expect_error(map_5Lto3L_Ind("UK", "CW",1,0,0,0,0))
+  expect_error(map_5Lto3L_Ind("UK", "CW",1,1,1,1,-1))
+  expect_error(map_5Lto3L_Ind("UK", "CW",c(1,1,1,1,-1)))
 })
 # ###############################################################################################################
 context("EQ5D5L scoring for all countries")
@@ -365,7 +365,7 @@ test_that("EQ5D5L crosswalk mapping for all countries", {
     country_entry <- replace_space_underscore(total_countries[j])
     print(this_country)
     for (i in 1:nrow(answers)) {
-      the_result <- map5Lto3LInd(this_country, "CW",
+      the_result <- map_5Lto3L_Ind(this_country, "CW",
                                  answers$state[total_entries[i]])
       this_col <- answers[[country_entry]]
       expect_equal(the_result, this_col[total_entries[i]], tolerance = 9e-2)
@@ -449,31 +449,30 @@ test_that("EQ5D5L crosswalk  testing dataset", {
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
-  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW",NULL, c(10, 70))
+  res = map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW",NULL, c(10, 70))
   expect_equal(res$stats[2], 0.408, tol = 1e-3)
   expect_equal(res$stats[9], 2)
-  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male", c(0,20))
+  res = map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male", c(0,20))
   expect_equal(res$stats[2], 0.689)
-  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male",NULL)
+  res = map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male",NULL)
   expect_equal(res$stats[2], 0.689)
-  debug(map5Lto3L)
-  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL,NULL)
+  res = map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL,NULL)
   expect_equal(res$stats[2], 0.4079, tol = 1e-4)
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "India", "CW", NULL, c(10, 70)))
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "", "CW", NULL, c(10, 70)))
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL, c(0, 5)))
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "mp", NULL, c(0, 70)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "India", "CW", NULL, c(10, 70)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "", "CW", NULL, c(10, 70)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL, c(0, 5)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "mp", NULL, c(0, 70)))
   
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     mo = c(1, 2), sc = c(NA, 2), ua = c(NA, 4), pd = c(3, 4), ad = c(3, 4))
   # columns do not exist
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,NULL, c(0,10)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,NULL, c(0,10)))
   
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     one = c(1, 2), two = c(NA, 2), three = c(NA, 4), four = c(3, 4), five = c(3, 4))
   # columns do not exist
-  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,"Male", c(0,20)))
+  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,"Male", c(0,20)))
   
 })

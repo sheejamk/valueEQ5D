@@ -267,8 +267,8 @@ value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England",
           }
         }
         hist_plot <- graphics::hist(scores_noNA, main = title)
-        results <- list("stats" = stats, "frequencyTable" = freq_table, 
-                        "histogram" = hist_plot, "modifiedData" = new_data)
+        results <- list("stats" = stats, "freq_table" = freq_table, 
+                        "histogram" = hist_plot, "modified_data" = new_data)
         return(results)
       } else {
         print("No relevant rows with non NA scores")
@@ -707,14 +707,14 @@ value_3L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country, method,
 #' responses are given as dimen
 #' @return index value of EQ-5D-3L, -1 if any error
 #' @examples
-#' map5Lto3LInd("UK", "CW", 11125)
-#' map5Lto3LInd("UK", "CW", c(1, 1, 1, 2, 5))
-#' map5Lto3LInd("UK", "CW", 1, 1, 1, 2, 5)
+#' map_5Lto3L_Ind("UK", "CW", 11125)
+#' map_5Lto3L_Ind("UK", "CW", c(1, 1, 1, 2, 5))
+#' map_5Lto3L_Ind("UK", "CW", 1, 1, 1, 2, 5)
 #' @export
 #' @description Function to map EQ-5D-5L descriptive system to 3L index value
 #'(ref:Van Hout et al 2012 and code inspired from 
 #'https://github.com/brechtdv/eq5d-mapping)
-map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA, 
+map_5Lto3L_Ind <- function(country = "UK", method = "CW", dimen, dimen2 = NA, 
                          dimen3 = NA, dimen4 = NA, dimen5 = NA) {
   country_list <- c("Denmark", "France", "Germany", "Japan", "Netherlands", 
                     "Spain", "Thailand", "UK", "USA", "Zimbabwe")
@@ -851,13 +851,13 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
 #' @param agelimit  vector of ages to show upper and lower limits
 #' @return index value  if success, negative values for failure
 #' @examples
-#' map5Lto3L(data.frame(
+#' map_5Lto3L(data.frame(
 #'   mo = c(1), sc = c(4), ua = c(4), pd = c(3),
 #'   ad = c(3)
 #' ), "mo", "sc", "ua", "pd", "ad")
 #' @export
 #' @description Function to map EQ-5D-5L scores to EQ-5D-3L index values
-map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities, 
+map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities, 
                       pain_discomfort, anxiety, country = "UK", method = "CW",
                       groupby = NULL, agelimit = NULL) {
   country <- replace_space_underscore(country)
@@ -879,7 +879,7 @@ map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
         res3 <- working_data[j, usual_activities]
         res4 <- working_data[j, pain_discomfort]
         res5 <- working_data[j, anxiety]
-        this_score <- map5Lto3LInd(country, method, c(res1, res2, res3, 
+        this_score <- map_5Lto3L_Ind(country, method, c(res1, res2, res3, 
                                                       res4, res5))
         scores <- c(scores, this_score)
 
@@ -916,8 +916,8 @@ map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
             }
           }
           hist_plot <- graphics::hist(scores, main = title)
-          results <- list("stats" = stats, "frequencyTable" = freq_table, 
-                          "histogram" = hist_plot, "modifiedData" = new_data)
+          results <- list("stats" = stats, "freq_table" = freq_table, 
+                          "histogram" = hist_plot, "modified_data" = new_data)
           return(results)
       } else {
         print("No relevant rows with non NA scores")

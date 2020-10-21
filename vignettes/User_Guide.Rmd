@@ -98,9 +98,9 @@ The 5L descriptive scores can be mapped to 3L index values for 10 countries usin
 
 If the individual responses are in column formats (e.g. in csv) they can be used as arguments in the methods.
 
-In brief, for valuing EQ-5D-3L responses from individual responses to the descriptive system, use "value_3LIindscores";for valuing EQ-5D-5L responses from descriptive system, use "value_5LIindscores"; and for mapping EQ-5D-5L responses from descriptive system to EQ-5D-3L index values, use "map5Lto3LInd". The arguments for all these three parameters will be country names and followed by the five individual responses.
+In brief, for valuing EQ-5D-3L responses from individual responses to the descriptive system, use "value_3LIindscores";for valuing EQ-5D-5L responses from descriptive system, use "value_5LIindscores"; and for mapping EQ-5D-5L responses from descriptive system to EQ-5D-3L index values, use "map_5Lto3L_Ind". The arguments for all these three parameters will be country names and followed by the five individual responses.
 
-If the requirement is to get the summary statistics of collected EQ-5D responses from many individuals with conditions on gender and age use these methods: valuing EQ-5D-3L responses use "value_3L";for valuing EQ-5D-5L responses, use "value_5L"; and for mapping EQ-5D-5L responses to EQ-5D-3L index values, use "map5Lto3L". The arguments for all these three parameters will be country names and followed by the five column names of the EQ-5D responses and the data containing these EQ-5D responses.
+If the requirement is to get the summary statistics of collected EQ-5D responses from many individuals with conditions on gender and age use these methods: valuing EQ-5D-3L responses use "value_3L";for valuing EQ-5D-5L responses, use "value_5L"; and for mapping EQ-5D-5L responses to EQ-5D-3L index values, use "map_5Lto3L". The arguments for all these three parameters will be country names and followed by the five column names of the EQ-5D responses and the data containing these EQ-5D responses.
 
 EQ-5D-5L responses for England are converted to index values using Devlin et al. method. EQ-5D-3L responses for England are converted to index values using Dolan et al. method.  EQ-5D-5L responses for England are mapped to EQ-5D-3L index values using Van Hout et al. method.
 
@@ -193,12 +193,12 @@ Each of the below calls will give same EQ-5d-3L index values while valuing the E
 ```{r }
 ## Valuing EQ-5D-5L individual score
 
-map5Lto3LInd("UK","CW",1,2,3,4,5)
-map5Lto3LInd("UK","CW",c(1,2,3,4,5))
-map5Lto3LInd("Denmark","CW",12345)
+map_5Lto3L_Ind("UK","CW",1,2,3,4,5)
+map_5Lto3L_Ind("UK","CW",c(1,2,3,4,5))
+map_5Lto3L_Ind("Denmark","CW",12345)
 ```
-When the data is in column format as in example below, use the 'map5Lto3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below.
+When the data is in column format as in example below, use the 'map_5Lto3L' to get the summary statistics while returning back the modified data. Use conditions if the results need to be based on a particular gender or particular age group as in the examples below.
 ```{r }
- map5Lto3L(EQ5D5Ldata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW",NULL,NULL)
- map5Lto3L(EQ5D5Ldata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW","male",c(10,70))
+ map_5Lto3L(EQ5D5Ldata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW",NULL,NULL)
+ map_5Lto3L(EQ5D5Ldata,"eq5d5L.q1","eq5d5L.q2","eq5d5L.q3","eq5d5L.q4","eq5d5L.q5","UK","CW","male",c(10,70))
 ```
