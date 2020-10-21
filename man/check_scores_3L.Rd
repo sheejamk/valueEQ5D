@@ -8,7 +8,7 @@ check_scores_3L(dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA, dimen5 = NA)
 }
 \arguments{
 \item{dimen}{a must input,response for EQ-5D-3L mobility  or the 5 digit 
-response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1}
+response, or the vector of responses, e.g. 11111, c(1, 1, 1, 1, 1) or 1}
 
 \item{dimen2}{response for EQ-5D-3L self care, or NA if the responses 
 are given as dimensions}

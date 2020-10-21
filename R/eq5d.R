@@ -2,7 +2,7 @@
 ###############################################################################
 #' Function to check the EQ-5D-3L scores
 #' @param dimen  a must input,response for EQ-5D-3L mobility  or the 5 digit 
-#' response, or the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
+#' response, or the vector of responses, e.g. 11111, c(1, 1, 1, 1, 1) or 1
 #' @param dimen2 response for EQ-5D-3L self care, or NA if the responses 
 #' are given as dimensions
 #' @param dimen3  response for EQ-5D-3L usual activities,or NA if the 
@@ -43,15 +43,12 @@ check_scores_3L <- function(dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA,
   if (!all(responses %in% 1:3)) {
     stop("Responses not valid for EQ-5D-3L scores")
   } else {
-    # this_score <- as.numeric(this_score)
-    # if (this_score < 11111 || this_score > 33333) {
-    #   if (this_score < 0 || this_score > 33333) {
-    #     stop("Responses not valid for EQ-5D-3L scores")
-    #   } else {
-    #     return(NA)
-    #   }
-    # } else {
-    return(responses)
+    this_score <- as.numeric(this_score)
+    if (this_score < 11111) {
+      return(NA)
+    }else{
+         return(responses)
+    }
   }
 }
 ################################################################################
@@ -95,13 +92,13 @@ check_scores_5L <- function(dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA,
     }
   }
   if (!all(responses %in% 1:5)) {
-      stop("Responses not valid for EQ-5D-5L scores")
+    stop("Responses not valid for EQ-5D-5L scores")
   } else {
     this_score <- as.numeric(this_score)
-    if (this_score < 11111 || this_score > 55555) {
-         stop("Responses not valid for EQ-5D-5L scores")
-    } else {
-      return(responses)
+    if (this_score < 11111) {
+      return(NA)
+    }else{
+         return(responses)
     }
   }
 }
@@ -218,18 +215,14 @@ value_5L_Ind <- function(country, dimen, dimen2 = NA, dimen3 = NA, dimen4 = NA,
 #' @description Function to value EQ-5D-5L descriptive system to index value.
 value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England", 
                      groupby = NULL, agelimit = NULL) {
-  if (replace_space_underscore(country) == -1) {
-    stop("Country name empty")
-  } else {
-    country <- replace_space_underscore(country)
-  }
+  country <- replace_space_underscore(country)
   eq5d_colnames <- c(mo, sc, ua, pd, ad)
   ans_eq5d_colnames <- sapply(eq5d_colnames, check_column_exist, eq5dresponse_data)
   if (all(ans_eq5d_colnames == 0)) { # if the eq5d column names match
     working_data <- subset_gender_age_to_group(eq5dresponse_data, groupby, 
                                                agelimit)
     scores <- c()
-    if (nrow(working_data) < 1 && working_data < 0) {
+    if (nrow(working_data) < 1) {
       stop("no entries with the given criteria - Please check the contents 
            or the criteria")
     } else {
@@ -240,50 +233,48 @@ value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England",
         res4 <- working_data[j, pd]
         res5 <- working_data[j, ad]
         this_score <- value_5L_Ind(country, c(res1, res2, res3, res4, res5))
-        if (is.numeric(this_score)) {
           scores <- c(scores, this_score)
-        } else {
-          warning("EQ-5D-5L responses not valid - 5L scores can not be valued")
-          return(-2)
-        }
       }
-      names(scores) <- "EQ-5D-5Lscores"
       new_data <- cbind(working_data, scores)
       colnames(new_data) <- c(colnames(working_data), "EQ-5D-5L scores")
-      stats <- descriptive_stat_data_column(scores, "EQ-5D-5L")
-      freq_table <- get_frequency_table(scores)
-      first <- is.null(groupby) || toupper(groupby) == "NA" || is.na(groupby)
-      second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
-        sum(is.na(agelimit)) != 0
-      if (first & second) {
-        title <- paste("Histogram of EQ-5D-5L index values", sep = "")
-      } else {
-        if (first & !second) {
-          title <- paste("Histogram of EQ-5D-5L index values",
-            " with ages between ", agelimit[1], " and ", agelimit[2],
-            sep = ""
-          )
+      scores_noNA <- scores[!is.na(scores)]
+      if (length(scores_noNA) >= 1) {
+        stats <- descriptive_stat_data_column(scores_noNA, "EQ-5D-5L")
+        freq_table <- get_frequency_table(scores_noNA)
+        first <- is.null(groupby) || toupper(groupby) == "NA" || is.na(groupby)
+        second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
+          sum(is.na(agelimit)) != 0
+        if (first & second) {
+          title <- paste("Histogram of EQ-5D-5L index values", sep = "")
         } else {
-          if (!second & second) {
-            title <- paste("Histogram of EQ-5D-5L index values for ",
-              groupby,
-              sep = ""
+          if (first & !second) {
+            title <- paste("Histogram of EQ-5D-5L index values",
+                           " with ages between ", agelimit[1], " and ", agelimit[2],
+                           sep = ""
             )
           } else {
-            title <- paste("Histogram of EQ-5D-5L index values for ",
-              groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
-              sep = ""
-            )
+            if (!first & second) {
+              title <- paste("Histogram of EQ-5D-5L index values for ",
+                             groupby,
+                             sep = ""
+              )
+            } else {
+              title <- paste("Histogram of EQ-5D-5L index values for ",
+                             groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
+                             sep = ""
+              )
+            }
           }
         }
+        hist_plot <- graphics::hist(scores_noNA, main = title)
+        results <- list("stats" = stats, "frequencyTable" = freq_table, 
+                        "histogram" = hist_plot, "modifiedData" = new_data)
+        return(results)
+      } else {
+        print("No relevant rows with non NA scores")
       }
-      hist_plot <- graphics::hist(scores, main = title)
-      results <- list("stats" = stats, "frequencyTable" = freq_table, 
-                      "histogram" = hist_plot, "modifiedData" = new_data)
-      return(results)
     }
   } else {
-    # if the eq 5d column names do not match
     stop("EQ-5D column names do not match")
   }
 }
@@ -331,20 +322,11 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
   )
   
   australia.impalusibleordering.scores <- c(33132, 12133, 13133, 22133, 23133, 32133, 33133, 12233, 13233, 22233, 23233, 32233, 33233, 33232, 33323, 13332, 13333, 23332, 23333, 32333, 33332, 33333)
-  
-  if (replace_space_underscore(country) == -1) {
-    stop("Country name empty")
-  } else {
-    country <- replace_space_underscore(country)
-  }
+  country <- replace_space_underscore(country)
   if (country %in% countrylist) {
     scores <- check_scores_3L(dimen, dimen2, dimen3, dimen4, dimen5)
-    if (sum(is.na(scores)) > 0) {
-      return(NA)
-    } else {
-      if (sum(scores) < 0) {
-        stop("EQ-5D-3L scores are not valid")
-      } else {
+    if (sum(is.na(scores)) > 0) return(NA)
+    if (sum(scores) > 0)  {
         if (method == "TTO" && country %in% TTO_countrylist) {
           eq5d_valueset <- EQ5D3L_tariffs_TTO.df
         } else {
@@ -610,12 +592,11 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
               values_state <- sum(values, na.rm = TRUE)
             }
           } else {
-            stop("No country tariffs")
+            stop("No country tariffs on valueset")
           }
         }
-      }
+        return(values_state)
     }
-    return(values_state)
   } else {
     stop("No country tariffs found for the country you specified for EQ-5D-3L. Please try later")
   }
@@ -644,18 +625,14 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
 #' index values.
 value_3L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country, method, 
                      groupby, agelimit) {
-  if (replace_space_underscore(country) == -1) {
-    stop("Country name empty")
-  } else {
-    country <- replace_space_underscore(country)
-  }
+  country <- replace_space_underscore(country)
   eq5d_colnames <- c(mo, sc, ua, pd, ad)
   ans_eq5d_colnames <- sapply(eq5d_colnames, check_column_exist,
                               eq5dresponse_data)
   if (all(ans_eq5d_colnames == 0)) { # if the eq5d column names match
     working_data <- subset_gender_age_to_group(eq5dresponse_data, 
                                                groupby, agelimit)
-    if (nrow(working_data) < 1 && working_data < 0) {
+    if (nrow(working_data) < 1 ) {
       stop("no entries with the given criteria - Please check 
            the contents or the criteria")
     } else {
@@ -668,47 +645,47 @@ value_3L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country, method,
         res5 <- working_data[j, ad]
         this_score <- value_3L_Ind(country, method, res1, res2,
                                    res3, res4, res5)
-        if (is.numeric(this_score)) {
-          scores <- c(scores, this_score)
-        } else {
-          stop("Responses not valid -3L scores can not be valued")
-        }
+        scores <- c(scores, this_score)
       }
-      names(scores) <- "EQ-5D-3Lscores"
       new_data <- cbind(working_data, scores)
       colnames(new_data) <- c(colnames(working_data), "EQ-5D-3L scores")
-      stats <- descriptive_stat_data_column(scores, "EQ-5D-3L")
-      freq_table <- get_frequency_table(scores)
-      first <- is.null(groupby) || toupper(groupby) == "NA" || 
-        is.na(groupby)
-      second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 ||
-        sum(is.na(agelimit)) != 0
-      if (first & second) {
-        title <- paste("Histogram of EQ-5D-3L index values", sep = "")
-      } else {
-        if (first & !second) {
-          title <- paste("Histogram of EQ-5D-3L index values",
-            " with ages between ", agelimit[1], " and ", agelimit[2],
-            sep = ""
-          )
+      scores_noNA <- scores[!is.na(scores)]
+      if (length(scores_noNA) >= 1) {
+        stats <- descriptive_stat_data_column(scores_noNA, "EQ-5D-3L")
+        freq_table <- get_frequency_table(scores_noNA)
+        first <- is.null(groupby) || toupper(groupby) == "NA" || 
+          is.na(groupby)
+        second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 ||
+          sum(is.na(agelimit)) != 0
+        if (first & second) {
+          title <- paste("Histogram of EQ-5D-3L index values", sep = "")
         } else {
-          if (!second & second) {
-            title <- paste("Histogram of EQ-5D-3L index values for ",
-              groupby,
+          if (first & !second) {
+            title <- paste("Histogram of EQ-5D-3L index values",
+              " with ages between ", agelimit[1], " and ", agelimit[2],
               sep = ""
             )
           } else {
-            title <- paste("Histogram of EQ-5D-3L index values for ",
-              groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
-              sep = ""
-            )
+            if (!first & second) {
+              title <- paste("Histogram of EQ-5D-3L index values for ",
+                groupby,
+                sep = ""
+              )
+            } else {
+              title <- paste("Histogram of EQ-5D-3L index values for ",
+                groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
+                sep = ""
+              )
+            }
           }
         }
+        hist_plot <- graphics::hist(scores_noNA, main = title)
+        results <- list("stats" = stats, "frequency_table" = freq_table, 
+                        "histogram" = hist_plot, "modified_data" = new_data)
+        return(results)
+      } else {
+        print("No relevant rows with non NA scores")
       }
-      hist_plot <- graphics::hist(scores, main = title)
-      results <- list("stats" = stats, "frequency_table" = freq_table, 
-                      "histogram" = hist_plot, "modified_data" = new_data)
-      return(results)
     }
   } else {# if the eq 5d column names do not match
     stop("EQ-5D column names do not match")
@@ -741,11 +718,7 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
                          dimen3 = NA, dimen4 = NA, dimen5 = NA) {
   country_list <- c("Denmark", "France", "Germany", "Japan", "Netherlands", 
                     "Spain", "Thailand", "UK", "USA", "Zimbabwe")
-  if (replace_space_underscore(country) == -1) {
-    stop("Country name empty")
-  } else {
-    country <- replace_space_underscore(country)
-  }
+  country <- replace_space_underscore(country)
   if (country %in% country_list) {
     responses <- c(dimen, dimen2, dimen3, dimen4, dimen5)
     if (sum(is.na(dimen)) > 0) {
@@ -754,13 +727,17 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
       values_state <- NA
       return(values_state)
     } else {
-      # check first value should be a vector containiing responses or a 
+      # check first value should be a vector containing responses or a 
       #5digit number
       if (length(dimen) != 5 && length(dimen) != 1) {
-        stop("Invalid EQ-5D-5L responses-check the responses to each question")
+        stop("Expecting the full response as5 digit number or just 
+             the response for mobilty")
       } else {# first value a vector or a 5 figit number
         if (length(dimen) == 5) {# first value a vector
-          this_score_5L <- paste(dimen, collapse = "")
+          if (any(dimen < 1) || any(dimen > 5)) {
+            stop("Invalid EQ-5D-5L responses-check the responses to each question")
+          }
+          this_score_5L <- as.numeric(paste(dimen, collapse = ""))
         } else {# first value 5 digit number or actual response for mobility
           if (length(dimen) == 1) { 
             if (dimen >= 11111 && dimen <= 55555) { # valid 5 digit number
@@ -769,7 +746,7 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
               if (dimen <= 5 && dimen > 0) { # valid response to mobility
                 four_res <- c(dimen2, dimen3, dimen4, dimen5)
                 if (sum(is.na(four_res)) == 0) {
-                  if (any(responses <= 5)) {
+                  if (all(responses <= 5) && all(responses > 0)) {
                     this_score_5L <- paste(responses, collapse = "") 
                     # all valid and generate the score
                   } else {# error values
@@ -783,19 +760,16 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
                   return(values_state)
                 }
               } else {
-                stop("Invalid EQ-5D-5L responses-check the responses to 
-                     each question")
+                stop("Invalid EQ-5D-5L response to mobility")
               }
             }
           }
         }
       }
     }
-    if (this_score_5L < 11111 || this_score_5L > 55555) {
-      stop("Invalid EQ-5D-5L responses -less than 11111 or more than 55555")
-    } else {
-      ## create a vector of all possible 3L index values (length == 3^5)
-      index_3L <- numeric(243)
+
+    ## create a vector of all possible 3L index values (length == 3^5)
+    index_3L <- numeric(243)
       ## create a dataframe of all possible 3L scores
       scores_3L <-
         expand.grid(
@@ -804,7 +778,7 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
           UA = seq(3),
           SC = seq(3),
           MO = seq(3)
-        )
+      )
       ## calculate the index value for each score
       ## using function EQ5D_be based on Cleemput et al, 2010
       for (i in seq(243)) {
@@ -829,7 +803,7 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
       ## 5L to 3L CROSSWALK
       ## load 'probability matrix' from 'EQ-5D-5L_Crosswalk_Value_Sets'
       ## this is saved as dataframe 'm'
-      if (toupper(method) == "CW") {
+    if (toupper(method) == "CW") {
         prob.matrix <- Probability_matrix_crosswalk.df
         m <- prob.matrix
         rows_m <- nrow(m)
@@ -853,9 +827,8 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
         } else {
           return(m_sums[this_score])
         }
-      } else {
+    } else {
         stop("The specified method is not implemented")
-      }
     }
   } else {
     stop("Crosswalk for the country specified is not implemented")
@@ -887,11 +860,7 @@ map5Lto3LInd <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
 map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities, 
                       pain_discomfort, anxiety, country = "UK", method = "CW",
                       groupby = NULL, agelimit = NULL) {
-  if (replace_space_underscore(country) == -1) {
-    stop("Country name empty")
-  } else {
-    country <- replace_space_underscore(country)
-  }
+  country <- replace_space_underscore(country)
   eq5d_colnames <- c(mobility, self_care, usual_activities, pain_discomfort,
                      anxiety)
   ans_eq5d_colnames <- sapply(eq5d_colnames, check_column_exist, 
@@ -912,45 +881,47 @@ map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
         res5 <- working_data[j, anxiety]
         this_score <- map5Lto3LInd(country, method, c(res1, res2, res3, 
                                                       res4, res5))
-        if (is.numeric(this_score)) {
-          scores <- c(scores, this_score)
-        } else {
-          stop("EQ-5D-5L responses not valid - 5L scores can not be valued")
-        }
+        scores <- c(scores, this_score)
+
       }
       new_data <- cbind(working_data, scores)
       colnames(new_data) <- c(colnames(working_data), "Mapped EQ-5D-3L scores")
-      stats <- descriptive_stat_data_column(scores, "EQ-5D-3L")
-      freq_table <- get_frequency_table(scores)
-      first <- is.null(groupby) || toupper(groupby) == "NA" || is.na(groupby)
-      second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
-        sum(is.na(agelimit)) != 0
-      if (first & second) {
-        title <- paste("Histogram of EQ-5D-3L index values", sep = "")
-      } else {
-        if (first & !second) {
-          title <- paste("Histogram of EQ-5D-3L index values",
-            " with ages between ", agelimit[1], " and ", agelimit[2],
-            sep = ""
-          )
-        } else {
-          if (!second & second) {
-            title <- paste("Histogram of EQ-5D-3L index values for ",
-              groupby,
-              sep = ""
-            )
+      scores_noNA <- scores[!is.na(scores)]
+      if (length(scores_noNA) >= 1) {
+          stats <- descriptive_stat_data_column(scores_noNA, "EQ-5D-3L")
+          freq_table <- get_frequency_table(scores_noNA)
+          first <- is.null(groupby) || toupper(groupby) == "NA" || is.na(groupby)
+          second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
+            sum(is.na(agelimit)) != 0
+          if (first & second) {
+            title <- paste("Histogram of EQ-5D-3L index values", sep = "")
           } else {
-            title <- paste("Histogram of EQ-5D-3L index values for ",
-              groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
-              sep = ""
-            )
+            if (first & !second) {
+              title <- paste("Histogram of EQ-5D-3L index values",
+                " with ages between ", agelimit[1], " and ", agelimit[2],
+                sep = ""
+              )
+            } else {
+              if (!first & second) {
+                title <- paste("Histogram of EQ-5D-3L index values for ",
+                  groupby,
+                  sep = ""
+                )
+              } else {
+                title <- paste("Histogram of EQ-5D-3L index values for ",
+                  groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
+                  sep = ""
+                )
+              }
+            }
           }
-        }
+          hist_plot <- graphics::hist(scores, main = title)
+          results <- list("stats" = stats, "frequencyTable" = freq_table, 
+                          "histogram" = hist_plot, "modifiedData" = new_data)
+          return(results)
+      } else {
+        print("No relevant rows with non NA scores")
       }
-      hist_plot <- graphics::hist(scores, main = title)
-      results <- list("stats" = stats, "frequencyTable" = freq_table, 
-                      "histogram" = hist_plot, "modifiedData" = new_data)
-      return(results)
     }
   } else {# if the eq 5d column names do not match
     stop("EQ-5D column names do not match")
@@ -965,6 +936,7 @@ map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
 #' @export
 #' @description Correcting the implausible ordering
 .correctImplausibleOrdering <- function(scores) {
+  value = 0
   score_num <- as.numeric(paste(scores, collapse = ""))
   australia_impalusibleordering_scores <- c(
     33132, 12133, 13133, 22133, 23133, 32133, 33133, 12233, 13233, 
@@ -979,9 +951,7 @@ map5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
   if (sum(score_num %in% australia_impalusibleordering_scores) > 0) {
     index <- which(score_num == australia_impalusibleordering_scores)
     value <- australia_impalusibleordering_values[index]
-    return(value)
-  } else {
-    return(-1)
   }
+  return(value)
 }
 ################################################################################

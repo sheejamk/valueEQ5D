@@ -16,7 +16,6 @@ test_that("Checking 3L scores ", {
   expect_identical(the_result, c(1, 1, 2, 2, 1))
   expect_error(check_scores_3L(34546), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
 })
-
 # # ############################################################################
 context("Check 5L scores")
 test_that("Checking 5L scores ", {
@@ -38,8 +37,8 @@ test_that("Checking 5L scores ", {
   expect_identical(the_result, c(1, 1, 2, 2, 1))
 })
 # # ############################################################################
-context("EQ5D5L scoring ")
-test_that("EQ5D5L scoring ", {
+context("EQ5D5L scoring for individual responses")
+test_that("EQ5D5L scoring for individual responses", {
   the_result <- value_5L_Ind("England", 5, 1, 1, 1, 2)
   expect_equal(the_result, 0.648, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 1, 1, 1, 1, 2)
@@ -56,7 +55,6 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, 0.942, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 55555)
   expect_equal(the_result, -0.285, tolerance = 1e-3)
-  debug(value_5L_Ind)
   the_result <- value_5L_Ind("England", 111)
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", c(1, 1, 1, 1, 2))
@@ -79,6 +77,7 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, 0.922, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 11111)
   expect_equal(the_result, 1, tolerance = 1e-3)
+  expect_equal(value_5L_Ind("Canada",12244), 0.378, tol = 1e-3)
   
   the_result <- value_5L_Ind("England", NA, 1, 1, 1, 2)
   expect_equal(the_result, NA, tolerance = 1e-3)
@@ -90,6 +89,12 @@ test_that("EQ5D5L scoring ", {
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_5L_Ind("Germany", 1, 1, 1, 1, 1)
   expect_equal(the_result, 1, tolerance = 1e-3)
+  the_result <- value_5L_Ind("Japan", 1, 1, 1, 1, 2)
+  expect_equal(the_result, 0.86, tolerance = 1e-3)
+  the_result <- value_5L_Ind("Korea", 1, 1, 1, 1, 4)
+  expect_equal(the_result, 0.724, tolerance = 1e-3)
+  expect_error(value_5L_Ind("England", -111))
+  expect_equal(the_result, 0.724, tolerance = 1e-3)
   
   expect_error(value_5L_Ind("England", c(1, 1, 1), NA, NA, NA, NA), "Invalid EQ-5D-5L responses-check the responses to each question", fixed = TRUE)
   expect_error(value_5L_Ind("England", c(8, 1, 1, 2, 1), NA, NA, NA, NA), "Responses not valid for EQ-5D-5L scores", fixed = TRUE)
@@ -103,7 +108,7 @@ test_that("EQ5D5L scoring ", {
   expect_error(value_5L_Ind("England", "sh"), "The responses are not valid", fixed = TRUE)
 })
 # # # ###########################################################################
-context("testing EQ5D3L valuation using individual responses")
+context("testing EQ5D3L valuation for individual responses")
 test_that("test for value_3L", {
   the_result <- value_3L_Ind("UK", "TTO", 1, 1, 1, 1, 2)
   expect_equal(the_result, 0.848, tolerance = 1e-3)
@@ -149,9 +154,9 @@ test_that("test for value_3L", {
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_3L_Ind("UK", "TTO", 123)
   expect_equal(the_result, NA)
+  expect_error( value_3L_Ind("UK", "TTO", -111))
   answers <- EQ5D3L_indexvalues.df
   for (i in 1:nrow(answers)) {
-    the_scores3L <- convert_number_to_digits(answers$state[i])
     the_result <- value_3L_Ind("UK", "TTO", answers$state[i])
     expect_equal(the_result, answers$UKTTO[i])
   }
@@ -171,7 +176,7 @@ test_that("test for value_3L", {
   expect_error(value_3L_Ind("JP", "TTO", c(1, 2, 3, 2, 3)), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
 })
 # # # #########################################################################
-context("testing EQ5D3L valuation using individual responses")
+context("testing EQ5D3L valuation for individual responses")
 test_that("test for value_3L", {
   the_result <- value_3L_Ind("UK", "VAS", 1, 1, 1, 1, 2)
   expect_equal(the_result, 0.782, tolerance = 1e-3)
@@ -217,12 +222,13 @@ test_that("test for value_3L", {
   expect_equal(the_result, NA, tolerance = 1e-3)
   the_result <- value_3L_Ind("UK", "VAS", 123)
   expect_equal(the_result, NA)
+  the_result <- value_3L_Ind("Australia", "TTO", 33132)
+  expect_equal(the_result, -0.045, tol = 1e-3)
   answers <- EQ5D3L_indexvalues.df
-  for (i in 1:nrow(answers)) {
-    the_scores3L <- convert_number_to_digits(answers$state[i])
-    the_result <- value_3L_Ind("UK", "VAS", answers$state[i])
-    expect_equal(the_result, answers$UKVAS[i])
-  }
+  
+  expect_error(value_3L_Ind("India", "VAS", 11323), "No country tariffs", fixed = TRUE)
+  
+  expect_error(value_3L_Ind("Korea", "VAS", 11323), "No tariff found", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", 345678), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
   expect_error(value_3L_Ind("NM", "VAS", -11111), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
   expect_error(value_3L_Ind("UK", "VAS", 55555), "Responses not valid for EQ-5D-3L scores", fixed = TRUE)
@@ -239,9 +245,30 @@ test_that("test for value_3L", {
   expect_error(value_3L_Ind("JP", "VAS", c(1, 2, 3, 2, 3)), "No country tariffs found for the country you specified for EQ-5D-3L. Please try later", fixed = TRUE)
 })
 
+# # # ###########################################################################
+context("EQ5D5L crosswalk mapping for individual responses")
+test_that("EQ5D5L crosswalk mapping for individual responses", {
+  expect_equal(map5Lto3LInd("UK", "CW", NA, 1, 2, 3, 4), NA)
+  expect_equal(map5Lto3LInd("UK", "CW", 1, 2, 3, 4), NA)
+  expect_equal(map5Lto3LInd("UK", "CW", 12345), 0.0633, tol = 1e-3)
+  expect_equal(map5Lto3LInd("UK", "CW", 1, 1, 1, 2, 2), 0.767, tol = 1e-3)
+  expect_error(map5Lto3LInd("UK", "CW", 7, 1, 1, 2, 2))
+  expect_error(map5Lto3LInd("UK", "CW", 1, 1, 7, 2, 2))
+  expect_error(map5Lto3LInd("India", "CW", 1, 1, 2, 2, 2))
+  expect_error(map5Lto3LInd("UK", "map", 1, 1, 2, 2, 2))
+  expect_error(map5Lto3LInd("UK", "CW", c(10,1), 2, 2, 2))
+  expect_equal(map5Lto3LInd("UK", "CW",c(1,2,3,4,5)), 0.0633, tol = 1e-3)
+  expect_error(map5Lto3LInd("UK", "CW",c(1,2,3,4,7)))
+  expect_error(map5Lto3LInd("UK", "CW",c("sh",2,3,4,7)))
+  expect_error(map5Lto3LInd("UK", "CW",c("-2",2,3,4,7)))
+  
+  expect_error(map5Lto3LInd("UK", "CW",1,0,0,0,0))
+  expect_error(map5Lto3LInd("UK", "CW",1,1,1,1,-1))
+  expect_error(map5Lto3LInd("UK", "CW",c(1,1,1,1,-1)))
+})
 # ###############################################################################################################
-context("EQ5D5L scoring")
-test_that("EQ5D5L scoring", {
+context("EQ5D5L scoring for all countries")
+test_that("EQ5D5L scoring for all countries", {
   answers <- EQ5D5L_indexvalues.df
   total_entries <- seq(1, nrow(answers))
   total_countries <- c(
@@ -251,7 +278,6 @@ test_that("EQ5D5L scoring", {
     "Taiwan", "Thailand",
     "Uruguay", "USA", "Vietnam"
   )
-  total_countries <- c("Canada")
   total <- length(total_countries)
   for (j in 1:total) {
     this_country <- total_countries[j]
@@ -265,8 +291,8 @@ test_that("EQ5D5L scoring", {
   }
 })
 # # ########################################################################
-context("EQ5D3L scoring")
-test_that("EQ5D3L scoring", {
+context("EQ5D3L scoring for all countries")
+test_that("EQ5D3L scoring for all countries", {
   answers <- EQ5D3L_indexvalues.df
   total_entries <- seq(1, nrow(answers))
   VAS_countrylist <- c(
@@ -281,7 +307,6 @@ test_that("EQ5D3L scoring", {
   )
   common_countries <- Reduce(intersect, list(VAS_countrylist, TTO_countrylist))
   all_countries <- sort(unique(c(VAS_countrylist, TTO_countrylist)))
-  all_countries <- c("Argentina")
   total <- length(all_countries)
   for (j in 1:total) {
     print(all_countries[j])
@@ -325,8 +350,8 @@ test_that("EQ5D3L scoring", {
   }
 })
 # # # ###########################################################################
-context("EQ5D5L crosswalk mapping")
-test_that("EQ5D5L crosswalk mapping", {
+context("EQ5D5L crosswalk mapping for all countries")
+test_that("EQ5D5L crosswalk mapping for all countries", {
   answers <- EQ5D5L_crosswalk_indexvalues.df
   total_entries <- seq(1, nrow(answers))
   end1 <- length(total_entries)
@@ -334,7 +359,6 @@ test_that("EQ5D5L crosswalk mapping", {
     "Denmark", "France", "Germany", "Japan", "Netherlands", "Spain", "Thailand",
     "UK", "USA", "Zimbabwe"
   )
-  total_countries <- c("UK")
   total <- length(total_countries)
   for (j in 1:total) {
     this_country <- total_countries[j]
@@ -348,16 +372,108 @@ test_that("EQ5D5L crosswalk mapping", {
     }
   }
 })
-# # # # ##########################################################################
 # # # ###########################################################################
-context("EQ5D5L valuation testing")
-test_that("EQ5D5L valuation testing", {
+context("EQ5D5L valuation testing dataset")
+test_that("EQ5D5L valuation testing dataset", {
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
     res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, c(10, 70))
     expect_equal(res$stats[2], 0.459)
     expect_equal(res$stats[9], 2)
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", "Male", c(0,20))
+    expect_equal(res$stats[2], 0.749)
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", "Male",NULL)
+    expect_equal(res$stats[2], 0.749)
+    
     expect_error(value_5L(data, "mo", "sc", "ua", "pd", "ad", "India", NULL, c(10, 70)))
+    expect_error(value_5L(data, "mo", "sc", "ua", "pd", "ad", "", NULL, c(10, 70)))
+    expect_error(value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, c(0, 5)))
+    data <- data.frame(
+      age = c(10, 20), sex = c("M", "F"),
+      mo = c(1, 2), sc = c(NA, 2), ua = c(NA, 4), pd = c(3, 4), ad = c(3, 4))
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, c(0, 20))
+    expect_equal(res$stats[2], 0.169)
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, NULL)
+    expect_equal(res$stats[2], 0.169)
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", "Male", NULL)
+    expect_equal(res,"No relevant rows with non NA scores")
+    res = value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", "Male", c(0,20))
+    expect_equal(res,"No relevant rows with non NA scores")
+    
+    data <- data.frame(
+      age = c(10, 20), sex = c("M", "F"),
+      one = c(1, 2), two = c(NA, 2), three = c(NA, 4), four = c(3, 4), five = c(3, 4))
+    expect_error(value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", "Male", c(0,20)))
+})
+# # # ###########################################################################
+context("EQ5D3L valuation testing dataset")
+test_that("EQ5D3L valuation testing", {
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    mo = c(1, 2), sc = c(1, 2), ua = c(3, 3), pd = c(3, 2), ad = c(1, 1))
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,NULL, c(10, 70))
+  expect_equal(res$stats[2], 0.215)
+  expect_equal(res$stats[9], 2)
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", c(10, 70))
+  expect_equal(res$stats[2], 0.17)
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", NULL)
+  expect_equal(res$stats[2], 0.17)
+  # no data with the given criteria
+  expect_error(value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", c(0,5)))
+  # no country tariff
+  expect_error(value_3L(data, "mo", "sc", "ua", "pd", "ad", "India", "TTO" ,"Male", NULL))
+  # no country tariff
+  expect_error(value_3L(data, "mo", "sc", "ua", "pd", "ad", "", "TTO" ,"Male", NULL))
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    mo = c(1, 2), sc = c(NA, 2), ua = c(NA, 2), pd = c(3, 1), ad = c(3, 2))
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", c(0,20))
+  expect_equal(res, "No relevant rows with non NA scores")
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,NULL, NULL)
+  expect_equal(res$stats[2], 0.639)
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", NULL)
+  expect_equal(res,"No relevant rows with non NA scores")
+  res = value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", c(0,20))
+  expect_equal(res,"No relevant rows with non NA scores")
+  
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    one = c(1, 2), two = c(NA, 2), three = c(NA, 4), four = c(3, 4), five = c(3, 4))
+  # columns do not exist
+  expect_error(value_3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "TTO" ,"Male", c(0,20)))
 })
 # # # # ##########################################################################
+context("EQ5D5L crosswalk  testing dataset")
+test_that("EQ5D5L crosswalk  testing dataset", {
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
+  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW",NULL, c(10, 70))
+  expect_equal(res$stats[2], 0.408, tol = 1e-3)
+  expect_equal(res$stats[9], 2)
+  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male", c(0,20))
+  expect_equal(res$stats[2], 0.689)
+  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male",NULL)
+  expect_equal(res$stats[2], 0.689)
+  debug(map5Lto3L)
+  res = map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL,NULL)
+  expect_equal(res$stats[2], 0.4079, tol = 1e-4)
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "India", "CW", NULL, c(10, 70)))
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "", "CW", NULL, c(10, 70)))
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL, c(0, 5)))
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "mp", NULL, c(0, 70)))
+  
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    mo = c(1, 2), sc = c(NA, 2), ua = c(NA, 4), pd = c(3, 4), ad = c(3, 4))
+  # columns do not exist
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,NULL, c(0,10)))
+  
+  data <- data.frame(
+    age = c(10, 20), sex = c("M", "F"),
+    one = c(1, 2), two = c(NA, 2), three = c(NA, 4), four = c(3, 4), five = c(3, 4))
+  # columns do not exist
+  expect_error(map5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,"Male", c(0,20)))
+  
+})
