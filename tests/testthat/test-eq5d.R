@@ -466,13 +466,12 @@ test_that("EQ5D5L crosswalk  testing dataset", {
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     mo = c(1, 2), sc = c(NA, 2), ua = c(NA, 4), pd = c(3, 4), ad = c(3, 4))
-  # columns do not exist
-  expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,NULL, c(0,10)))
+  res = map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,NULL, c(0,10))
+  expect_equal(res,"No relevant rows with non NA scores")
   
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     one = c(1, 2), two = c(NA, 2), three = c(NA, 4), four = c(3, 4), five = c(3, 4))
   # columns do not exist
   expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW" ,"Male", c(0,20)))
-  
 })

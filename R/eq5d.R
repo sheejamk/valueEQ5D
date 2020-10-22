@@ -909,8 +909,8 @@ map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
                 )
               } else {
                 title <- paste("Histogram of EQ-5D-3L index values for ",
-                  groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
-                  sep = ""
+                  groupby, " with ages between ", agelimit[1], " and ", 
+                  agelimit[2], sep = ""
                 )
               }
             }
