@@ -3,6 +3,8 @@ language: R
 sudo: false
 cache: packages
 after_success: - Rscript -e 'covr::codecov()'
+codecov:
+  token: 3c4ee71d-1488-4781-8b23-10b6377ef1cc
 coverage:
   status:
     project:
