@@ -19,3 +19,7 @@ You can install the released version from [CRAN](https://CRAN.R-project.org) wit
 install.packages("valueEQ5D") 
 
 Alternatively, the latest release can be installed from www.github.com/sheejamk/valueEQ5D
+
+<!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/sheejamk/valueEQ5D/branch/master/graph/badge.svg)](https://codecov.io/gh/sheejamk/valueEQ5D?branch=master)
+  <!-- badges: end -->

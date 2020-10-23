@@ -24,6 +24,8 @@ Imports:
     rstudioapi,
     testthat,
     utils
-Suggests: knitr,
-          rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    covr
 VignetteBuilder: knitr
