@@ -1,5 +1,4 @@
 language: r
 warnings_are_errors: true
 sudo: required
-after_success:
-    - Rscript -e 'covr::codecov()'
+after_success: - Rscript -e 'covr::codecov()'
