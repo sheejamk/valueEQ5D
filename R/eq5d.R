@@ -936,7 +936,7 @@ map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
 #' @export
 #' @description Correcting the implausible ordering
 .correctImplausibleOrdering <- function(scores) {
-  value = 0
+  value <- 0
   score_num <- as.numeric(paste(scores, collapse = ""))
   australia_impalusibleordering_scores <- c(
     33132, 12133, 13133, 22133, 23133, 32133, 33133, 12233, 13233, 
@@ -945,7 +945,7 @@ map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
   )
   australia_impalusibleordering_values <- c(
     -0.045, 0.154, 0.154, 0.086, 0.086, -0.083, -0.083, 0.101, 0.101, 0.033, 
-    0.033, -0.136, -0.136,-0.098, -0.199, 0.020, 0.020, -0.048, -0.048, -0.206,
+    0.033, -0.136, -0.136, -0.098, -0.199, 0.020, 0.020, -0.048, -0.048, -0.206,
     -0.217, -0.217
   )
   if (sum(score_num %in% australia_impalusibleordering_scores) > 0) {

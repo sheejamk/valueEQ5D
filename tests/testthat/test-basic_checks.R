@@ -61,7 +61,6 @@ test_that("testing getting column number for existing column names", {
   )
   expect_equal(get_column_no_colnames(sampledata, "sex"), 2)
   expect_error(get_column_no_colnames(sampledata, "dob"))
-  
 })
 # # ############################################################################
 context("testing getting column number for existing column names")
@@ -122,7 +121,7 @@ test_that("testing subset_gender_age_to_group", {
 context("testing descritpvie statistics")
 test_that("testing descritpvie statistics", {
   x <- c("a", "b", "c")
-  expect_error(descriptive_stat_data_column(x,"name"))
+  expect_error(descriptive_stat_data_column(x, "name"))
   x <- c(0, 11, 78, 160)
   results <- matrix(c(249, 62.25, 73.72189, 44.5, 0, 36.86, 0, 160, 4), 
                     nrow = 1, byrow = TRUE)
@@ -181,15 +180,15 @@ test_that("test for numeric values in a specific column but with no range given"
 context("testing getting frequency table")
 test_that("test getting frequency table", {
   expect_error(get_frequency_table(NULL))
-  res = (get_frequency_table(c(1,1,1,2,2,2)))
-  expect_equal(res[1,1], "1")
-  expect_equal(res[1,2], "3")
+  res <- (get_frequency_table(c(1, 1, 1, 2, 2, 2)))
+  expect_equal(res[1, 1], "1")
+  expect_equal(res[1, 2], "3")
 })
 # ## # #########################################################################
 context("testing converting number to digits")
 test_that("test converting number to digits", {
-  res = c(2,3,4)
-  expect_equal(convert_number_to_digits(234),res)
+  res <- c(2, 3, 4)
+  expect_equal(convert_number_to_digits(234), res)
   expect_error(convert_number_to_digits("sh"))
 })
 # ## # #########################################################################
