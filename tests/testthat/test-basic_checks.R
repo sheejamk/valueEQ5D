@@ -1,4 +1,3 @@
-
 # # #######################################################################
 context("testing column existence")
 test_that("testing column existence", {

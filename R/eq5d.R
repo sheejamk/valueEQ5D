@@ -266,10 +266,14 @@ value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England",
             }
           }
         }
+        oldpar <- graphics::par(no.readonly = TRUE)
+        graphics::par(mar = c(4, 4, 2, 2))
+        
         hist_plot <- graphics::hist(scores_noNA, main = title)
         results <- list("stats" = stats, "freq_table" = freq_table, 
                         "histogram" = hist_plot, "modified_data" = new_data)
         return(results)
+        on.exit(graphics::par(oldpar))
       } else {
         print("No relevant rows with non NA scores")
       }
@@ -632,7 +636,7 @@ value_3L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country, method,
   if (all(ans_eq5d_colnames == 0)) { # if the eq5d column names match
     working_data <- subset_gender_age_to_group(eq5dresponse_data, 
                                                groupby, agelimit)
-    if (nrow(working_data) < 1 ) {
+    if (nrow(working_data) < 1) {
       stop("no entries with the given criteria - Please check 
            the contents or the criteria")
     } else {

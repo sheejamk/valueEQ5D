@@ -9,3 +9,4 @@
 ^\.travis\.yml$
 ^cran-comments\.md$
 ^codecov\.yml$
+^.*\.pdf$

@@ -375,6 +375,7 @@ test_that("EQ5D5L valuation testing dataset", {
   data <- data.frame(
     age = c(10, 20), sex = c("M", "F"),
     mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
+  
     res <- value_5L(data, "mo", "sc", "ua", "pd", "ad", "England", NULL, c(10, 70))
     expect_equal(res$stats[2], 0.459)
     expect_equal(res$stats[9], 2)
