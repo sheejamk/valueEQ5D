@@ -249,7 +249,8 @@ value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England",
         } else {
           if (first & !second) {
             title <- paste("Histogram of EQ-5D-5L index values",
-                           " with ages between ", agelimit[1], " and ", agelimit[2],
+                           " with ages between ", agelimit[1], " and ", 
+                           agelimit[2],
                            sep = ""
             )
           } else {
@@ -260,7 +261,8 @@ value_5L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country = "England",
               )
             } else {
               title <- paste("Histogram of EQ-5D-5L index values for ",
-                             groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
+                             groupby, " with ages between ", agelimit[1], 
+                             " and ", agelimit[2],
                              sep = ""
               )
             }
@@ -308,24 +310,31 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
                          dimen4 = NA, dimen5 = NA) {
   countrylist <- c(
     "Argentina", "Australia", "Belgium", "Brazil", "Canada", "Chile", "China",
-    "Denmark", "Europe", "Finland", "France", "Germany", "Iran", "Italy", "Japan",
+    "Denmark", "Europe", "Finland", "France", "Germany", "Iran", "Italy", 
+    "Japan",
     "Korea", "Malaysia", "Netherlands", "New_Zealand", "Poland", "Portugal", 
     "Singapore", "Slovenia", "Spain", "Sri_Lanka", "Sweden",
     "Taiwan", "Thailand", "Trinidad_and_Tobago", "UK", "USA", "Zimbabwe"
   )
   
   VAS_countrylist <- c(
-    "Argentina", "Belgium", "Denmark", "Europe", "Finland", "Germany", "Malaysia",
+    "Argentina", "Belgium", "Denmark", "Europe", "Finland", "Germany", 
+    "Malaysia",
     "New_Zealand", "Slovenia", "Spain", "UK"
   )
   TTO_countrylist <- c(
     "Argentina", "Australia", "Brazil", "Canada", "Chile", "China", "Denmark",
-    "France", "Germany", "Iran", "Italy", "Japan", "Korea", "Netherlands", "Poland",
+    "France", "Germany", "Iran", "Italy", "Japan", "Korea", "Netherlands", 
+    "Poland",
     "Portugal", "Singapore", "Spain", "Sri_Lanka", "Sweden",
     "Taiwan", "Thailand", "Trinidad_and_Tobago", "UK", "USA", "Zimbabwe"
   )
   
-  australia.impalusibleordering.scores <- c(33132, 12133, 13133, 22133, 23133, 32133, 33133, 12233, 13233, 22233, 23233, 32233, 33233, 33232, 33323, 13332, 13333, 23332, 23333, 32333, 33332, 33333)
+  australia.impalusibleordering.scores <- c(33132, 12133, 13133, 22133, 23133, 
+                                            32133, 33133, 12233, 13233, 22233, 
+                                            23233, 32233, 33233, 33232, 33323, 
+                                            13332, 13333, 23332, 23333, 32333, 
+                                            33332, 33333)
   country <- replace_space_underscore(country)
   if (country %in% countrylist) {
     scores <- check_scores_3L(dimen, dimen2, dimen3, dimen4, dimen5)
@@ -443,136 +452,170 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
               }
               dim_response <- eq5d_valueset[rownums, country]
             }
-            if (any(scores >= 3) && !is.na(eq5d_valueset[rownumn_min3, country])) {
+            if (any(scores >= 3) && 
+                !is.na(eq5d_valueset[rownumn_min3, country])) {
               min3_value <- eq5d_valueset[rownumn_min3, country]
             }
             if (length(which3) >= 1 & sum(is.na(rownum_C3sq) == 0)) {
               if (!is.na(eq5d_valueset[rownum_C3sq, country])) {
-                c3sq_value <- (length(which3))^2 * eq5d_valueset[rownum_C3sq, country]
+                c3sq_value <- (length(which3))^2 * eq5d_valueset[rownum_C3sq, 
+                                                                 country]
               }
             }
-            if (length(all_equals2or3) >= 1 & sum(is.na(rownum_all_equals2or3) == 0)) {
+            if (length(all_equals2or3) >= 1 & 
+                sum(is.na(rownum_all_equals2or3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_all_equals2or3, country])) {
-                all_equals2or3_value <- eq5d_valueset[rownum_all_equals2or3, country]
+                all_equals2or3_value <- eq5d_valueset[rownum_all_equals2or3, 
+                                                      country]
               }
             }
-            if (sum(scores) > 5 & length(min2or3) >= 1 & sum(is.na(rownum_min2or3) == 0)) {
+            if (sum(scores) > 5 & length(min2or3) >= 1 & 
+                sum(is.na(rownum_min2or3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_min2or3, country])) {
                 min2or3_value <- eq5d_valueset[rownum_min2or3, country]
               }
             }
-            if (sum(scores) > 5 & length(min2or3) >= 1 & sum(is.na(rownumn_D1) == 0)) {
+            if (sum(scores) > 5 & length(min2or3) >= 1 & 
+                sum(is.na(rownumn_D1) == 0)) {
               if (!is.na(eq5d_valueset[rownumn_D1, country])) {
-                d1_value <- (length(min2or3) - 1) * eq5d_valueset[rownumn_D1, country]
+                d1_value <- (length(min2or3) - 1) * 
+                  eq5d_valueset[rownumn_D1, country]
               }
             }
-            if (sum(scores) > 5 & length(which2) >= 1 & sum(is.na(rownumn_I2) == 0)) {
+            if (sum(scores) > 5 & length(which2) >= 1 
+                & sum(is.na(rownumn_I2) == 0)) {
               if (!is.na(eq5d_valueset[rownumn_I2, country])) {
-                i2_value <- (length(which2) - 1) * eq5d_valueset[rownumn_I2, country]
+                i2_value <- (length(which2) - 1) * 
+                  eq5d_valueset[rownumn_I2, country]
               }
             }
-            if (sum(scores) > 5 & length(which2) >= 1 & sum(is.na(rownumn_I2_sq) == 0)) {
+            if (sum(scores) > 5 & length(which2) >= 1 & 
+                sum(is.na(rownumn_I2_sq) == 0)) {
               if (!is.na(eq5d_valueset[rownumn_I2_sq, country])) {
-                i2_sq_value <- (length(which2) - 1)^2 * eq5d_valueset[rownumn_I2_sq, country]
+                i2_sq_value <- (length(which2) - 1)^2 * 
+                  eq5d_valueset[rownumn_I2_sq, country]
               }
             }
-            if (sum(scores) > 5 & length(which3) >= 1 & sum(is.na(rownumn_I3) == 0)) {
+            if (sum(scores) > 5 & length(which3) >= 1 & 
+                sum(is.na(rownumn_I3) == 0)) {
               if (!is.na(eq5d_valueset[rownumn_I3, country])) {
-                i3_value <- (length(which3) - 1) * eq5d_valueset[rownumn_I3, country]
+                i3_value <- (length(which3) - 1) * 
+                  eq5d_valueset[rownumn_I3, country]
               }
             }
-            if (sum(scores) > 5 & length(which3) >= 1 & sum(is.na(rownumn_I3_sq) == 0)) {
+            if (sum(scores) > 5 & length(which3) >= 1 & 
+                sum(is.na(rownumn_I3_sq) == 0)) {
               if (!is.na(eq5d_valueset[rownumn_I3_sq, country])) {
-                i3_sq_value <- (length(which3) - 1)^2 * eq5d_valueset[rownumn_I3_sq, country]
+                i3_sq_value <- (length(which3) - 1)^2 * 
+                  eq5d_valueset[rownumn_I3_sq, country]
               }
             }
-            if (all(scores <= 2) & !all(scores == 1) & sum(is.na(rownum_only1sand2s) == 0)) {
+            if (all(scores <= 2) & !all(scores == 1) & 
+                sum(is.na(rownum_only1sand2s) == 0)) {
               if (!is.na(eq5d_valueset[rownum_only1sand2s, country])) {
                 only1sand2s_value <- eq5d_valueset[rownum_only1sand2s, country]
               }
             }
             ## !all(scores==3) & need ??
-            if (!any(scores == 2) & !all(scores == 1) & sum(is.na(rownum_only1sand3s) == 0)) {
+            if (!any(scores == 2) & !all(scores == 1) & 
+                sum(is.na(rownum_only1sand3s) == 0)) {
               if (!is.na(eq5d_valueset[rownum_only1sand3s, country])) {
                 only1sand3s_value <- eq5d_valueset[rownum_only1sand3s, country]
               }
             }
-            if (any(scores == 2) & any(scores == 3) & sum(is.na(rownum_atleast2andatleast3) == 0)) {
+            if (any(scores == 2) & any(scores == 3) & 
+                sum(is.na(rownum_atleast2andatleast3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_atleast2andatleast3, country])) {
                 atleast2andatleast3_value <- eq5d_valueset[rownum_atleast2andatleast3, country]
               }
             }
-            if (any(scores == 2) & any(scores == 3) & sum(is.na(rownum_nos2withatleast3) == 0)) {
+            if (any(scores == 2) & any(scores == 3) & 
+                sum(is.na(rownum_nos2withatleast3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_nos2withatleast3, country])) {
-                nos2withatleast3_value <- length(which(scores == 2)) * eq5d_valueset[rownum_nos2withatleast3, country]
+                nos2withatleast3_value <- length(which(scores == 2)) * 
+                  eq5d_valueset[rownum_nos2withatleast3, country]
               }
             }
             if (any(scores == 2) & sum(is.na(rownum_nos2Sq) == 0)) {
               if (!is.na(eq5d_valueset[rownum_nos2Sq, country])) {
-                nos2Sq_value <- (length(which(scores == 2)))^2 * eq5d_valueset[rownum_nos2Sq, country]
+                nos2Sq_value <- (length(which(scores == 2)))^2 * 
+                  eq5d_valueset[rownum_nos2Sq, country]
               }
             }
             if (any(scores == 3) & sum(is.na(rownum_nos3Sq) == 0)) {
               if (!is.na(eq5d_valueset[rownum_nos3Sq, country])) {
-                nos3Sq_value <- (length(which(scores == 3)))^2 * eq5d_valueset[rownum_nos3Sq, country]
+                nos3Sq_value <- (length(which(scores == 3)))^2 * 
+                  eq5d_valueset[rownum_nos3Sq, country]
               }
             }
-            if (scores[["MO"]] == 3 & scores[["SC"]] == 3 & sum(is.na(rownum_MO3SC3) == 0)) {
+            if (scores[["MO"]] == 3 & scores[["SC"]] == 3 & 
+                sum(is.na(rownum_MO3SC3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_MO3SC3, country])) {
                 mo3sc3_value <- eq5d_valueset[rownum_MO3SC3, country]
               }
             }
-            if (scores[["MO"]] == 3 & scores[["UA"]] == 3 & sum(is.na(rownum_MO3UA3) == 0)) {
+            if (scores[["MO"]] == 3 & scores[["UA"]] == 3 & 
+                sum(is.na(rownum_MO3UA3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_MO3UA3, country])) {
                 mo3ua3_value <- eq5d_valueset[rownum_MO3UA3, country]
               }
             }
-            if (scores[["MO"]] == 3 & scores[["PD"]] == 3 & sum(is.na(rownum_MO3PD3) == 0)) {
+            if (scores[["MO"]] == 3 & scores[["PD"]] == 3 & 
+                sum(is.na(rownum_MO3PD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_MO3PD3, country])) {
                 mo3pd3_value <- eq5d_valueset[rownum_MO3PD3, country]
               }
             }
-            if (scores[["MO"]] == 3 & scores[["AD"]] == 3 & sum(is.na(rownum_MO3AD3) == 0)) {
+            if (scores[["MO"]] == 3 & scores[["AD"]] == 3 & 
+                sum(is.na(rownum_MO3AD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_MO3AD3, country])) {
                 mo3ad3_value <- eq5d_valueset[rownum_MO3AD3, country]
               }
             }
-            if (scores[["SC"]] == 3 & scores[["UA"]] == 3 & sum(is.na(rownum_SC3UA3) == 0)) {
+            if (scores[["SC"]] == 3 & scores[["UA"]] == 3 & 
+                sum(is.na(rownum_SC3UA3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_SC3UA3, country])) {
                 sc3ua3_value <- eq5d_valueset[rownum_SC3UA3, country]
               }
             }
-            if (scores[["SC"]] == 3 & scores[["PD"]] == 3 & sum(is.na(rownum_SC3PD3) == 0)) {
+            if (scores[["SC"]] == 3 & scores[["PD"]] == 3 & 
+                sum(is.na(rownum_SC3PD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_SC3PD3, country])) {
                 sc3pd3_value <- eq5d_valueset[rownum_SC3PD3, country]
               }
             }
-            if (scores[["SC"]] == 3 & scores[["AD"]] == 3 & sum(is.na(rownum_SC3AD3) == 0)) {
+            if (scores[["SC"]] == 3 & scores[["AD"]] == 3 & 
+                sum(is.na(rownum_SC3AD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_SC3AD3, country])) {
                 sc3ad3_value <- eq5d_valueset[rownum_SC3AD3, country]
               }
             }
-            if (scores[["UA"]] == 3 & scores[["PD"]] == 3 & sum(is.na(rownum_UA3PD3) == 0)) {
+            if (scores[["UA"]] == 3 & scores[["PD"]] == 3 & 
+                sum(is.na(rownum_UA3PD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_UA3PD3, country])) {
                 ua3pd3_value <- eq5d_valueset[rownum_UA3PD3, country]
               }
             }
-            if (scores[["UA"]] == 3 & scores[["AD"]] == 3 & sum(is.na(rownum_UA3AD3) == 0)) {
+            if (scores[["UA"]] == 3 & scores[["AD"]] == 3 & 
+                sum(is.na(rownum_UA3AD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_UA3AD3, country])) {
                 ua3ad3_value <- eq5d_valueset[rownum_UA3AD3, country]
               }
             }
-            if (scores[["PD"]] == 3 & scores[["AD"]] == 3 & sum(is.na(rownum_PD3AD3) == 0)) {
+            if (scores[["PD"]] == 3 & scores[["AD"]] == 3 & 
+                sum(is.na(rownum_PD3AD3) == 0)) {
               if (!is.na(eq5d_valueset[rownum_PD3AD3, country])) {
                 pd3ad3_value <- eq5d_valueset[rownum_PD3AD3, country]
               }
             }
-            if (scores[["MO"]] == 2 & scores[["UA"]] == 2 & sum(is.na(rownum_MO2UA2) == 0)) {
+            if (scores[["MO"]] == 2 & scores[["UA"]] == 2 & 
+                sum(is.na(rownum_MO2UA2) == 0)) {
               if (!is.na(eq5d_valueset[rownum_MO2UA2, country])) {
                 mo2ua2_value <- eq5d_valueset[rownum_MO2UA2, country]
               }
             }
-            if (scores[["SC"]] == 3 & scores[["UA"]] == 2 & sum(is.na(rownum_SC3UA2) == 0)) {
+            if (scores[["SC"]] == 3 & scores[["UA"]] == 2 &
+                sum(is.na(rownum_SC3UA2) == 0)) {
               if (!is.na(eq5d_valueset[rownum_SC3UA2, country])) {
                 sc3ua2_value <- eq5d_valueset[rownum_SC3UA2, country]
               }
@@ -580,18 +623,29 @@ value_3L_Ind <- function(country, method, dimen, dimen2 = NA, dimen3 = NA,
             if (country == "Germany" && method == "VAS") {
               prod.response <- prod(dim_response, na.rm = TRUE)
               values <- c(
-                eq5d_valueset[rownumfh, country], prod.response, min2or3_value, min3_value, all_equals2or3_value, c3sq_value, d1_value, i2_value,
-                i2_sq_value, i3_value, i3_sq_value, only1sand2s_value, only1sand3s_value, atleast2andatleast3_value, nos2withatleast3_value,
+                eq5d_valueset[rownumfh, country], prod.response,
+                min2or3_value, min3_value, all_equals2or3_value, 
+                c3sq_value, d1_value, i2_value,
+                i2_sq_value, i3_value, i3_sq_value, only1sand2s_value, 
+                only1sand3s_value, atleast2andatleast3_value, 
+                nos2withatleast3_value,
                 nos2Sq_value, nos3Sq_value
               )
               values_state <- prod(values, na.rm = TRUE)
             } else {
               sum_response <- sum(dim_response, na.rm = TRUE)
               values <- c(
-                eq5d_valueset[rownumfh, country], sum_response, min2or3_value, min3_value, all_equals2or3_value, c3sq_value, d1_value, i2_value,
-                i2_sq_value, i3_value, i3_sq_value, only1sand2s_value, only1sand3s_value, atleast2andatleast3_value, nos2withatleast3_value,
-                nos2Sq_value, nos3Sq_value, mo3sc3_value, mo3ua3_value, mo3pd3_value, mo3ad3_value, sc3ua3_value, sc3pd3_value, sc3ad3_value,
-                ua3pd3_value, ua3ad3_value, pd3ad3_value, mo2ua2_value, sc3ua2_value
+                eq5d_valueset[rownumfh, country], sum_response, min2or3_value, 
+                min3_value, all_equals2or3_value, c3sq_value, d1_value, 
+                i2_value,
+                i2_sq_value, i3_value, i3_sq_value, only1sand2s_value, 
+                only1sand3s_value, atleast2andatleast3_value, 
+                nos2withatleast3_value,
+                nos2Sq_value, nos3Sq_value, mo3sc3_value, mo3ua3_value, 
+                mo3pd3_value, mo3ad3_value, sc3ua3_value, sc3pd3_value, 
+                sc3ad3_value,
+                ua3pd3_value, ua3ad3_value, pd3ad3_value, mo2ua2_value, 
+                sc3ua2_value
               )
               values_state <- sum(values, na.rm = TRUE)
             }
@@ -677,7 +731,8 @@ value_3L <- function(eq5dresponse_data, mo, sc, ua, pd, ad, country, method,
               )
             } else {
               title <- paste("Histogram of EQ-5D-3L index values for ",
-                groupby, " with ages between ", agelimit[1], " and ", agelimit[2],
+                groupby, " with ages between ", agelimit[1], " and ", 
+                agelimit[2],
                 sep = ""
               )
             }
@@ -739,7 +794,8 @@ map_5Lto3L_Ind <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
       } else {# first value a vector or a 5 figit number
         if (length(dimen) == 5) {# first value a vector
           if (any(dimen < 1) || any(dimen > 5)) {
-            stop("Invalid EQ-5D-5L responses-check the responses to each question")
+            stop("Invalid EQ-5D-5L responses-check the responses to 
+                 each question")
           }
           this_score_5L <- as.numeric(paste(dimen, collapse = ""))
         } else {# first value 5 digit number or actual response for mobility
@@ -894,7 +950,8 @@ map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
       if (length(scores_noNA) >= 1) {
           stats <- descriptive_stat_data_column(scores_noNA, "EQ-5D-3L")
           freq_table <- get_frequency_table(scores_noNA)
-          first <- is.null(groupby) || toupper(groupby) == "NA" || is.na(groupby)
+          first <- is.null(groupby) || toupper(groupby) == "NA" || 
+            is.na(groupby)
           second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
             sum(is.na(agelimit)) != 0
           if (first & second) {
