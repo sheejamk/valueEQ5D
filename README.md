@@ -1,11 +1,10 @@
 <!-- badges: start -->
-
   
   [![Build Status](https://travis-ci.org/{sheejamk}/{valueEQ5D}.png?branch=master)](https://travis-ci.org/{sheejamk}/{valueEQ5D})
-  
+<!-- badges: end -->
+      
+<!-- badges: start -->
    [![Codecov test coverage](https://codecov.io/gh/sheejamk/valueEQ5D/branch/master/graph/badge.svg)](https://codecov.io/gh/sheejamk/valueEQ5D?branch=master)
-
-  
     <!-- badges: end -->
   
 # valueEQ5D
