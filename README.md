@@ -1,3 +1,13 @@
+<!-- badges: start -->
+
+  
+  [![Build Status](https://travis-ci.org/{sheejamk}/{valueEQ5D}.png?branch=master)](https://travis-ci.org/{sheejamk}/{valueEQ5D})
+  
+   [![Codecov test coverage](https://codecov.io/gh/sheejamk/valueEQ5D/branch/master/graph/badge.svg)](https://codecov.io/gh/sheejamk/valueEQ5D?branch=master)
+
+  
+    <!-- badges: end -->
+  
 # valueEQ5D
 EQ-5D is a standardized instrument developed by the EuroQol(R) Group as a measure of health-related quality of life that can be used in a wide range of health conditions and treatments (https://euroqol.org/eq-5d-instruments/). The EQ-5D consists of a descriptive system and a visual analog scale (VAS).
 
@@ -20,6 +30,3 @@ install.packages("valueEQ5D")
 
 Alternatively, the latest release can be installed from www.github.com/sheejamk/valueEQ5D
 
-<!-- badges: start -->
-  [![Codecov test coverage](https://codecov.io/gh/sheejamk/valueEQ5D/branch/master/graph/badge.svg)](https://codecov.io/gh/sheejamk/valueEQ5D?branch=master)
-  <!-- badges: end -->
