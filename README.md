@@ -1,6 +1,6 @@
 <!-- badges: start -->
   
-  [![Build Status](https://travis-ci.org/sheejamk/{valueEQ5D.png?branch=master)](https://travis-ci.org/sheejamk/valueEQ5D)
+  [![Build Status](https://travis-ci.org/sheejamk/valueEQ5D.svg?branch=master)](https://travis-ci.org/sheejamk/valueEQ5D)
 <!-- badges: end -->
       
 <!-- badges: start -->
