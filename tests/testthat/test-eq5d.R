@@ -350,7 +350,7 @@ test_that("EQ5D5L scoring for all countries", {
     "Uruguay", "USA", "Vietnam"
   )
   total <- length(total_countries)
-  for (j in 1:total) {
+  for (j in 1:1) {
     this_country <- total_countries[j]
     country_entry <- replace_space_underscore(total_countries[j])
     print(this_country)
@@ -381,7 +381,7 @@ test_that("EQ5D3L scoring for all countries", {
                                              TTO_countrylist))
   all_countries <- sort(unique(c(VAS_countrylist, TTO_countrylist)))
   total <- length(all_countries)
-  for (j in 1:total) {
+  for (j in 1:1) {
     print(all_countries[j])
     if (all_countries[j] %in% common_countries) {
       country_entry <- replace_space_underscore(all_countries[j])
