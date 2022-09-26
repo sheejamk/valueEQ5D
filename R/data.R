@@ -157,3 +157,16 @@
 #' @source Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>.
 #' @format A 3125 by 11 dataframe
 "EQ5D5L_crosswalk_indexvalues.df"
+
+
+#' EQ-5D-5L mapping 5Lto 3L values
+#' @source Hernandez Alava et al (2017) <doi.org/10.1016/j.jval.2016.11.006> 
+#' @format A 31250 by 21 dataframe
+"EQ5Dmap_table5.df"
+
+#' EQ-5D-5L mapping 3Lto 5L values
+#' @source Hernandez Alava et al (2017) <doi.org/10.1016/j.jval.2016.11.006> 
+#' @format A 31250 by 21 dataframe
+"EQ5Dmap_table3.df"
+
+

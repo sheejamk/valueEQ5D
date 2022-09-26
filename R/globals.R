@@ -6,5 +6,5 @@ utils::globalVariables(names = c(
   "Probability_matrix_crosswalk.df",
   "EQ5D3L_indexvalues.df", "EQ5D5L_indexvalues.df",
   "EQ5D5L_crosswalk_indexvalues.df",
-  "EQ5D5L_tariffs.df", "EQ5D3L_tariffs_TTO.df", "EQ5D3L_tariffs_VAS.df"
-), package = "valueEQ5D", add = TRUE)
+  "EQ5D5L_tariffs.df", "EQ5D3L_tariffs_TTO.df", "EQ5D3L_tariffs_VAS.df",
+  "EQ5Dmap_table5.df", "EQ5Dmap_table3.df"), package = "valueEQ5D", add = TRUE)

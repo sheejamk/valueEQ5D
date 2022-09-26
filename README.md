@@ -12,7 +12,11 @@ EQ-5D is a standardized instrument developed by the EuroQol(R) Group as a measur
 
 The descriptive system comprises five dimensions: mobility, self-care, usual activities, pain/discomfort and anxiety /depression. The EQ-5D VAS records the patients, self-rated health on a vertical visual analogue scale. This can be used as a quantitative measure of health outcome that reflects the patients own judgment. The scores on these five dimensions can be presented as a health profile or can be converted to a single summary index number (utility) reflecting preferably compared to other health profiles.
 
-This package can be used for valuing the adult EQ-5D descriptive system scores - both 5L and 3L for different countries.EQ-5D-5L scores can be valued for the following countries: Canada,China,England,Germany, Hong Kong, Indonesia, Ireland,Japan,Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay while EQ-5D-3L scores can be valued for the countries Belgium, Brazil, Canada, Chile, Denmark, Europe, Finland, France, Germany, Hungary, Italy, Japan, Korea, Netherlands, New Zealand, Poland, Portugal, Slovenia, Spain, Taiwan, Thailand, UK, USA, Zimbabwe, and Trinidad and Tobago. The 5L descriptive scores can be mapped to 3L index values for UK using the National Institute of Care and Excellence (NICE) recommended Van Hout et al. method. 
+This package can be used for valuing the adult EQ-5D descriptive system scores - both 5L and 3L for different countries.EQ-5D-5L scores can be valued for the following countries: Canada,China,England,Germany, Hong Kong, Indonesia, Ireland,Japan,Korea,Malaysia,Netherlands,Spain,Taiwan,Thailand,and Uruguay while EQ-5D-3L scores can be valued for the countries Belgium, Brazil, Canada, Chile, Denmark, Europe, Finland, France, Germany, Hungary, Italy, Japan, Korea, Netherlands, New Zealand, Poland, Portugal, Slovenia, Spain, Taiwan, Thailand, UK, USA, Zimbabwe, and Trinidad and Tobago. 
+
+The 5L descriptive scores can be mapped to 3L index values for UK using Van Hout et al. method. 
+
+the National Institute of Care and Excellence (NICE) guidance changed in 2022, and recommended mapping method is from Hernandez Alava et al and the package implemens this.
 
 User needs to provide the column names of the data where the responses to EQ-5D questions are recorded. The modified data with the index values can be downloaded after analysis. The age and gender specific analysis can also be obtained.
 

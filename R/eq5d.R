@@ -789,7 +789,7 @@ map_5Lto3L_Ind <- function(country = "UK", method = "CW", dimen, dimen2 = NA,
       # check first value should be a vector containing responses or a 
       #5digit number
       if (length(dimen) != 5 && length(dimen) != 1) {
-        stop("Expecting the full response as5 digit number or just 
+        stop("Expecting the full response as 5 digit number or just 
              the response for mobilty")
       } else {# first value a vector or a 5 figit number
         if (length(dimen) == 5) {# first value a vector
@@ -1015,4 +1015,277 @@ map_5Lto3L <- function(eq5dresponse_data, mobility, self_care, usual_activities,
   }
   return(value)
 }
+
 ################################################################################
+#' Function to map EQ-5D-5L descriptive system to 3L index value
+#' using  Hernandez et al (2017) method and DSU's functional approach for
+#' NICE guidance 2022
+#' countries are UK(England), Japan, Korea, Netherlands, China, Spain and Germany
+#' @param country specific country from the above country list
+#' @param dimen  response for EQ-5D-5L mobility  or the 5 digit response, or 
+#' the vector of responses, e.g. 11111, c(1,1,1,1,1) or 1
+#' @param gender gender
+#' @param age age if given as exact age
+#' @param agegroup if age is not known age groupsshould be given
+#' they are 16-35, 35-45, 45-55, 55-65, 65-100. 1-5 
+#' @param dimen1 response for EQ-5D-5L mobility, or NA if the responses are 
+#' given as dimen
+#' @param dimen2 response for EQ-5D-5L self care, or NA if the responses are 
+#' given as dimen
+#' @param dimen3  response for EQ-5D-5L usual activities,or NA if the responses
+#'  are given as dimen
+#' @param dimen4  response for EQ-5D-5L pain/discomfort, or NA if the responses
+#'  are given as dimen
+#' @param dimen5  response for EQ-5D-5L anxiety/depression, or NA if the 
+#' responses are given as dimen
+#' @return index value of EQ-5D-3L, -1 if any error
+#' @examples
+#' map_5Lto3L_Ind_NICE2022("England", "female", 11121, 30)
+#' map_5Lto3L_Ind_NICE2022("England", "female", NA, 30, NA, 1,2,3,4,5)
+#' @export
+#' @importFrom dplyr %>%
+#' @description Function to map EQ-5D-5L descriptive system to 3L index value
+#'(ref:Hernandez, M. and Pudney, S. (2017) and code inspired from 
+#'https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l)
+map_5Lto3L_Ind_NICE2022 <- function(country, gender, dimen = NA, age = NA, agegroup = NA, 
+                                    dimen1 = NA, dimen2 = NA, 
+                                    dimen3 = NA, dimen4 = NA, dimen5 = NA) {
+  country_list <- c("CHINA", "ENGLAND", "GERMANY", "JAPAN", "KOREA", "NETHERLANDS", "SPAIN", "UK")
+  country <- replace_space_underscore(country)
+  country <- toupper(country)
+  if (country %in% country_list) {
+    if(is.null(age) & is.null(agegroup)) {
+      stop("Either age or agegroup to be provided")
+    } else {
+      check1  = TRUE
+      if(!is.null(age)){
+        check1 = is.na(age)
+      }
+      check2 = TRUE
+      if(!is.null(agegroup)){
+        check2 = is.na(agegroup)
+      }
+      if(check1 & check2) stop("Either age or agegroup to be provided")
+    }
+    if(!is.null(dimen)){
+      if(!is.na(dimen)) {
+        if (nchar(dimen) == 5) {# first value a vector
+          digits = as.numeric(strsplit(as.character(dimen),"")[[1]])
+          if (any(digits < 1) || any(digits > 5)) {
+            stop("Invalid EQ-5D-5L responses-check the responses to 
+                 each question")
+          }
+          this_score_5L <- as.numeric(paste(dimen, collapse = ""))
+        } else {
+          stop("Invalid EQ-5D-5L responses")
+        }
+      } else {
+        five_res <- c(dimen1, dimen2, dimen3, dimen4, dimen5)
+        if(sum(is.na(five_res)) == 0){
+          if(any(five_res <1 ) | any(five_res >5 ))
+            stop("Invalid EQ-5D-5L responses")
+          this_score_5L <- paste(five_res, collapse = "") 
+        } else {
+          this_score_5L <- NA
+        }
+      }
+    }
+    if(!is.null(age) & !is.na(age)) {
+      df <- as.data.frame(cbind(age, gender, this_score_5L))
+      if(IPDFileCheck::test_age(df, "age") != 0)
+        stop("age is not in a recognisable form")
+      df$age <- as.numeric(df$age)
+      df = df %>%
+        dplyr::mutate(X_age = dplyr::case_when(
+          age >= 1 & age <= 5 ~ as.double(age),
+          age >= 16 & age < 35 ~ 1,
+          age >= 35 & age < 45 ~ 2,
+          age >= 45 & age < 55 ~ 3,
+          age >= 55 & age < 65 ~ 4,
+          age >= 65 & age <= 100 ~ 5,
+          TRUE ~ 9999))
+      
+    } else {
+      df <- as.data.frame(cbind(agegroup, gender, this_score_5L))
+      if(IPDFileCheck::test_column_contents(df, "agegroup", c(1,2,3,4,5)) != 0)
+        stop("Age group doesnt fall into one of 1-5 groups")
+      df = df %>% dplyr::rename("X_age" = (agegroup))
+    }
+    
+    if(IPDFileCheck::test_gender(df, c(0,1), "gender") !=0) {
+      df = df %>% dplyr::rename("X_male" = (gender)) %>% 
+        dplyr::mutate(X_male = dplyr::case_when(tolower(gender) == "female" ~ 0,
+                                  tolower(gender) == "f" ~ 0,
+                                  tolower(gender) == "male" ~ 1,
+                                  tolower(gender) == "m" ~ 1))
+      
+    }else{
+      df = df %>% dplyr::rename("X_male" = (gender)) %>% 
+        dplyr::mutate(X_male = dplyr::case_when((gender) == "0" ~ 0,
+                                  (gender) == "1" ~ 1))
+    }
+    
+    my_df <- EQ5Dmap_table5.df
+    if(country == "UK" | country == "ENGLAND")
+      key = "UK"
+    if(country == "JAPAN")
+      key = "JP"
+    if(country == "KOREA")
+      key = "KO"
+    if(country == "NETHERLANDS")
+      key = "NL"
+    if(country == "CHINA")
+      key = "CH"
+    if(country == "SPAIN")
+      key = "SP"
+    if(country == "GERMANY")
+      key = "GE"
+    eq5dindex_code = paste("X_U5", key, sep = "")
+    map3lindex_code = paste("X_EU", key, "copula", sep = "")
+    my_df[["Domain"]] = stringr::str_c(my_df$X_Y5_1, my_df$X_Y5_2,
+                                      my_df$X_Y5_3, my_df$X_Y5_4, my_df$X_Y5_5)
+    my_df$X_age5grp  = as.numeric(as.factor(my_df$X_age5grp))
+   
+    if(!is.na(this_score_5L)) {
+      my_df2 = my_df[my_df$X_age == df$X_age &  my_df$X_male == df$X_male & 
+                       my_df$Domain == as.double(df$this_score_5L),]
+      df_res = cbind(df, my_df2[[map3lindex_code]])
+      
+    } else {
+      df_res = cbind(df, NA)
+    }
+    
+    if(ncol(df_res) == 4)
+      colnames(df_res) <- c("age_group", "gender", "5Lscore",  "Mapped3L")
+    else
+      colnames(df_res) <- c("age", "gender", "5Lscore", "age_group", "Mapped3L")
+    return(df_res)
+    
+  } else {
+    stop("Mapping for the country specified is not implemented")
+  }
+}
+################################################################################
+
+#' Function to map EQ-5D-5L scores to EQ-5D-3L index values as per the 
+#' specific country and by gender and age or agegroup for a dataset
+#' @param eq5dresponse_data the data containing eq5d5L responses
+#' @param mobility  column name for EQ-5D-5L mobility
+#' @param self_care column name for response for EQ-5D-5L self care
+#' @param usual_activities  column name for response for EQ-5D-5L usual
+#'  activities
+#' @param pain_discomfort  column name for response for EQ-5D-5L pain/discomfort
+#' @param anxiety  column name for response for EQ-5D-5L anxiety/depression
+#' @param country  country of interest, by default is UK, if groupby has to 
+#' specify the country should be specified
+#' @param gendercol name of gender column
+#' @param agecol name of age column
+#' @param agegroupcol name of age group column
+#' @param groupby  male or female -grouping by gender, default NULL
+#' @param agelimit  vector of ages to show upper and lower limits
+#' @return index value  if success, negative values for failure
+#' @examples
+#' data <- data.frame(
+#' age = c(40, 20), sex = c("M", "F"),
+#' mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
+#' map_5Lto3L_NICE2022(data, "mo", "sc", "ua", "pd","ad", "UK", "sex", "age")
+#' @export
+#' @description Function to map EQ-5D-5L scores to EQ-5D-3L index values
+map_5Lto3L_NICE2022 <- function(eq5dresponse_data, mobility, self_care, usual_activities, 
+                                pain_discomfort, anxiety, country = "UK", gendercol, agecol, 
+                                agegroupcol = NA, groupby = NA, agelimit = NA) {
+  country <- replace_space_underscore(country)
+  
+  if(is.null(agecol) & is.null(agegroupcol)) {
+    stop("Either age col or agegroup col to be provided")
+  } else {
+    check1  = TRUE
+    if(!is.null(agecol)){
+      check1 = is.na(agecol)
+    }
+    check2 = TRUE
+    if(!is.null(agegroupcol)){
+      check2 = is.na(agegroupcol)
+    }
+    if(check1 & check2)   stop("Either age col or agegroup col to be provided")
+  }
+  eq5d_colnames <- c(mobility, self_care, usual_activities, pain_discomfort,
+                     anxiety)
+  ans_eq5d_colnames <- sapply(eq5d_colnames, check_column_exist, 
+                              eq5dresponse_data)
+  if (all(ans_eq5d_colnames == 0)) { # if the eq5d column names match
+    working_data <- subset_gender_age_to_group(eq5dresponse_data, groupby,
+                                               agelimit)
+    scores <- c()
+    if (nrow(working_data) < 1) {
+      stop("no entries with the given criteria - Please check the contents 
+           or the criteria")
+    } else {
+      for (j in 1:nrow(working_data)) {
+        res1 <- working_data[j, mobility]
+        res2 <- working_data[j, self_care]
+        res3 <- working_data[j, usual_activities]
+        res4 <- working_data[j, pain_discomfort]
+        res5 <- working_data[j, anxiety]
+        gender <- working_data[j, gendercol]
+        if(!is.null(agecol)) {
+          if(!is.na(agecol)) {
+            age = working_data[j, agecol]
+            this_score <- map_5Lto3L_Ind_NICE2022(country, gender, NA, age, NA, res1,res2,res3, 
+                                                  res4, res5)
+            
+          }else{
+            agegroup = working_data[j, agegroupcol]
+            this_score <- map_5Lto3L_Ind_NICE2022(country, gender, NA, 30, agegroup, res1,res2,res3, 
+                                                  res4, res5)
+            
+          }
+        }
+        scores <- rbind(scores, this_score)
+        
+      }
+      new_data <-as.data.frame(scores)
+      scores_noNA <- scores[!is.na(scores$Mapped3L),]$Mapped3L
+      
+      if (length(scores_noNA) >= 1) {
+        stats <- descriptive_stat_data_column(scores_noNA, "Mapped3L")
+        freq_table <- get_frequency_table(scores_noNA)
+        first <- is.null(groupby) || toupper(groupby) == "NA" || 
+          is.na(groupby)
+        second <- is.null(agelimit) || sum(toupper(agelimit) == "NA") != 0 || 
+          sum(is.na(agelimit)) != 0
+        if (first & second) {
+          title <- paste("Histogram of EQ-5D-3L index values", sep = "")
+        } else {
+          if (first & !second) {
+            title <- paste("Histogram of EQ-5D-3L index values",
+                           " with ages between ", agelimit[1], " and ", agelimit[2],
+                           sep = ""
+            )
+          } else {
+            if (!first & second) {
+              title <- paste("Histogram of EQ-5D-3L index values for ",
+                             groupby,
+                             sep = ""
+              )
+            } else {
+              title <- paste("Histogram of EQ-5D-3L index values for ",
+                             groupby, " with ages between ", agelimit[1], " and ", 
+                             agelimit[2], sep = ""
+              )
+            }
+          }
+        }
+        hist_plot <- graphics::hist(scores_noNA, main = title, xlab = "Mapped3L")
+        results <- list("stats" = stats, "freq_table" = freq_table, 
+                        "histogram" = hist_plot, "modified_data" = new_data)
+        return(results)
+      } else {
+        print("No relevant rows with non NA scores")
+      }
+    }
+  } else {# if the eq 5d column names do not match
+    stop("EQ-5D column names do not match")
+  }
+}
+
