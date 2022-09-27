@@ -33,3 +33,4 @@ Suggests:
     rmarkdown,
     covr
 VignetteBuilder: knitr
+Config/testthat/edition: 3
