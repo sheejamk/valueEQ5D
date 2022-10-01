@@ -87,7 +87,7 @@ test_that("EQ5D5L scoring for individual responses", {
   expect_equal(the_result, 0.922, tolerance = 1e-3)
   the_result <- value_5L_Ind("England", 11111)
   expect_equal(the_result, 1, tolerance = 1e-3)
-  expect_equal(value_5L_Ind("Canada", 12244), 0.378, tol = 1e-3)
+  expect_equal(value_5L_Ind("Canada", 12244), 0.378, tolerance = 1e-3)
 
   the_result <- value_5L_Ind("England", NA, 1, 1, 1, 2)
   expect_equal(the_result, NA, tolerance = 1e-3)
@@ -269,7 +269,7 @@ test_that("test for value_3L", {
   the_result <- value_3L_Ind("UK", "VAS", 123)
   expect_equal(the_result, NA)
   the_result <- value_3L_Ind("Australia", "TTO", 33132)
-  expect_equal(the_result, -0.045, tol = 1e-3)
+  expect_equal(the_result, -0.045, tolerance = 1e-3)
   answers <- EQ5D3L_indexvalues.df
   expect_error(value_3L_Ind("India", "VAS", 11323),
                "No country tariffs", fixed = TRUE)
@@ -321,15 +321,15 @@ context("EQ5D5L crosswalk mapping for individual responses")
 test_that("EQ5D5L crosswalk mapping for individual responses", {
   expect_equal(map_5Lto3L_Ind("UK", "CW", NA, 1, 2, 3, 4), NA)
   expect_equal(map_5Lto3L_Ind("UK", "CW", 1, 2, 3, 4), NA)
-  expect_equal(map_5Lto3L_Ind("UK", "CW", 12345), 0.0633, tol = 1e-3)
-  expect_equal(map_5Lto3L_Ind("UK", "CW", 1, 1, 1, 2, 2), 0.767, tol = 1e-3)
+  expect_equal(map_5Lto3L_Ind("UK", "CW", 12345), 0.0633, tolerance = 1e-3)
+  expect_equal(map_5Lto3L_Ind("UK", "CW", 1, 1, 1, 2, 2), 0.767, tolerance = 1e-3)
   expect_error(map_5Lto3L_Ind("UK", "CW", 7, 1, 1, 2, 2))
   expect_error(map_5Lto3L_Ind("UK", "CW", 1, 1, 7, 2, 2))
   expect_error(map_5Lto3L_Ind("India", "CW", 1, 1, 2, 2, 2))
   expect_error(map_5Lto3L_Ind("UK", "map", 1, 1, 2, 2, 2))
   expect_error(map_5Lto3L_Ind("UK", "CW", c(10, 1), 2, 2, 2))
   expect_equal(map_5Lto3L_Ind("UK", "CW", c(1, 2, 3, 4, 5)), 0.0633,
-               tol = 1e-3)
+               tolerance = 1e-3)
   expect_error(map_5Lto3L_Ind("UK", "CW", c(1, 2, 3, 4, 7)))
   expect_error(map_5Lto3L_Ind("UK", "CW", c("sh", 2, 3, 4, 7)))
   expect_error(map_5Lto3L_Ind("UK", "CW", c("-2", 2, 3, 4, 7)))
@@ -545,7 +545,7 @@ test_that("EQ5D5L crosswalk  testing dataset", {
     mo = c(1, 2), sc = c(1, 2), ua = c(3, 4), pd = c(3, 4), ad = c(3, 4))
   res <- map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL,
                     c(10, 70))
-  expect_equal(res$stats[2], 0.408, tol = 1e-3)
+  expect_equal(res$stats[2], 0.408, tolerance = 1e-3)
   expect_equal(res$stats[9], 2, tolerance = 1e-3)
   res <- map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", "Male",
                     c(0, 20))
@@ -555,7 +555,7 @@ test_that("EQ5D5L crosswalk  testing dataset", {
   expect_equal(res$stats[2], 0.689, tolerance = 1e-3)
   res <- map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "UK", "CW", NULL,
                     NULL)
-  expect_equal(res$stats[2], 0.4079, tol = 1e-4)
+  expect_equal(res$stats[2], 0.4079, tolerance = 1e-4)
   expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "India", "CW",
                           NULL, c(10, 70)))
   expect_error(map_5Lto3L(data, "mo", "sc", "ua", "pd", "ad", "", "CW", NULL,
