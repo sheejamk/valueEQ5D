@@ -16,7 +16,7 @@ Description: EQ-5D is a standard instrument (<https://euroqol.org/eq-5d-instrume
     The value sets for EQ-5D-5L for a total of 17 countries are used for the valuation (see the user guide for a complete list of references).
     The package can also be used to map 5L scores to 3L index values for 10 countries: Denmark, France, Germany, Japan, Netherlands, Spain, Thailand, UK, USA, and Zimbabwe. 
     The value set and method for mapping are obtained from Van Hout et al (2012) <doi: 10.1016/j.jval.2012.02.008>. 
-    As per NICE 2022 guidance, the mapping can also be done using  Hernandez Alava et al (2017) <doi.org/10.1016/j.jval.2016.11.006> 
+    As per NICE 2022 guidance, the mapping can also be done using  Wailoo AJ et al (2017) <doi.org/10.1016/j.jval.2016.11.006> 
     Mapping is done for countries: China, England/UK, Germany, Japan, Korea, Netherlands, and Spain.
 License: GNU General Public License
 Encoding: UTF-8
